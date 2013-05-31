@@ -30,10 +30,10 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         // Push the doctrine autoloader to load for the Doctrine\ namespace
         $autoloader->pushAutoloader($doctrineAutoloader, array('Doctrine', 'Symfony'));
 
-        $classLoader = new \Doctrine\Common\ClassLoader('Entities', realpath(__DIR__ . '/models/'), 'loadClass');
+        $classLoader = new \Doctrine\Common\ClassLoader('Entities', realpath(APPLICATION_PATH. '/models/entities'), 'loadClass');
         $autoloader->pushAutoloader(array($classLoader, 'loadClass'), 'Entities');
 
-        $classLoader = new \Doctrine\Common\ClassLoader('Symfony', realpath(__DIR__ . '/../library/Doctrine/'), 'loadClass');
+        $classLoader = new \Doctrine\Common\ClassLoader('Symfony', realpath(APPLICATION_PATH. '/../library/Doctrine/'), 'loadClass');
         $autoloader->pushAutoloader(array($classLoader, 'loadClass'), 'Symfony');
 
         $doctrineConfig = $this->getOption('doctrine');
@@ -65,7 +65,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         $em = \Doctrine\ORM\EntityManager::create($connectionOptions, $config);
 
         $registry = Zend_Registry::getInstance();
-        $registry->entitymanager = $em;
+        $registry->entityManager = $em;
 
         return $em;
     }

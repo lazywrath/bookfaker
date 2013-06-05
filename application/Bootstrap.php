@@ -47,7 +47,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         $entityPath = APPLICATION_PATH.'/models/entities';
         $proxyPath    = APPLICATION_PATH.'/models/proxies';
 
-        $driverImpl = $config->newDefaultAnnotationDriver($entityPath);
+        $driverImpl = $config->newDefaultAnnotationDriver($entityPath, false);
         $config->setMetadataDriverImpl($driverImpl);
 
         $config->setProxyDir($proxyPath);

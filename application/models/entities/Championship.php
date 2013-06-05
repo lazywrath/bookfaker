@@ -1,58 +1,112 @@
 <?php
-
 namespace Application\Model\Entities;
 
-use \Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @Entity @Table(name="bf_championships")
- **/
+ * Championship
+ *
+ * @ORM\Table(name="bf_championship")
+ * @ORM\Entity
+ */
 class Championship
-{   
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="smallint", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=45, nullable=false)
+     */
+    private $name;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Team", mappedBy="championships")
+     */
+    private $teams;
+
+    /**
+     * Constructor
+     */
     public function __construct()
     {
-        $this->teams = new ArrayCollection();
+        $this->teams = new \Doctrine\Common\Collections\ArrayCollection();
     }
-     /**
-     * @Id @Column(type="integer") @GeneratedValue
-     **/
-    protected $id;
-    
+
     /**
-     * @Column(type="string")
-     **/
-    protected $name;
-    
-    /**
-    * @ManyToMany(targetEntity="Team", inversedBy="championships",cascade={"persist"})
-    * @JoinTable(name="bf_championships_teams",
-    *      joinColumns={@JoinColumn(name="id_championship", referencedColumnName="id")},
-    *      inverseJoinColumns={@JoinColumn(name="id_team", referencedColumnName="id")}
-    * )
-    */
-    protected $teams;
-    
-    public function getId() {
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
         return $this->id;
     }
 
-    public function setId($id) {
-        $this->id = $id;
+    /**
+     * Set name
+     *
+     * @param string $name
+     * @return Championship
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+    
+        return $this;
     }
 
-    public function getName() {
+    /**
+     * Get name
+     *
+     * @return string 
+     */
+    public function getName()
+    {
         return $this->name;
     }
 
-    public function setName($name) {
-        $this->name = $name;
-    }
-    
-    public function getTeams() {
-        return $this->teams;
-    }
-    
-    public function addTeam($team){
+    /**
+     * Add idTeam
+     *
+     * @param \Team $idTeam
+     * @return Championship
+     */
+    public function addTeam( $team)
+    {
         $this->teams[] = $team;
+        
+        $team->addChampionship($this);
+    
+        return $this;
+    }
+
+    /**
+     * Remove team
+     *
+     * @param \Team $team
+     */
+    public function removeTeam($team)
+    {
+        $this->teams->removeElement($team);
+    }
+
+    /**
+     * Get idTeam
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getTeams()
+    {
+        return $this->teams;
     }
 }

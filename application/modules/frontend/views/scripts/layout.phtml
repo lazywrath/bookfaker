@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<head>
+
+	<!-- Basic Page Needs
+  ================================================== -->
+	<meta charset="utf-8">
+	<title>Clean Sport</title>
+	<meta name="description" content="This is a sport website template">
+	<meta name="author" content="The author of this template is (sheko_elanteko)">
+
+	<!-- Mobile Specific Metas
+  ================================================== -->
+	<!-- <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"> -->
+
+	<!-- CSS
+  ================================================== -->
+	<?php 
+        
+        $this->headLink()->appendStylesheet($this->baseUrl("css/basic-style.css"))
+            ->appendStylesheet($this->baseUrl("css/home.css"))
+            ->appendStylesheet($this->baseUrl("css/main.css"));
+        
+        echo $this->headLink(); ?>
+       
+        
+
+	<!--[if lt IE 9]>
+		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+		<link rel="stylesheet" href="stylesheets/ie_fix.css">
+	<![endif]-->
+
+
+	<script type="text/javascript">
+		var gOverride = {
+		  urlBase: 'http://gridder.andreehansson.se/releases/latest/',
+		  gColor: '#ff0000',
+		  gColumns: 16,
+		  gOpacity: 0.35,
+		  gWidth: 10,
+		  pColor: '#C0C0C0',
+		  pHeight: 15,
+		  pOffset: 0,
+		  pOpacity: 0.55,
+		  center: true,
+		  invert: true,
+		  gEnabled: true,
+		  pEnabled: false,
+		  setupEnabled: true,
+		  fixFlash: false,
+		  size: 960
+		};
+	</script>
+
+
+	<!-- Favicons
+	================================================== -->
+	<link rel="shortcut icon" href="images/favicon.ico">
+	<link rel="apple-touch-icon" href="<?php echo $this->baseUrl("img/apple-touch-icon.png"); ?>">
+	<link rel="apple-touch-icon" sizes="72x72" href="<?php echo $this->baseUrl("img/apple-touch-icon-72x72.png"); ?>">
+	<link rel="apple-touch-icon" sizes="114x114" href="<?php echo $this->baseUrl("img/apple-touch-icon-114x114.png"); ?>">
+
+</head>
+<body>
+
+<!-- To Top button -->
+<a href="#top" id="toTop">&#8593;</a>
+
+
+	<!-- Page Layout
+	================================================== -->
+
+	<!-- Header Styles -->
+	<header id="mainHeader" class="expand">
+		<div class="topHeader expand">
+			<div class="topNav container">
+				<ul>
+					<li><a href="index-2.html">Accueil</a></li>
+					<li><a href="about.html">Mon compte</a></li>
+					<li><a href="blog.html">Blog</a></li>
+					<li><a href="gallery_1.html">Boutique</a></li>
+					<li class="last"><a href="contact.html">Contact</a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="container">
+			<div id="logo" class="eight columns">
+				<h1><a href="index-2.html">BookFaker <em>Un nouveau site de paris en ligne fictif</em></a></h1>
+			</div>
+			<div class="searchBox eight columns">
+				<form method="post" action="#">
+					<input type="text" name="headerSearch" id="headerSearch" placeholder="search...">
+					<input type="submit" name="submitSearch" id="submitSearch" class="noTransition" value="Search">
+				</form>
+			</div>
+		</div>
+	</header>
+	<hr><!-- end header section -->
+
+
+	<nav id="mainNav" class="container">
+		<ul>
+			<li><a class="current" href="index-2.html">Home</a></li>
+			<li><a href="football.html">Football</a></li>
+			<li><a href="football.html">Basketball</a></li>
+			<li><a href="football.html">Tennis</a></li>
+			<li><a href="football.html">Golf</a></li>
+			<li><a href="football.html">Racing</a></li>
+			<li><a href="football.html">Olympics</a></li>
+			<li><a href="#">Pages&#8595;</a>
+				<ul>
+					<li><a href="about.html">About</a></li>
+					<li><a href="blog.html">Blog</a></li>
+					<li><a href="post.html">Post</a></li>
+					<li><a href="gallery_1.html">Gellery 1</a></li>
+					<li><a href="gallery_2.html">Gellery 2</a></li>
+					<li><a href="contact.html">Contact</a></li>
+				</ul>
+			</li>
+			<li><a href="#">Sport Pages&#8595;</a>
+				<ul>
+					<li><a href="football.html">Football</a></li>
+					<li><a href="league_news.html">League News</a></li>
+					<li><a href="league_teams.html">League Teams</a></li>
+					<li><a href="league_fixtures.html">League Fixtures</a></li>
+					<li><a href="league_tables.html">League Tables</a></li>
+					<li><a href="league_topScorers.html">League Top Scorers</a></li>
+					<li><a href="league_photos.html">League Photos</a></li>
+					<li><a href="league_photos_2.html">League Photos 2</a></li>
+					<li><a href="league_photos_3.html">League Photos 3</a></li>
+					<li><a href="player_profile.html">Player Profile</a></li>
+					<li><a href="team_info.html">Team Info</a></li>
+				</ul>
+			</li>
+		</ul>
+	</nav><!-- end main nav section -->
+
+	<div id="contentContainer" class="container">
+		<?php echo $this->layout()->content ?>
+	</div><!-- end of content container -->
+
+	<section id="footer" class="expand">
+		<div class="footerUpper container">
+			<section class="footerAbout five columns">
+				<h1><a href="index-2.html">BookFaker <em>Un nouveau site de paris en ligne fictif</em></a></h1>
+				<p>Nam et commodo est. Nulla tortor leo, fringilla ac pulvinar ut, tincidunt eget nisl. Vivamus augue tellus, posuere id consequat vel, hendrerit nec turpis. Fusce ut justo non sem elementum dapibus. Class aptent taciti sociosqu ad litora torquent per conubia nostra.</p>
+				<a href="#" class="login">Login</a>
+				<a href="#" class="join">Join</a>
+			</section><!-- footer about -->
+			<section class="footerNav two columns">
+				<header class="reverse">
+					<h2>Nav</h2>
+				</header>
+				<ul>
+					<li><a href="index-2.html">Accueil</a></li>
+					<li><a href="about.html">Mon compte</a></li>
+					<li><a href="blog.html">Blog</a></li>
+					<li><a href="gallery_1.html">Boutique</a></li>
+					<li class="last"><a href="contact.html">Contact</a></li>
+				</ul>
+			</section><!-- footer nav -->
+			<section class="flickrFeed four columns">
+				<header class="reverse">
+					<h2>Flickr Feed</h2>
+				</header>
+				<ul>
+					<li><a href="#"><img src="images/flickr_image.jpg" alt=""></a></li>
+					<li><a href="#"><img src="images/flickr_image.jpg" alt=""></a></li>
+					<li><a href="#"><img src="images/flickr_image.jpg" alt=""></a></li>
+					<li><a href="#"><img src="images/flickr_image.jpg" alt=""></a></li>
+					<li><a href="#"><img src="images/flickr_image.jpg" alt=""></a></li>
+					<li><a href="#"><img src="images/flickr_image.jpg" alt=""></a></li>
+					<li><a href="#"><img src="images/flickr_image.jpg" alt=""></a></li>
+					<li><a href="#"><img src="images/flickr_image.jpg" alt=""></a></li>
+					<li><a href="#"><img src="images/flickr_image.jpg" alt=""></a></li>
+				</ul>
+			</section><!-- flickr feed -->
+			<section class="usefulLinks five columns">
+				<header class="reverse">
+					<h2>Useful Links</h2>
+				</header>
+				<ul>
+					<li><a href="#">Nam felis nibh, sollicitudin quis pulvinar.</a></li>
+					<li><a href="#">Nam felis nibh, sollicitudin quis pulvinar.</a></li>
+					<li><a href="#">Nam felis nibh, sollicitudin quis pulvinar.</a></li>
+					<li><a href="#">Nam felis nibh, sollicitudin quis pulvinar.</a></li>
+					<li><a href="#">Nam felis nibh, sollicitudin quis pulvinar.</a></li>
+					<li><a href="#">Nam felis nibh, sollicitudin quis pulvinar.</a></li>
+					<li><a href="#">Nam felis nibh, sollicitudin quis pulvinar.</a></li>
+				</ul>
+			</section><!-- useful links -->
+		</div><!-- end of footerUpper div -->
+		<div class="footerBottom expand">
+			<div class="container">
+				<div class="footerSocial eight columns">
+					<ul>
+						<li><a href="#" class="facebook">Facebook</a></li>
+						<li><a href="#" class="twitter">Twitter</a></li>
+						<li><a href="#" class="google">Google +</a></li>
+						<li><a href="#" class="vimeo">Vimeo</a></li>
+						<li><a href="#" class="flickr">Flickr</a></li>
+					</ul>
+				</div><!-- footer social -->
+				<div class="copyRights eight columns">
+					<p>copyright© 2013, bookfaker.com</p>
+				</div><!-- copyrights -->
+			</div>
+		</div><!-- footer bottom -->
+	</section><!-- end of footer section -->
+
+
+
+	<!-- JS
+	================================================== -->
+        <?php
+        $this->headScript()->appendFile($this->baseUrl("js/jquery.waitforimages.js"))
+                    ->appendFile($this->baseUrl("js/jquery.cycle2.min.js"))
+                    ->appendFile($this->baseUrl("js/jquery.cycle2.tile.min.js"))
+                    ->appendFile($this->baseUrl("js/jcarousellite_1.0.1.min.js"))
+                    ->appendFile($this->baseUrl("js/jquery.tweet.js"))
+                    ->appendFile($this->baseUrl("js/main_func.js"))
+                    ->appendFile($this->baseUrl("js/home_func.js"))
+                    ->appendFile("https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js");
+        
+        echo $this->headScript();
+        ?>
+
+<!-- End Document
+================================================== -->
+</body>
+</html>

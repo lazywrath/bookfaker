@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Odds
  *
  * @ORM\Table(name="bf_odds")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="OddsRepository")
  */
 class Odds
 {

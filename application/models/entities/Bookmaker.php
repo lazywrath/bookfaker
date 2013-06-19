@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Bookmaker
  *
  * @ORM\Table(name="bf_bookmaker")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="BookmakerRepository")
  */
 class Bookmaker
 {

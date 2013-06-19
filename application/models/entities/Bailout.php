@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Bailout
  *
  * @ORM\Table(name="bf_bailout")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="BailoutRepository")
  */
 class Bailout
 {

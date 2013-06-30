@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="bf_odds")
  * @ORM\Entity(repositoryClass="OddsRepository")
  */
-class Odds
+class Odds extends AEntity
 {
     /**
      * @var integer

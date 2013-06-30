@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="bf_match")
  * @ORM\Entity(repositoryClass="MatchRepository")
  */
-class Match
+class Match extends AEntity
 {
     /**
      * @var integer

@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="bf_bailout")
  * @ORM\Entity(repositoryClass="BailoutRepository")
  */
-class Bailout
+class Bailout extends AEntity
 {
     /**
      * @var integer

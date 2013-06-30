@@ -2,3 +2,4 @@ nbproject
 .settings
 .project
 .buildpath
+/application/models/proxies/

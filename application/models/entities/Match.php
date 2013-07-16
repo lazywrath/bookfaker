@@ -39,6 +39,13 @@ class Match extends AEntity
      * })
      */
     private $teamTwo;
+    
+    /**
+     * @var datetime
+     *
+     * @ORM\Column(name="date", type="datetime", nullable=false)
+     */
+    private $date;
 
 
     /**
@@ -96,4 +103,22 @@ class Match extends AEntity
     {
         return $this->teamTwo;
     }
+    
+    /**
+     * Get date
+     * @return $date
+     */
+    public function getDate() {
+        return $this->date;
+    }
+    
+    /**
+     * 
+     * @param type $date
+     */
+    public function setDate($date) {
+        $this->date = $date;
+    }
+
+
 }

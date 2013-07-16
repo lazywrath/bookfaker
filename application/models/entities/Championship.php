@@ -35,11 +35,19 @@ class Championship extends AEntity
     private $teams;
 
     /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Sport", mappedBy="championships")
+     */
+    private $sports;
+
+    /**
      * Constructor
      */
     public function __construct()
     {
         $this->teams = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->sports = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -108,5 +116,40 @@ class Championship extends AEntity
     public function getTeams()
     {
         return $this->teams;
+    }
+
+    /**
+     * Add sport
+     *
+     * @param \Sport $sport
+     * @return Championship
+     */
+    public function addSport( $sport)
+    {
+        $this->sports[] = $sport;
+        
+        $sport->addChampionship($this);
+    
+        return $this;
+    }
+
+    /**
+     * Remove sport
+     *
+     * @param \Sport $sport
+     */
+    public function removeSport($sport)
+    {
+        $this->sports->removeElement($sport);
+    }
+
+    /**
+     * Get sports
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getSports()
+    {
+        return $this->sports;
     }
 }

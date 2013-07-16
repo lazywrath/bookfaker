@@ -5,7 +5,7 @@ abstract class AEntity{
     
     public function __construct($data = array()){
         
-        if(is_array($data) && !empty($data)){
+        if(is_array($data)){
             foreach($data as $fieldname => $value){
                 
                 $setter = "set".ucfirst($fieldname);

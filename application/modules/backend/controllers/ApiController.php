@@ -27,98 +27,144 @@ class Backend_ApiController extends Bookfaker_Controller_Backend_Action
         $idRequest = $this->getRequest()->getParam('id', null);
         $dateDebutRequest = $this->getRequest()->getParam('dateDebut', null);
         $dateFinRequest = $this->getRequest()->getParam('dateFin', null);
+        $resultatNull = $this->getRequest()->getParam('resultatNull', null);
         $arrayMatch= array();
 
-        if(!$team1Request&&!$team2Request&&!$idRequest){
-            $Matchs = $this->_entityManager->getRepository('Application\Model\Entities\Match')->findAll();
-            foreach ($Matchs as $key => $Match) {
+        if($this->getRequest()->getPost('idmatch')){
+            $idMatch = $this->getRequest()->getPost('idmatch');
+            $resultat = $this->getRequest()->getPost('resultat');
+            $match = $this->_entityManager->getRepository('Application\Model\Entities\Match')->findOneById($idMatch);
+            switch ($resultat) {
+                case 'teamOne':
+                    $match->setResultat('1');
+                    $this->_entityManager->persist($match);
+                    $this->_entityManager->flush();
+                    break;
+
+                case 'teamTwo':
+                    $match->setResultat('2');
+                    $this->_entityManager->persist($match);
+                    $this->_entityManager->flush();
+                    break;
+
+                case 'draw':
+                    $match->setResultat('0');
+                    $this->_entityManager->persist($match);
+                    $this->_entityManager->flush();
+                    break;
+
+                default:
+                    # code...
+                    break;
+            }
+
+            echo $resultat;
+        }else{
+            if(!$team1Request&&!$team2Request&&!$idRequest){
+                $Matchs = $this->_entityManager->getRepository('Application\Model\Entities\Match')->findAll();
+                foreach ($Matchs as $key => $Match) {
+                    $DateMatch = $Match->getDate();
+                    $Championnats = $Match->getTeamOne()->getChampionships();
+                    $Sport = $Match->getTeamOne()->getSport();
+
+                    array_push($arrayMatch, array($Match->getId(),$Match->getTeamOne()->getName(),$Match->getTeamTwo()->getName(),$DateMatch->format('Y-m-d H:i:s'),$Match->getResultat(),$Championnats[0]->getName(),$Sport->getName()));
+                }
+            }else if($team1Request&&!$team2Request&&!$idRequest){
+
+                $TeamOne = $this->_entityManager->getRepository('Application\Model\Entities\Team')->findOneByName($team1Request);
+                if($TeamOne){
+                    $Matchs = $this->_entityManager->getRepository('Application\Model\Entities\Match')->findByTeamOne($TeamOne->getId());
+                    foreach ($Matchs as $key => $Match) {
+                        $DateMatch = $Match->getDate();
+                        array_push($arrayMatch, array($Match->getId(),$Match->getTeamOne()->getName(),$Match->getTeamTwo()->getName(),$DateMatch->format('Y-m-d H:i:s'),$Match->getResultat(),$Championnats[0]->getName(),$Sport->getName()));
+                    }
+                    $Matchs = $this->_entityManager->getRepository('Application\Model\Entities\Match')->findByTeamTwo($TeamOne->getId());
+                    foreach ($Matchs as $key => $Match) {
+                        $DateMatch = $Match->getDate();
+                        array_push($arrayMatch, array($Match->getId(),$Match->getTeamOne()->getName(),$Match->getTeamTwo()->getName(),$DateMatch->format('Y-m-d H:i:s'),$Match->getResultat(),$Championnats[0]->getName(),$Sport->getName()));
+                    }
+                }
+            }else if($team1Request&&$team2Request&&!$idRequest){
+
+                $TeamOne = $this->_entityManager->getRepository('Application\Model\Entities\Team')->findOneByName($team1Request);
+                $TeamTwo = $this->_entityManager->getRepository('Application\Model\Entities\Team')->findOneByName($team2Request);
+                if($TeamOne&&$TeamTwo){
+                    $Matchs = $this->_entityManager->getRepository('Application\Model\Entities\Match')->findBy(array('teamOne'=>$TeamOne->getId(),'teamTwo'=>$TeamTwo->getId()));
+                    foreach ($Matchs as $key => $Match) {
+                        $DateMatch = $Match->getDate();
+                        array_push($arrayMatch, array($Match->getId(),$Match->getTeamOne()->getName(),$Match->getTeamTwo()->getName(),$DateMatch->format('Y-m-d H:i:s'),$Match->getResultat(),$Championnats[0]->getName(),$Sport->getName()));
+                    }
+
+                    $Matchs = $this->_entityManager->getRepository('Application\Model\Entities\Match')->findBy(array('teamTwo'=>$TeamOne->getId(),'teamOne'=>$TeamTwo->getId()));
+                    foreach ($Matchs as $key => $Match) {
+                        $DateMatch = $Match->getDate();
+                        array_push($arrayMatch, array($Match->getId(),$Match->getTeamOne()->getName(),$Match->getTeamTwo()->getName(),$DateMatch->format('Y-m-d H:i:s'),$Match->getResultat(),$Championnats[0]->getName(),$Sport->getName()));
+                    }
+                }
+            }else if($idRequest){
+                $Match = $this->_entityManager->getRepository('Application\Model\Entities\match')->findOneBy(array('id' => $idRequest));
                 $DateMatch = $Match->getDate();
-                array_push($arrayMatch, array($Match->getId(),$Match->getTeamOne()->getName(),$Match->getTeamTwo()->getName(),$DateMatch->format('Y-m-d H:i:s')));
+                array_push($arrayMatch, array($Match->getId(),$Match->getTeamOne()->getName(),$Match->getTeamTwo()->getName(),$DateMatch->format('Y-m-d H:i:s'),$Match->getResultat(),$Championnats[0]->getName(),$Sport->getName()));
             }
-        }else if($team1Request&&!$team2Request&&!$idRequest){
 
-            $TeamOne = $this->_entityManager->getRepository('Application\Model\Entities\Team')->findOneByName($team1Request);
-            if($TeamOne){
-                $Matchs = $this->_entityManager->getRepository('Application\Model\Entities\Match')->findByTeamOne($TeamOne->getId());
-                foreach ($Matchs as $key => $Match) {
-                    $DateMatch = $Match->getDate();
-                    array_push($arrayMatch, array($Match->getId(),$Match->getTeamOne()->getName(),$Match->getTeamTwo()->getName(),$DateMatch->format('Y-m-d H:i:s')));
-                }
-                $Matchs = $this->_entityManager->getRepository('Application\Model\Entities\Match')->findByTeamTwo($TeamOne->getId());
-                foreach ($Matchs as $key => $Match) {
-                    $DateMatch = $Match->getDate();
-                    array_push($arrayMatch, array($Match->getId(),$Match->getTeamOne()->getName(),$Match->getTeamTwo()->getName(),$DateMatch->format('Y-m-d H:i:s')));
-                }
-            }
-        }else if($team1Request&&$team2Request&&!$idRequest){
+            $newArrayMatch = array();
 
-            $TeamOne = $this->_entityManager->getRepository('Application\Model\Entities\Team')->findOneByName($team1Request);
-            $TeamTwo = $this->_entityManager->getRepository('Application\Model\Entities\Team')->findOneByName($team2Request);
-            if($TeamOne&&$TeamTwo){
-                $Matchs = $this->_entityManager->getRepository('Application\Model\Entities\Match')->findBy(array('teamOne'=>$TeamOne->getId(),'teamTwo'=>$TeamTwo->getId()));
-                foreach ($Matchs as $key => $Match) {
-                    $DateMatch = $Match->getDate();
-                    array_push($arrayMatch, array($Match->getId(),$Match->getTeamOne()->getName(),$Match->getTeamTwo()->getName(),$DateMatch->format('Y-m-d H:i:s')));
+            if($dateDebutRequest)
+                $dateDebutRequestTemp = mktime(substr($dateDebutRequest,11,2),substr($dateDebutRequest,14,2),substr($dateDebutRequest,17,2),substr($dateDebutRequest,5,2),substr($dateDebutRequest,8,2),substr($dateDebutRequest,0,4));
+
+            if($dateFinRequest)
+                $dateFinRequestTemp = mktime(substr($dateFinRequest,11,2),substr($dateFinRequest,14,2),substr($dateFinRequest,17,2),substr($dateFinRequest,5,2),substr($dateFinRequest,8,2),substr($dateFinRequest,0,4));
+
+
+            if(!$dateDebutRequest&&!$dateFinRequest){
+                $newArrayMatch = $arrayMatch;
+            }else if($dateDebutRequest&&$dateFinRequest){
+
+                foreach ($arrayMatch as $key => $match) {
+                    $dateMatchCourantTemp = mktime(substr($match[3],11,2),substr($match[3],14,2),substr($match[3],17,2),substr($match[3],5,2),substr($match[3],8,2),substr($match[3],0,4));
+                    
+                    if($dateMatchCourantTemp>=$dateDebutRequestTemp&&$dateMatchCourantTemp<=$dateFinRequestTemp){
+                        array_push($newArrayMatch, $match);
+                    }
+
                 }
 
-                $Matchs = $this->_entityManager->getRepository('Application\Model\Entities\Match')->findBy(array('teamTwo'=>$TeamOne->getId(),'teamOne'=>$TeamTwo->getId()));
-                foreach ($Matchs as $key => $Match) {
-                    $DateMatch = $Match->getDate();
-                    array_push($arrayMatch, array($Match->getId(),$Match->getTeamOne()->getName(),$Match->getTeamTwo()->getName(),$DateMatch->format('Y-m-d H:i:s')));
+            }else if(!$dateDebutRequest&&$dateFinRequest){
+
+                foreach ($arrayMatch as $key => $match) {
+                    $dateMatchCourantTemp = mktime(substr($match[3],11,2),substr($match[3],14,2),substr($match[3],17,2),substr($match[3],5,2),substr($match[3],8,2),substr($match[3],0,4));
+                    
+                    if($dateMatchCourantTemp<=$dateFinRequestTemp){
+                        array_push($newArrayMatch, $match);
+                    }
+
                 }
-            }
-        }else if($idRequest){
-            $Match = $this->_entityManager->getRepository('Application\Model\Entities\match')->findOneBy(array('id' => $idRequest));
-            $DateMatch = $Match->getDate();
-            array_push($arrayMatch, array($Match->getId(),$Match->getTeamOne()->getName(),$Match->getTeamTwo()->getName(),$DateMatch->format('Y-m-d H:i:s')));
-        }
 
-        $newArrayMatch = array();
-
-        if($dateDebutRequest)
-            $dateDebutRequestTemp = mktime(substr($dateDebutRequest,11,2),substr($dateDebutRequest,14,2),substr($dateDebutRequest,17,2),substr($dateDebutRequest,5,2),substr($dateDebutRequest,8,2),substr($dateDebutRequest,0,4));
-
-        if($dateFinRequest)
-            $dateFinRequestTemp = mktime(substr($dateFinRequest,11,2),substr($dateFinRequest,14,2),substr($dateFinRequest,17,2),substr($dateFinRequest,5,2),substr($dateFinRequest,8,2),substr($dateFinRequest,0,4));
-
-
-        if(!$dateDebutRequest&&!$dateFinRequest){
-            $newArrayMatch = $arrayMatch;
-        }else if($dateDebutRequest&&$dateFinRequest){
-
-            foreach ($arrayMatch as $key => $match) {
-                $dateMatchCourantTemp = mktime(substr($match[3],11,2),substr($match[3],14,2),substr($match[3],17,2),substr($match[3],5,2),substr($match[3],8,2),substr($match[3],0,4));
+            }else if($dateDebutRequest&&!$dateFinRequest){
                 
-                if($dateMatchCourantTemp>=$dateDebutRequestTemp&&$dateMatchCourantTemp<=$dateFinRequestTemp){
-                    array_push($newArrayMatch, $match);
-                }
+                 foreach ($arrayMatch as $key => $match) {
+                    $dateMatchCourantTemp = mktime(substr($match[3],11,2),substr($match[3],14,2),substr($match[3],17,2),substr($match[3],5,2),substr($match[3],8,2),substr($match[3],0,4));
 
+                    if($dateMatchCourantTemp>=$dateDebutRequestTemp){
+                        array_push($newArrayMatch, $match);
+                    }
+
+                }
             }
 
-        }else if(!$dateDebutRequest&&$dateFinRequest){
-
-            foreach ($arrayMatch as $key => $match) {
-                $dateMatchCourantTemp = mktime(substr($match[3],11,2),substr($match[3],14,2),substr($match[3],17,2),substr($match[3],5,2),substr($match[3],8,2),substr($match[3],0,4));
-                
-                if($dateMatchCourantTemp<=$dateFinRequestTemp){
-                    array_push($newArrayMatch, $match);
+            $newnewArrayMatch = array();
+            if($resultatNull!=null){
+                foreach ($newArrayMatch as $key => $match) {
+                    if($match[4]==null){
+                        array_push($newnewArrayMatch, $match);
+                    }
                 }
-
+            }else{
+                $newnewArrayMatch = $newArrayMatch;
             }
 
-        }else if($dateDebutRequest&&!$dateFinRequest){
-            
-             foreach ($arrayMatch as $key => $match) {
-                $dateMatchCourantTemp = mktime(substr($match[3],11,2),substr($match[3],14,2),substr($match[3],17,2),substr($match[3],5,2),substr($match[3],8,2),substr($match[3],0,4));
-
-                if($dateMatchCourantTemp>=$dateDebutRequestTemp){
-                    array_push($newArrayMatch, $match);
-                }
-
-            }
+            print_r(json_encode($newnewArrayMatch));
         }
-
-        print_r(json_encode($newArrayMatch));
     }
 
     //Récupérer les bookmakers
@@ -359,6 +405,8 @@ class Backend_ApiController extends Bookfaker_Controller_Backend_Action
                                             $dateTemp = date('Y-m-d H:i:s',mktime(substr($datematch,11,2),substr($datematch,14,2),substr($datematch,17,2),substr($datematch,5,2),substr($datematch,8,2),substr($datematch,0,4)));
                                             $datetime = new DateTime($dateTemp);
                                             $match->setDate($datetime);
+                                            $match->setIdchampionnat($Championships[0]->getId());
+                                            $match->setResultat(null);
                                             $this->_entityManager->persist($match);
                                             $this->_entityManager->flush();
                                         }
@@ -444,6 +492,7 @@ class Backend_ApiController extends Bookfaker_Controller_Backend_Action
                                             $dateTemp = date('Y-m-d H:i:s',mktime(substr($datematch,11,2),substr($datematch,14,2),substr($datematch,17,2),substr($datematch,5,2),substr($datematch,8,2),substr($datematch,0,4)));
                                             $datetime = new DateTime($dateTemp);
                                             $match->setDate($datetime);
+                                            $match->setIdChampionnat($Championships[0]->getId());
                                             $this->_entityManager->persist($match);
                                             $this->_entityManager->flush();
                                         }

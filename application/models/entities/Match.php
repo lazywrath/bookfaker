@@ -46,7 +46,22 @@ class Match extends AEntity
      * @ORM\Column(name="date", type="datetime", nullable=false)
      */
     private $date;
+    
+    /**
+     * @var \integer
+     *
+     * @ORM\Column(name="id_championnat", type="integer", nullable=false)
+     *
+     */
+    private $idChampionnat;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="resultat", type="string", nullable=true)
+     *
+     */
+    private $resultat;
 
     /**
      * Get id
@@ -120,5 +135,35 @@ class Match extends AEntity
         $this->date = $date;
     }
 
+    /**
+     * Get id_championnat
+     * @return $id_championnat
+     */
+    public function getIdchampionnat() {
+        return $this->id_championnat;
+    }
+    
+    /**
+     * 
+     * @param type $IdChampionnat
+     */
+    public function setIdchampionnat($IdChampionnat) {
+        $this->idChampionnat = $IdChampionnat;
+    }
 
+    /**
+     * Get resultat
+     * @return $resultat
+     */
+    public function getResultat() {
+        return $this->resultat;
+    }
+    
+    /**
+     * 
+     * @param type $Resultat
+     */
+    public function setResultat($Resultat) {
+        $this->resultat = $Resultat;
+    }
 }

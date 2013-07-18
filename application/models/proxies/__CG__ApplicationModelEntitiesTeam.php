@@ -64,10 +64,10 @@ class Team extends \Application\Model\Entities\Team implements \Doctrine\ORM\Pro
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return array('__isInitialized__', 'id', 'name', 'championships');
+            return array('__isInitialized__', 'id', 'name', 'championships', 'sport');
         }
 
-        return array('__isInitialized__', 'id', 'name', 'championships');
+        return array('__isInitialized__', 'id', 'name', 'championships', 'sport');
     }
 
     /**
@@ -191,12 +191,12 @@ class Team extends \Application\Model\Entities\Team implements \Doctrine\ORM\Pro
     /**
      * {@inheritDoc}
      */
-    public function setId($id)
+    public function setName($name)
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setId', array($id));
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setName', array($name));
 
-        return parent::setId($id);
+        return parent::setName($name);
     }
 
     /**
@@ -213,12 +213,23 @@ class Team extends \Application\Model\Entities\Team implements \Doctrine\ORM\Pro
     /**
      * {@inheritDoc}
      */
-    public function setName($name)
+    public function addChampionship($championship)
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setName', array($name));
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'addChampionship', array($championship));
 
-        return parent::setName($name);
+        return parent::addChampionship($championship);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function removeChampionship($championship)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'removeChampionship', array($championship));
+
+        return parent::removeChampionship($championship);
     }
 
     /**
@@ -235,12 +246,23 @@ class Team extends \Application\Model\Entities\Team implements \Doctrine\ORM\Pro
     /**
      * {@inheritDoc}
      */
-    public function addChampionship($championship)
+    public function setSport($sport = NULL)
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'addChampionship', array($championship));
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setSport', array($sport));
 
-        return parent::addChampionship($championship);
+        return parent::setSport($sport);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getSport()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getSport', array());
+
+        return parent::getSport();
     }
 
 }

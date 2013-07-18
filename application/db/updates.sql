@@ -20,3 +20,8 @@ CREATE  TABLE IF NOT EXISTS `bf_sport_championship` (
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8
 COLLATE = utf8_general_ci;
+
+
+-- 18/07/2013 --
+ALTER TABLE `bf_match` ADD COLUMN `id_championnat` SMALLINT(6) NOT NULL  AFTER `date` ;
+ALTER TABLE `bf_match` ADD COLUMN `resultat` ENUM('0','1','2') NULL DEFAULT Null AFTER `id_championnat` ;

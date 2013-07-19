@@ -36,7 +36,6 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         $classLoader = new \Doctrine\Common\ClassLoader('Symfony', realpath(APPLICATION_PATH. '/../library/Doctrine/'), 'loadClass');
         $autoloader->pushAutoloader(array($classLoader, 'loadClass'), 'Symfony');
 
-        $doctrineConfig = $this->getOption('doctrine');
         $config = new \Doctrine\ORM\Configuration();
 
         $cache = new \Doctrine\Common\Cache\ArrayCache;
@@ -52,13 +51,14 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 
         $config->setProxyDir($proxyPath);
         $config->setProxyNamespace("Proxies");
-
+        
+        $doctrineConfig = $this->getOption('resources');
         $connectionOptions = array(
-            'driver' => $doctrineConfig['conn']['driver'],
-            'user' => $doctrineConfig['conn']['user'],
-            'password' => $doctrineConfig['conn']['pass'],
-            'dbname' => $doctrineConfig['conn']['dbname'],
-            'host' => $doctrineConfig['conn']['host']
+            'driver' => $doctrineConfig['db']['adapter'],
+            'user' => $doctrineConfig['db']['params']['username'],
+            'password' => $doctrineConfig['db']['params']['password'],
+            'dbname' => $doctrineConfig['db']['params']['dbname'],
+            'host' => $doctrineConfig['db']['params']['host']
         );
         
         // Get the entity manager.
@@ -66,7 +66,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 
         $registry = Zend_Registry::getInstance();
         $registry->entityManager = $em;
-
+        
         return $em;
     }
 }

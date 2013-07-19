@@ -2,7 +2,7 @@
 
 use Application\Model\Entities;
 
-class IndexController extends Bookfaker_Controller_Backend_Action
+class Backend_IndexController extends Bookfaker_Controller_Backend_Action
 {
 
     public function init()
@@ -12,8 +12,14 @@ class IndexController extends Bookfaker_Controller_Backend_Action
 
     public function indexAction()
     {
+    	$DateAujourdhui =  date('Y-m-d H:i:s',time());
+    	$MatchRecents = file_get_contents("http://localhost/public/backend/api/match/?resultatNull=1&dateFin=".$DateAujourdhui);
+        $this->view->MatchRecents = json_decode($MatchRecents);
     }
 
+    public function crawlAction(){
+
+    }
 
 }
 

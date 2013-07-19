@@ -1,1 +1,46 @@
-backend 2
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<head>
+
+	<!-- Basic Page Needs
+  ================================================== -->
+	<meta charset="utf-8">
+	<title>Clean Sport</title>
+
+	<?php 
+        
+     echo $this->headLink(); ?>
+
+	<!-- Favicons
+	================================================== -->
+	<link rel="shortcut icon" href="images/favicon.ico">
+
+</head>
+<body>
+
+	<?php echo $this->layout()->content ?>
+
+	<!-- JS
+	================================================== -->
+    <?php
+    $this->headScript()
+                ->appendFile("https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js")
+                ->appendFile($this->baseUrl("js/jquery.waitforimages.js"))
+                ->appendFile($this->baseUrl("js/jquery.cycle2.min.js"))
+                ->appendFile($this->baseUrl("js/jquery.cycle2.tile.min.js"))
+                ->appendFile($this->baseUrl("js/jcarousellite_1.0.1.min.js"))
+                ->appendFile($this->baseUrl("js/jquery.tweet.js"))
+                ->appendFile($this->baseUrl("js/main_func.js"))
+                ->appendFile($this->baseUrl("js/backoffice.js"))
+                ->appendFile($this->baseUrl("js/home_func.js"));
+    
+    echo $this->headScript();
+    ?>
+
+<!-- End Document
+================================================== -->
+</body>
+</html>

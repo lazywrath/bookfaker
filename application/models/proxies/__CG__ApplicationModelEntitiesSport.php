@@ -64,10 +64,10 @@ class Sport extends \Application\Model\Entities\Sport implements \Doctrine\ORM\P
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return array('__isInitialized__', 'id', 'name');
+            return array('__isInitialized__', 'id', 'name', 'championships');
         }
 
-        return array('__isInitialized__', 'id', 'name');
+        return array('__isInitialized__', 'id', 'name', 'championships');
     }
 
     /**
@@ -208,6 +208,39 @@ class Sport extends \Application\Model\Entities\Sport implements \Doctrine\ORM\P
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getName', array());
 
         return parent::getName();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function addChampionship($championship)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'addChampionship', array($championship));
+
+        return parent::addChampionship($championship);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function removeChampionship($championship)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'removeChampionship', array($championship));
+
+        return parent::removeChampionship($championship);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getChampionships()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getChampionships', array());
+
+        return parent::getChampionships();
     }
 
 }

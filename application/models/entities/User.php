@@ -82,13 +82,14 @@ class User extends AEntity
      * @ORM\Column(name="moneybank", type="integer", nullable=true)
      */
     private $moneybank;
-    
-    /**
-     * @var integer
+
+   /**
+    * @var integer
      *
      * @ORM\Column(name="isAdmin", type="integer", nullable=true)
      */
     private $isAdmin;
+
 
 
     /**
@@ -307,14 +308,14 @@ class User extends AEntity
     {
         return $this->moneybank;
     }
-    
-    public function getIsAdmin() {
+
+   public function getIsAdmin() {
         return $this->isAdmin;
     }
 
-    public function setIsAdmin($isAdmin) {
-        $this->isAdmin = $isAdmin;
-    }
+   public function setIsAdmin($isAdmin) {
+       $this->isAdmin = $isAdmin;
+   }
 
 
 }

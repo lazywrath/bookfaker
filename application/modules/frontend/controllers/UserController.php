@@ -31,9 +31,8 @@ class UserController extends Bookfaker_Controller_Frontend_Action
         
         $this->view->form = $form;
     }
-    
     public function loginAction(){
-        $db = Zend_Db_Table::getDefaultAdapter();
+       $db = Zend_Db_Table::getDefaultAdapter();
 
         $loginForm = new Bookfaker_Form_LoginUser();
  
@@ -43,7 +42,7 @@ class UserController extends Bookfaker_Controller_Frontend_Action
                 $db,
                 'bf_user',
                 'username',
-                'password',
+               'password',
                 'password'
                 );
  
@@ -69,13 +68,12 @@ class UserController extends Bookfaker_Controller_Frontend_Action
         
         $this->view->form = $loginForm;
     }
-    
+   
     public function logoutAction(){
         Zend_Auth::getInstance()->clearIdentity();
         $this->_redirect('/frontend');
     }
-    
-    
+
     public function welcomeAction(){
         
     }

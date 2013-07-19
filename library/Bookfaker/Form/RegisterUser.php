@@ -13,6 +13,7 @@ class Bookfaker_Form_RegisterUser extends Zend_Form{
                 ->addFilter('StripTags')
                 ->addFilter('StringTrim')
                 ->addValidator('NotEmpty');
+
         
        $password = new Zend_Form_Element_Password('password'); 
        $password->setLabel("Mot de passe");
@@ -26,6 +27,7 @@ class Bookfaker_Form_RegisterUser extends Zend_Form{
                 ->addFilter('StringTrim')
                 ->addValidator('EmailAddress')
                 ->addValidator('NotEmpty');
+
         
        $firstname = new Zend_Form_Element_Text('firstname'); 
        $firstname->setLabel("Prénom");

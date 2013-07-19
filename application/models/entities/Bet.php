@@ -62,14 +62,12 @@ class Bet extends AEntity
     private $user;
 
     /**
-     * @var \Team
+     * @var \Resultat
      *
-     * @ORM\ManyToOne(targetEntity="Team")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="id_team", referencedColumnName="id")
-     * })
+     * @ORM\Column(name="resultat", type="string", nullable=true)
+     *
      */
-    private $team;
+    private $resultat;
 
 
     /**
@@ -198,25 +196,25 @@ class Bet extends AEntity
     }
 
     /**
-     * Set Team
+     * Set Resultat
      *
-     * @param \Team $team
+     * @param \Resultat $Resultat
      * @return Bet
      */
-    public function setTeam($team = null)
+    public function setResultat($resultat = null)
     {
-        $this->team = $team;
+        $this->resultat = $resultat;
     
         return $this;
     }
 
     /**
-     * Get Team
+     * Get Resultat
      *
-     * @return \Team 
+     * @return \Resultat 
      */
-    public function getTeam()
+    public function getResultat()
     {
-        return $this->team;
+        return $this->resultat;
     }
 }

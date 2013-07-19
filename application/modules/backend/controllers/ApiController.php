@@ -10,6 +10,86 @@ class Backend_ApiController extends Bookfaker_Controller_Backend_Action
         parent::init();
     }
 
+    public function checkbetAction()
+    {
+        $this->_helper->layout()->disableLayout();
+        $this->_helper->viewRenderer->setNoRender(true);
+        $Checks = $this->_entityManager->getRepository('Application\Model\Entities\Combination')->findByCheckbet(0);
+        $CombinationToCheck = array();
+        foreach ($Checks as $key => $Check) {
+            if(!in_array( $Check->getCombination(), $CombinationToCheck)){
+                array_push($CombinationToCheck, $Check->getCombination());
+            }
+        }
+        foreach ($CombinationToCheck as $key => $value) {
+            $Combinations = $this->_entityManager->getRepository('Application\Model\Entities\Combination')->findByCombination($value);
+        
+            $allMatchCheck = true;
+            $Gain = true;
+            foreach ($Combinations as $key => $Combination) {
+                $Bet = $Combination->getBet();
+                $Match = $Bet->getMatch();
+                if($Match->getResultat()==null){
+                    $allMatchCheck = false;
+                    $Gain = false;
+                }else{
+                    switch ($Match->getResultat()) {
+                        case '1':
+                            if($Bet->getResultat()!='1'){
+                                 $Gain = false;
+                            }
+                            break;
+
+                        case '2':
+                            if($Bet->getResultat()!='2'){
+                                 $Gain = false;
+                            }
+                            break;
+                        
+                        case '0':
+                            if($Bet->getResultat()!='0'){
+                                 $Gain = false;
+                            }
+                            break;
+
+                        default:
+                            $allMatchCheck = false;
+                            $Gain = false;
+                            break;
+                    }
+                }
+            }
+            Zend_Debug::dump($allMatchCheck);
+            Zend_Debug::dump($Gain);
+
+            if($allMatchCheck){
+
+                foreach ($Combinations as $key => $Combination) {
+                    $Combination->setCheckbet(1);
+                    $this->_entityManager->persist($Combination);
+                    $this->_entityManager->flush();
+                }
+                if($Gain){
+                    $TotalGain = 0;
+                    foreach ($Combinations as $key => $Combination) {
+                        $Bet = $Combination->getBet();
+                        $odds = $Bet->getOdds();
+                        $stake = $Bet->getStake();
+                        $TotalGain += $odds*$stake;
+                    }
+                    $User = $Bet->getUser();
+                    $GainPrev = $User->getMoneybank();
+                    if($GainPrev!=null)
+                        $TotalGain += $GainPrev;
+                    $User->setMoneybank($TotalGain);
+                    $this->_entityManager->persist($User);
+                    $this->_entityManager->flush();
+                }
+            }
+
+        }
+    }
+
     //Récupérer les matchs en les triants par 
     //ex : teamOne=Chelsea tout les matchs ou chelsea jouera
     //ex : teamTwo=Newcastle obligatoirement associer à TeamOne il donnera tout les matchs chelsea newcastle ou newcastle chelsea
@@ -33,6 +113,7 @@ class Backend_ApiController extends Bookfaker_Controller_Backend_Action
         if($this->getRequest()->getPost('idmatch')){
             $idMatch = $this->getRequest()->getPost('idmatch');
             $resultat = $this->getRequest()->getPost('resultat');
+           
             $match = $this->_entityManager->getRepository('Application\Model\Entities\Match')->findOneById($idMatch);
             switch ($resultat) {
                 case 'teamOne':

@@ -28,3 +28,17 @@ ALTER TABLE `bf_match` ADD COLUMN `resultat` ENUM('0','1','2') NULL DEFAULT Null
 
 -- 19/07/2013 --
 ALTER TABLE  `bf_user` ADD  `isAdmin` TINYINT( 2 ) NOT NULL DEFAULT  '0'
+CREATE  TABLE IF NOT EXISTS `bf_combination` (
+  `id` SMALLINT(6) NOT NULL ,
+  `bet` MEDIUMINT NOT NULL ,
+  `combination` integer NOT NULL ,
+  `checkbet` integer NOT NULL ,
+  PRIMARY KEY (`id`) ,
+  CONSTRAINT `fkcombination`
+    FOREIGN KEY (`bet` )
+    REFERENCES `bf`.`bf_bet` (`id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8
+COLLATE = utf8_general_ci;

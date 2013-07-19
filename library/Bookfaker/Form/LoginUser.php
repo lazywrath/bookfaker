@@ -27,4 +27,3 @@ class Bookfaker_Form_LoginUser extends Zend_Form{
     }
 }
 
-?>

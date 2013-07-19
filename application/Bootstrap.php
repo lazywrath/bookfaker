@@ -51,7 +51,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 
         $config->setProxyDir($proxyPath);
         $config->setProxyNamespace("Proxies");
-        
+
         $doctrineConfig = $this->getOption('resources');
         $connectionOptions = array(
             'driver' => $doctrineConfig['db']['adapter'],
@@ -59,6 +59,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
             'password' => $doctrineConfig['db']['params']['password'],
             'dbname' => $doctrineConfig['db']['params']['dbname'],
             'host' => $doctrineConfig['db']['params']['host']
+
         );
         
         // Get the entity manager.
@@ -66,7 +67,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 
         $registry = Zend_Registry::getInstance();
         $registry->entityManager = $em;
-        
+
         return $em;
     }
 }

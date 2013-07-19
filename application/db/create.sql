@@ -84,14 +84,13 @@ CREATE  TABLE IF NOT EXISTS `bf_bet` (
   `id` MEDIUMINT NOT NULL AUTO_INCREMENT ,
   `id_match` MEDIUMINT NOT NULL ,
   `id_user` MEDIUMINT NOT NULL ,
-  `id_team` MEDIUMINT NULL ,
+  `resultat`ENUM('0','1','2') NULL DEFAULT NULL ,
   `odds` FLOAT UNSIGNED NOT NULL ,
   `stake` MEDIUMINT UNSIGNED NOT NULL ,
   `status` ENUM('0','1','2') NULL DEFAULT '0' ,
   PRIMARY KEY (`id`) ,
   INDEX `fk_idx` (`id_match` ASC) ,
   INDEX `fk_bet_user_idx` (`id_user` ASC) ,
-  INDEX `fb_bet_team_idx` (`id_team` ASC) ,
   CONSTRAINT `fk_bet_match`
     FOREIGN KEY (`id_match` )
     REFERENCES `bf_match` (`id` )
@@ -100,11 +99,6 @@ CREATE  TABLE IF NOT EXISTS `bf_bet` (
   CONSTRAINT `fk_bet_user`
     FOREIGN KEY (`id_user` )
     REFERENCES `bf_user` (`id` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fb_bet_team`
-    FOREIGN KEY (`id_team` )
-    REFERENCES `bf_team` (`id` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;

@@ -83,6 +83,26 @@
 					<li><a href="blog.html">Blog</a></li>
 					<li><a href="gallery_1.html">Boutique</a></li>
 					<li class="last"><a href="contact.html">Contact</a></li>
+					<li class="last">
+                                            <?php if(Bookfaker_Control::isLogged()): ?>
+                                            Vous êtes connectés
+                                            <a href="<?php echo $this->url(
+                                                array(
+                                                    'module' => 'frontend',
+                                                    'controller'=>'user',
+                                                    'action'=>'logout'
+                                                    )); ?>">
+                                                Déconnexion</a>
+                                            <?php else: ?>
+                                            <a href="<?php echo $this->url(
+                                                array(
+                                                    'module' => 'frontend',
+                                                    'controller'=>'user',
+                                                    'action'=>'login'
+                                                    )); ?>">
+                                                Login</a>
+                                            <?php endif; ?>
+                                        </li>
 				</ul>
 			</div>
 		</div>

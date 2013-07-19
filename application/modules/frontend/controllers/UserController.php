@@ -32,6 +32,50 @@ class UserController extends Bookfaker_Controller_Frontend_Action
         $this->view->form = $form;
     }
     
+    public function loginAction(){
+        $db = Zend_Db_Table::getDefaultAdapter();
+
+        $loginForm = new Bookfaker_Form_LoginUser();
+ 
+        if ($loginForm->isValid($_POST)) {
+ 
+            $adapter = new Zend_Auth_Adapter_DbTable(
+                $db,
+                'bf_user',
+                'username',
+                'password',
+                'password'
+                );
+ 
+            $adapter->setIdentity($loginForm->getValue('username'));
+            $adapter->setCredential($loginForm->getValue('password'));
+ 
+            $auth   = Zend_Auth::getInstance();
+            $result = $auth->authenticate($adapter);
+ 
+            if ($result->isValid()) {
+                
+                // On met le user en session
+                $repoUser = $this->_entityManager->getRepository('Application\Model\Entities\User');
+                $user = $repoUser->findOneBy(array('username' => $loginForm->getValue('username')));
+                
+                $authNamespace = new Zend_Session_Namespace('auth');
+                $authNamespace->user = $user;
+                $this->_redirect('/frontend');
+                return;
+            }
+ 
+        }
+        
+        $this->view->form = $loginForm;
+    }
+    
+    public function logoutAction(){
+        Zend_Auth::getInstance()->clearIdentity();
+        $this->_redirect('/frontend');
+    }
+    
+    
     public function welcomeAction(){
         
     }

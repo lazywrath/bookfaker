@@ -9,14 +9,23 @@ class Bookfaker_Form_RegisterUser extends Zend_Form{
        $username = new Zend_Form_Element_Text('username'); 
        $username->setLabel("Pseudo");
        $username->setRequired(true);
+       $username->addValidator(new Zend_Validate_Db_NoRecordExists('bf_user', 'username'))
+                ->addFilter('StripTags')
+                ->addFilter('StringTrim')
+                ->addValidator('NotEmpty');
         
-       $password = new Zend_Form_Element_Text('password'); 
+       $password = new Zend_Form_Element_Password('password'); 
        $password->setLabel("Mot de passe");
        $password->setRequired(true);
        
        $email = new Zend_Form_Element_Text('email'); 
        $email->setLabel("Email");
        $email->setRequired(true);
+       $email->addValidator(new Zend_Validate_Db_NoRecordExists('bf_user', 'email'))
+                ->addFilter('StripTags')
+                ->addFilter('StringTrim')
+                ->addValidator('EmailAddress')
+                ->addValidator('NotEmpty');
         
        $firstname = new Zend_Form_Element_Text('firstname'); 
        $firstname->setLabel("Prénom");

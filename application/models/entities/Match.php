@@ -48,12 +48,14 @@ class Match extends AEntity
     private $date;
     
     /**
-     * @var \integer
+     * @var \Match
      *
-     * @ORM\Column(name="id_championnat", type="integer", nullable=false)
-     *
+     * @ORM\ManyToOne(targetEntity="Championship")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_championnat", referencedColumnName="id")
+     * })
      */
-    private $idChampionnat;
+    private $championship;
 
     /**
      * @var string
@@ -139,16 +141,16 @@ class Match extends AEntity
      * Get id_championnat
      * @return $id_championnat
      */
-    public function getIdchampionnat() {
-        return $this->id_championnat;
+    public function getChampionship() {
+        return $this->championship;
     }
     
     /**
      * 
      * @param type $IdChampionnat
      */
-    public function setIdchampionnat($IdChampionnat) {
-        $this->idChampionnat = $IdChampionnat;
+    public function setChampionship($championship) {
+        $this->championship = $championship;
     }
 
     /**

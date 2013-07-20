@@ -147,7 +147,7 @@ class Odds extends AEntity
      * @param \Bookmaker $bookmaker
      * @return Odds
      */
-    public function setIdBookmaker($bookmaker = null)
+    public function setBookmaker($bookmaker = null)
     {
         $this->bookmaker = $bookmaker;
     

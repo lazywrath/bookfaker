@@ -8,6 +8,9 @@ class Backend_ApiController extends Bookfaker_Controller_Backend_Action
     public function init()
     {
         parent::init();
+        
+        $this->_helper->layout()->disableLayout();
+        $this->_helper->viewRenderer->setNoRender(true);
     }
 
     public function checkbetAction()
@@ -486,7 +489,7 @@ class Backend_ApiController extends Bookfaker_Controller_Backend_Action
                                             $dateTemp = date('Y-m-d H:i:s',mktime(substr($datematch,11,2),substr($datematch,14,2),substr($datematch,17,2),substr($datematch,5,2),substr($datematch,8,2),substr($datematch,0,4)));
                                             $datetime = new DateTime($dateTemp);
                                             $match->setDate($datetime);
-                                            $match->setIdchampionnat($Championships[0]->getId());
+                                            $match->setChampionship($Championships[0]);
                                             $match->setResultat(null);
                                             $this->_entityManager->persist($match);
                                             $this->_entityManager->flush();
@@ -505,7 +508,7 @@ class Backend_ApiController extends Bookfaker_Controller_Backend_Action
                                             $odds->setOddsTeamOne($coteTeam1);
                                             $odds->setOddsTeamTwo($coteTeam2);
                                             $odds->setOddsDraw($coteDraw);
-                                            $odds->setIdBookmaker($Bookmaker[0]);
+                                            $odds->setBookmaker($Bookmaker[0]);
                                             $odds->setMatch($Match[0]);
                                             $this->_entityManager->persist($odds);
                                             $this->_entityManager->flush();
@@ -573,7 +576,7 @@ class Backend_ApiController extends Bookfaker_Controller_Backend_Action
                                             $dateTemp = date('Y-m-d H:i:s',mktime(substr($datematch,11,2),substr($datematch,14,2),substr($datematch,17,2),substr($datematch,5,2),substr($datematch,8,2),substr($datematch,0,4)));
                                             $datetime = new DateTime($dateTemp);
                                             $match->setDate($datetime);
-                                            $match->setIdChampionnat($Championships[0]->getId());
+                                            $match->setChampionship($Championships[0]);
                                             $this->_entityManager->persist($match);
                                             $this->_entityManager->flush();
                                         }
@@ -591,7 +594,7 @@ class Backend_ApiController extends Bookfaker_Controller_Backend_Action
                                             $odds->setOddsTeamOne($coteTeam1);
                                             $odds->setOddsTeamTwo($coteTeam2);
                                             $odds->setOddsDraw($coteDraw);
-                                            $odds->setIdBookmaker($Bookmaker[0]);
+                                            $odds->setBookmaker($Bookmaker[0]);
                                             $odds->setMatch($Match[0]);
                                             $this->_entityManager->persist($odds);
                                             $this->_entityManager->flush();
@@ -603,6 +606,43 @@ class Backend_ApiController extends Bookfaker_Controller_Backend_Action
                 }
             }
 
+    }
+    
+    public function matchesAction(){
+        
+        $repoOdds = $this->_entityManager->getRepository('Application\Model\Entities\Odds');
+        
+        $odds = $repoOdds->findAll();
+        
+        $collection = array();
+        
+        $i = 0;
+        
+        foreach($odds as $o){
+            
+            $data = array(
+                "idOdds"        => $o->getId(),
+                "oddsTeamOne"   => $o->getOddsTeamOne(),
+                "oddsTeamTwo"   => $o->getOddsTeamTwo(),
+                "oddsDraw"      => $o->getOddsDraw(),
+                "idTeamOne"     => $o->getMatch()->getTeamOne()->getId(),
+                "nameTeamOne"   => $o->getMatch()->getTeamOne()->getName(),
+                "idTeamTwo"     => $o->getMatch()->getTeamTwo()->getId(),
+                "nameTeamTwo"   => $o->getMatch()->getTeamTwo()->getName(),
+                "championship"  => $o->getMatch()->getChampionship()->getName(),
+                "date"          => $o->getMatch()->getDate()->format('Y-m-d H:i:s'),
+                "sport"         => $o->getMatch()->getTeamOne()->getSport()->getName()
+            );
+            
+            $i++;
+            
+            if($i > 50)break;
+            
+            $collection[] = $data;
+         }
+         
+        echo json_encode(array("state" => 1, "odds" => $collection));
+        
     }
 
 

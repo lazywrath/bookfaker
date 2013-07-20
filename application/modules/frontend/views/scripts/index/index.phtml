@@ -1,1 +1,9 @@
-<?php echo $this->content; ?>
+<div ng-controller="indexCtrl">
+    <div ng-show="!isDataLoaded">
+        <img src="<?php echo $this->baseURL();?>/images/preloader.gif"/>
+    </div>
+    <div >
+        <p ng-repeat="o in odds">{{o.championship}} | <button>{{o.nameTeamOne}} {{o.oddsTeamOne}}</button><button>N {{o.oddsDraw}}</button><button>{{o.nameTeamTwo}} {{o.oddsTeamTwo}}</button></p>
+    </div>
+
+</div>

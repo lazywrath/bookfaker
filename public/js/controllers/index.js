@@ -3,7 +3,6 @@ function indexCtrl($scope, $http, coupon){
     $scope.isDataLoaded = false;
     $scope.bets = [];
     
-    
     $scope.init = function(){
         var url = BASE_URL+'/backend/api/matches';
         
@@ -15,12 +14,10 @@ function indexCtrl($scope, $http, coupon){
         }).then(function(){
             $scope.isDataLoaded = true;
         });
-        
-        $scope.bets = coupon.getBets();
     }
     
-    $scope.addBet = function(match, idTeam){
-        coupon.addBet(match, idTeam);
+    $scope.addBet = function(match, team){
+        coupon.addBet(match, team);
     }
     
     $scope.init();
@@ -28,9 +25,6 @@ function indexCtrl($scope, $http, coupon){
 
 function menuCtrl($scope, $http, coupon){
 
-    $scope.bets = coupon.getBets();
-    $scope.bets.type = 0;
-    
     $scope.calculGains = function(){
         return coupon.calculGains();
     }
@@ -42,5 +36,13 @@ function menuCtrl($scope, $http, coupon){
     $scope.saveBets = function(){
         return coupon.saveBets();
     }
-
+    
+     // On récupère les paris en session s'ils existent
+    coupon.loadSessionBets().then(function(){
+        $scope.coupon = coupon.getBets();
+    });
+    
+    $scope.saveSessionCoupon = function(){
+        coupon.setSessionBets();
+    }
 }

@@ -120,6 +120,15 @@ class Backend_ApiController extends Bookfaker_Controller_Backend_Action
         }
     }
 
+    
+   public function saveBetsAction(){
+       $body = $this->getRequest()->getRawBody();
+        $data = Zend_Json::decode($body);
+      
+        var_dump($data); exit;
+    }
+    
+
     //Récupérer les matchs en les triants par 
     //ex : teamOne=Chelsea tout les matchs ou chelsea jouera
     //ex : teamTwo=Newcastle obligatoirement associer à TeamOne il donnera tout les matchs chelsea newcastle ou newcastle chelsea

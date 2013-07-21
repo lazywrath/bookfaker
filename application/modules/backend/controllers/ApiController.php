@@ -111,6 +111,8 @@ class Backend_ApiController extends Bookfaker_Controller_Backend_Action
         $dateDebutRequest = $this->getRequest()->getParam('dateDebut', null);
         $dateFinRequest = $this->getRequest()->getParam('dateFin', null);
         $resultatNull = $this->getRequest()->getParam('resultatNull', null);
+        $championship = $this->getRequest()->getParam('championship', null);
+        $sport = $this->getRequest()->getParam('sport', null);
         $arrayMatch= array();
 
         if($this->getRequest()->getPost('idmatch')){
@@ -148,10 +150,10 @@ class Backend_ApiController extends Bookfaker_Controller_Backend_Action
                 $Matchs = $this->_entityManager->getRepository('Application\Model\Entities\Match')->findAll();
                 foreach ($Matchs as $key => $Match) {
                     $DateMatch = $Match->getDate();
-                    $Championnats = $Match->getTeamOne()->getChampionships();
+                    $Championnats = $Match->getChampionship()->getName();
                     $Sport = $Match->getTeamOne()->getSport();
 
-                    array_push($arrayMatch, array($Match->getId(),$Match->getTeamOne()->getName(),$Match->getTeamTwo()->getName(),$DateMatch->format('Y-m-d H:i:s'),$Match->getResultat(),$Championnats[0]->getName(),$Sport->getName()));
+                    array_push($arrayMatch, array($Match->getId(),$Match->getTeamOne()->getName(),$Match->getTeamTwo()->getName(),$DateMatch->format('Y-m-d H:i:s'),$Match->getResultat(),$Championnats,$Sport->getName()));
                 }
             }else if($team1Request&&!$team2Request&&!$idRequest){
 
@@ -236,18 +238,48 @@ class Backend_ApiController extends Bookfaker_Controller_Backend_Action
                 }
             }
 
-            $newnewArrayMatch = array();
+            $filtreResultatArrayMatch = array();
             if($resultatNull!=null){
                 foreach ($newArrayMatch as $key => $match) {
                     if($match[4]==null){
-                        array_push($newnewArrayMatch, $match);
+                        array_push($filtreResultatArrayMatch, $match);
                     }
                 }
             }else{
-                $newnewArrayMatch = $newArrayMatch;
+                $filtreResultatArrayMatch = $newArrayMatch;
             }
 
-            print_r(json_encode($newnewArrayMatch));
+            $filtreChampionshipArrayMatch = array();
+            if($championship!=null){
+                if(( !is_int($championship) ? (ctype_digit($championship)) : true )){
+                     $championships = $this->_entityManager->getRepository('Application\Model\Entities\Championship')->findOneBy(array('id' => $championship));
+                    $championship = $championships->getName();
+                }
+                foreach ($filtreResultatArrayMatch as $key => $match) {
+                    if($match[5]==$championship){
+                        array_push($filtreChampionshipArrayMatch, $match);
+                    }
+                }
+            }else{
+                $filtreChampionshipArrayMatch = $filtreResultatArrayMatch;
+            }
+
+            $filtreSportArrayMatch = array();
+            if($sport!=null){
+                if(( !is_int($sport) ? (ctype_digit($sport)) : true )){
+                     $sports = $this->_entityManager->getRepository('Application\Model\Entities\Sport')->findOneBy(array('id' => $sport));
+                    $sport = $sports->getName();
+                }
+                foreach ($filtreChampionshipArrayMatch as $key => $match) {
+                    if($match[6]==$sport){
+                        array_push($filtreSportArrayMatch, $match);
+                    }
+                }
+            }else{
+                $filtreSportArrayMatch = $filtreChampionshipArrayMatch;
+            }
+
+            print_r(json_encode($filtreSportArrayMatch));
         }
     }
 

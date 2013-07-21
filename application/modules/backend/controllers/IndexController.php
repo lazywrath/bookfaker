@@ -7,15 +7,16 @@ class Backend_IndexController extends Bookfaker_Controller_Backend_Action
 
     public function init()
     {
+        Zend_Session::start();
         parent::init();
     }
 
     public function indexAction()
-    {
-        Zend_Session::start(); 
+    { 
         //Zend_Session::namespaceUnset('auth');
         if(Zend_Session::namespaceIsset('auth')){
             $this->resultatAction();
+            //$this->view->MatchRecents = array();
             $this->render('resultat');
         }else{
             $this->_redirect('/backend/index/login/');
@@ -23,6 +24,9 @@ class Backend_IndexController extends Bookfaker_Controller_Backend_Action
     }
 
     public function giftAction(){
+        if(!Zend_Session::namespaceIsset('auth')){
+            $this->_redirect('/backend/index/login/');
+        }
         $giftForm = new Bookfaker_Form_AddGift();
         $this->view->form = $giftForm;
 
@@ -99,6 +103,15 @@ class Backend_IndexController extends Bookfaker_Controller_Backend_Action
         $DateAujourdhui =  date('Y-m-d H:i:s',time());
         $MatchRecents = file_get_contents("http://localhost/public/backend/api/match/?resultatNull=1&dateFin=".$DateAujourdhui);
         $this->view->MatchRecents = json_decode($MatchRecents);
+    }
+
+    public function commandeAction(){
+        if(!Zend_Session::namespaceIsset('auth')){
+            $this->_redirect('/backend/index/login/');
+        }
+        $DateAujourdhui =  date('Y-m-d H:i:s',time());
+        $Commandes = file_get_contents("http://localhost/public/backend/api/commande");
+        $this->view->Commandes = json_decode($Commandes);
     }
 
 }

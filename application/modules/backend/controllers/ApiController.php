@@ -162,23 +162,27 @@ class Backend_ApiController extends Bookfaker_Controller_Backend_Action
             $resultat = $this->getRequest()->getPost('resultat');
            
             $match = $this->_entityManager->getRepository('Application\Model\Entities\Match')->findOneById($idMatch);
+            $returnresult = '';
             switch ($resultat) {
                 case 'teamOne':
                     $match->setResultat('1');
                     $this->_entityManager->persist($match);
                     $this->_entityManager->flush();
+                    $returnresult = $match->getTeamOne()->getName();
                     break;
 
                 case 'teamTwo':
                     $match->setResultat('2');
                     $this->_entityManager->persist($match);
                     $this->_entityManager->flush();
+                    $returnresult = $match->getTeamTwo()->getName();
                     break;
 
                 case 'draw':
                     $match->setResultat('0');
                     $this->_entityManager->persist($match);
                     $this->_entityManager->flush();
+                    $returnresult = 'Match Nul';
                     break;
 
                 default:
@@ -186,7 +190,7 @@ class Backend_ApiController extends Bookfaker_Controller_Backend_Action
                     break;
             }
 
-            echo $resultat;
+            echo $returnresult;
         }else{
             if(!$team1Request&&!$team2Request&&!$idRequest){
                 $Matchs = $this->_entityManager->getRepository('Application\Model\Entities\Match')->findAll();

@@ -28,6 +28,7 @@ ALTER TABLE `bf_match` ADD COLUMN `resultat` ENUM('0','1','2') NULL DEFAULT Null
 
 -- 19/07/2013 --
 ALTER TABLE  `bf_user` ADD  `isAdmin` TINYINT( 2 ) NOT NULL DEFAULT  '0'
+
 CREATE  TABLE IF NOT EXISTS `bf_combination` (
   `id` SMALLINT(6) NOT NULL ,
   `bet` MEDIUMINT NOT NULL ,
@@ -42,3 +43,6 @@ CREATE  TABLE IF NOT EXISTS `bf_combination` (
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8
 COLLATE = utf8_general_ci;
+
+-- 21/07/2013 --
+ALTER TABLE `bf`.`bf_combination` CHANGE COLUMN `id` `id` SMALLINT(6) NOT NULL AUTO_INCREMENT  ;

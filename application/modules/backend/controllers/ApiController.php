@@ -653,6 +653,7 @@ class Backend_ApiController extends Bookfaker_Controller_Backend_Action
             
             $data = array(
                 "idOdds"        => $o->getId(),
+                "idMatch"       => $o->getMatch()->getId(),
                 "oddsTeamOne"   => $o->getOddsTeamOne(),
                 "oddsTeamTwo"   => $o->getOddsTeamTwo(),
                 "oddsDraw"      => $o->getOddsDraw(),

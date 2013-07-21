@@ -60,7 +60,7 @@ class Bet extends AEntity
      * })
      */
     private $user;
-
+    
     /**
      * @var \Resultat
      *
@@ -155,7 +155,7 @@ class Bet extends AEntity
      * @param \Match $match
      * @return Bet
      */
-    public function setIdMatch($match = null)
+    public function setMatch($match = null)
     {
         $this->match = $match;
     

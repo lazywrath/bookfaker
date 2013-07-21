@@ -85,9 +85,9 @@ bookfaker.factory('coupon', function($http){
             _this.setSessionBets();
         },
         saveBets : function(){
-            var url = BASE_URL+'/backend/api/save-bets';
+            var url = BASE_URL+'/frontend/bet/save-bets';
             
-            $http.post(url, coupon.bets).success(function(data){
+            return $http.post(url, coupon).success(function(data){
                 if(1 == data.state)
                     _this.clearSessionBets();
             });

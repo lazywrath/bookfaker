@@ -20,6 +20,17 @@ class Bookfaker_Control {
         
         return $auth->hasIdentity() && isset($session) && $session->user->isAdmin;
     }
+    
+    static function userInfos(){
+        
+        $auth = Zend_Auth::getInstance();
+        $session = new Zend_Session_Namespace('auth');
+        
+        if(!$auth->hasIdentity())
+            return null;
+        
+        return $session->user;
+    }
 }
 
 ?>

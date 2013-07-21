@@ -89,9 +89,9 @@ class User extends AEntity
      * @ORM\Column(name="isAdmin", type="integer", nullable=true)
      */
     private $isAdmin;
+    
 
-
-
+    
     /**
      * Get id
      *

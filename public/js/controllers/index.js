@@ -25,6 +25,8 @@ function indexCtrl($scope, $http, coupon){
 
 function menuCtrl($scope, $http, coupon){
 
+    $scope.isLogged = true;
+    
     $scope.calculGains = function(){
         return coupon.calculGains();
     }
@@ -34,7 +36,12 @@ function menuCtrl($scope, $http, coupon){
     }
     
     $scope.saveBets = function(){
-        return coupon.saveBets();
+        return coupon.saveBets().success(function(data){
+            if(0==data.state)
+                $scope.isLogged = false;
+            else if(1==data.state)
+                $scope.isLogged = true;
+        });
     }
     
      // On récupère les paris en session s'ils existent

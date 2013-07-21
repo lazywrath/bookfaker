@@ -13,6 +13,20 @@ class Backend_ApiController extends Bookfaker_Controller_Backend_Action
         $this->_helper->viewRenderer->setNoRender(true);
     }
 
+    public function commandeAction()
+    {
+        $this->_helper->layout()->disableLayout();
+        $this->_helper->viewRenderer->setNoRender(true);
+
+        $Commandes = $this->_entityManager->getRepository('Application\Model\Entities\Commande')->findAll();
+
+        $CommandesArray = array();
+        foreach ($Commandes as $key => $Commande) {
+            array_push($CommandesArray, array($Commande->getId(),$Commande->getUser()->getUsername(),$Commande->getGift()->getName(),$Commande->getDate()) );
+        }
+
+        print_r(json_encode($CommandesArray));
+    }
 
     public function giftAction()
     {
@@ -118,14 +132,6 @@ class Backend_ApiController extends Bookfaker_Controller_Backend_Action
             }
 
         }
-    }
-
-    
-   public function saveBetsAction(){
-       $body = $this->getRequest()->getRawBody();
-        $data = Zend_Json::decode($body);
-      
-        var_dump($data); exit;
     }
     
 
@@ -675,6 +681,14 @@ class Backend_ApiController extends Bookfaker_Controller_Backend_Action
             }
 
     }
+    
+    public function saveBetsAction(){
+        $body = $this->getRequest()->getRawBody();
+        $data = Zend_Json::decode($body);
+        
+        var_dump($data); exit;
+    }
+    
     public function matchesAction(){
         
         $repoOdds = $this->_entityManager->getRepository('Application\Model\Entities\Odds');

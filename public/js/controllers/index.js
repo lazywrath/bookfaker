@@ -3,7 +3,6 @@ function indexCtrl($scope, $http, coupon){
     $scope.isDataLoaded = false;
     $scope.bets = [];
     
-    
     $scope.init = function(){
         var url = BASE_URL+'/backend/api/matches';
         
@@ -26,9 +25,6 @@ function indexCtrl($scope, $http, coupon){
 
 function menuCtrl($scope, $http, coupon){
 
-    $scope.coupon = coupon.getBets();
-    $scope.coupon.type = 0;
-    
     $scope.calculGains = function(){
         return coupon.calculGains();
     }
@@ -43,6 +39,10 @@ function menuCtrl($scope, $http, coupon){
     
      // On récupère les paris en session s'ils existent
     coupon.loadSessionBets().then(function(){
-        $scope.bets = coupon.getBets();
+        $scope.coupon = coupon.getBets();
     });
+    
+    $scope.saveSessionCoupon = function(){
+        coupon.setSessionBets();
+    }
 }

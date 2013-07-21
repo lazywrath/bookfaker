@@ -5,10 +5,8 @@ var BASE_URL = "/bookfaker/public";
 
 bookfaker.factory('coupon', function($http){
     var coupon = {bets:[]};
-    console.log(coupon.bets);
     var _this = {
         addBet : function(match, team){
-            console.log(coupon);
             coupon.bets.push({
                 match :match,
                 team : team
@@ -27,8 +25,6 @@ bookfaker.factory('coupon', function($http){
                 
                 if(null != data.bets)
                     coupon = angular.fromJson(data.bets);
-                
-                console.log(coupon);
             });
         },
         setSessionBets : function(){
@@ -48,7 +44,7 @@ bookfaker.factory('coupon', function($http){
             if(undefined === coupon.bets || null === coupon.bets|| coupon.bets.length == 0 || undefined === coupon.stacke || 0 == coupon.stacke)
                 return 0;
             
-            var stacke = parseInt(bets.stacke);
+            var stacke = parseInt(coupon.stacke);
             var odds;
             
             if(0 == coupon.type){ // Paris simples

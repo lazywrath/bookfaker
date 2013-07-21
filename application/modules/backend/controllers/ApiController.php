@@ -13,6 +13,47 @@ class Backend_ApiController extends Bookfaker_Controller_Backend_Action
         $this->_helper->viewRenderer->setNoRender(true);
     }
 
+    public function commandeAction()
+    {
+        $this->_helper->layout()->disableLayout();
+        $this->_helper->viewRenderer->setNoRender(true);
+
+        $Commandes = $this->_entityManager->getRepository('Application\Model\Entities\Commande')->findAll();
+
+        $CommandesArray = array();
+        foreach ($Commandes as $key => $Commande) {
+            array_push($CommandesArray, array($Commande->getId(),$Commande->getUser()->getUsername(),$Commande->getGift()->getName(),$Commande->getDate()) );
+        }
+
+        print_r(json_encode($CommandesArray));
+    }
+
+    public function giftAction()
+    {
+        $this->_helper->layout()->disableLayout();
+        $this->_helper->viewRenderer->setNoRender(true);
+
+        if($this->getRequest()->getPost('nameGift') && $this->getRequest()->getPost('imageGift')&&$this->getRequest()->getPost('bookiesGift')){
+
+            $gift = new Entities\Gift();
+            $gift->setName($this->getRequest()->getPost('nameGift') );
+            $gift->setBookies($this->getRequest()->getPost('bookiesGift') );
+            $gift->setImage($this->getRequest()->getPost('imageGift') );
+            $this->_entityManager->persist($gift);
+            $this->_entityManager->flush();
+
+        }else{
+            $Gifts = $this->_entityManager->getRepository('Application\Model\Entities\Gift')->findAll();
+
+            $GiftsArray = array();
+            foreach ($Gifts as $key => $Gift) {
+                array_push($GiftsArray, array($Gift->getId(),$Gift->getName(),$Gift->getImage()) );
+            }
+
+            print_r(json_encode($GiftsArray));
+        }
+    }
+
     public function checkbetAction()
     {
         $this->_helper->layout()->disableLayout();
@@ -92,6 +133,7 @@ class Backend_ApiController extends Bookfaker_Controller_Backend_Action
 
         }
     }
+    
 
     //Récupérer les matchs en les triants par 
     //ex : teamOne=Chelsea tout les matchs ou chelsea jouera
@@ -120,23 +162,27 @@ class Backend_ApiController extends Bookfaker_Controller_Backend_Action
             $resultat = $this->getRequest()->getPost('resultat');
            
             $match = $this->_entityManager->getRepository('Application\Model\Entities\Match')->findOneById($idMatch);
+            $returnresult = '';
             switch ($resultat) {
                 case 'teamOne':
                     $match->setResultat('1');
                     $this->_entityManager->persist($match);
                     $this->_entityManager->flush();
+                    $returnresult = $match->getTeamOne()->getName();
                     break;
 
                 case 'teamTwo':
                     $match->setResultat('2');
                     $this->_entityManager->persist($match);
                     $this->_entityManager->flush();
+                    $returnresult = $match->getTeamTwo()->getName();
                     break;
 
                 case 'draw':
                     $match->setResultat('0');
                     $this->_entityManager->persist($match);
                     $this->_entityManager->flush();
+                    $returnresult = 'Match Nul';
                     break;
 
                 default:
@@ -144,7 +190,7 @@ class Backend_ApiController extends Bookfaker_Controller_Backend_Action
                     break;
             }
 
-            echo $resultat;
+            echo $returnresult;
         }else{
             if(!$team1Request&&!$team2Request&&!$idRequest){
                 $Matchs = $this->_entityManager->getRepository('Application\Model\Entities\Match')->findAll();
@@ -639,6 +685,14 @@ class Backend_ApiController extends Bookfaker_Controller_Backend_Action
             }
 
     }
+    
+    public function saveBetsAction(){
+        $body = $this->getRequest()->getRawBody();
+        $data = Zend_Json::decode($body);
+        
+        var_dump($data); exit;
+    }
+    
     public function matchesAction(){
         
         $repoOdds = $this->_entityManager->getRepository('Application\Model\Entities\Odds');

@@ -44,5 +44,32 @@ ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8
 COLLATE = utf8_general_ci;
 
--- 21/07/2013 --
-ALTER TABLE `bf`.`bf_combination` CHANGE COLUMN `id` `id` SMALLINT(6) NOT NULL AUTO_INCREMENT  ;
+CREATE  TABLE IF NOT EXISTS `bf_gift` (
+  `id` SMALLINT(6) NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(45) NOT NULL ,
+  `bookies` SMALLINT(6) NOT NULL ,
+  `image` VARCHAR(45) NOT NULL ,
+  PRIMARY KEY (`id`) )
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8
+COLLATE = utf8_general_ci;
+
+CREATE  TABLE IF NOT EXISTS `bf_commande` (
+  `id` SMALLINT(6) NOT NULL AUTO_INCREMENT,
+  `user` MEDIUMINT NOT NULL ,
+  `gift` SMALLINT(6) NOT NULL ,
+  `date` DATETIME NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) ,
+  CONSTRAINT `fk_commande_user`
+    FOREIGN KEY (`user`)
+    REFERENCES `bf_user` (`id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_commande_gift`
+    FOREIGN KEY (`gift`)
+    REFERENCES `bf`.`bf_gift` (`id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8
+COLLATE = utf8_general_ci;

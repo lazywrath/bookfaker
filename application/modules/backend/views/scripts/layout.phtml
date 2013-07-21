@@ -11,23 +11,15 @@
 	<title>Clean Sport</title>
 
 	<?php 
-        
-     echo $this->headLink(); ?>
+    $this->headLink()->appendStylesheet($this->baseUrl("css/backoffice/bootstrap.css"));
+    echo $this->headLink(); ?>
 
-	<!-- Favicons
-	================================================== -->
-	<link rel="shortcut icon" href="images/favicon.ico">
-
-</head>
-<body>
-
-	<?php echo $this->layout()->content ?>
-
-	<!-- JS
-	================================================== -->
+    <!-- JS
+    ================================================== -->
     <?php
     $this->headScript()
                 ->appendFile("https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js")
+                ->appendFile($this->baseUrl("js/backoffice/bootstrap.js"))
                 ->appendFile($this->baseUrl("js/jquery.waitforimages.js"))
                 ->appendFile($this->baseUrl("js/jquery.cycle2.min.js"))
                 ->appendFile($this->baseUrl("js/jquery.cycle2.tile.min.js"))
@@ -42,5 +34,49 @@
 
 <!-- End Document
 ================================================== -->
+
+	<!-- Favicons
+	================================================== -->
+	<link rel="shortcut icon" href="images/favicon.ico">
+
+</head>
+<body>
+    <div class="modal fade" id="test_modal">
+      <div class="modal-header">
+        <a class="close" data-dismiss="modal"><div class='closemodal'>&times;</div></a>
+        <h3>Popup</h3>
+      </div>
+      <div class="modal-body">
+        <p>Test Modal</p>
+      </div>
+      <div class="modal-footer">
+        <a href="#" class="btn" data-dismiss="modal"><div class='closemodal'>Close </div></a>
+      </div>
+    </div>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="brand" href="#">Bookfaker</a>
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+              <li class="active liresultat"><a href="http://localhost/public/backend/index/">Résultats</a></li>
+              <li class="licadeaux"><a href="http://localhost/public/backend/index/gift">Ajout Cadeaux</a></li>
+              <li class="licommandes"><a href="http://localhost/public/backend/index/commande">Commandes</a></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+        <div class="hero-unit">
+    	   <?php echo $this->layout()->content ?>
+        </div>
+    </div>
 </body>
 </html>

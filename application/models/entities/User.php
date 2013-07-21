@@ -1,17 +1,17 @@
 <?php
 namespace Application\Model\Entities;
-
+ 
 use Doctrine\ORM\Mapping as ORM;
-
-/**
+ 
+ /**
  * User
  *
  * @ORM\Table(name="bf_user")
  * @ORM\Entity(repositoryClass="UserRepository")
- */
+  */
 class User extends AEntity
-{
-    /**
+ {
+     /**
      * @var integer
      *
      * @ORM\Column(name="id", type="integer", nullable=false)
@@ -52,7 +52,7 @@ class User extends AEntity
      * @var string
      *
      * @ORM\Column(name="zip", type="string", length=20, nullable=true)
-     */
+      */
     private $zip;
 
     /**
@@ -159,7 +159,7 @@ class User extends AEntity
         $this->username = $username;
     
         return $this;
-    }
+     }
 
     /**
      * Get username
@@ -169,7 +169,7 @@ class User extends AEntity
     public function getUsername()
     {
         return $this->username;
-    }
+     }
 
     /**
      * Set address
@@ -317,5 +317,4 @@ class User extends AEntity
        $this->isAdmin = $isAdmin;
    }
 
-
-}
+ }

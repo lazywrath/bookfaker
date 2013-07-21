@@ -1,0 +1,28 @@
+<div class="right">
+	<label for="crawl" class="required">Mettre à jour les matchs:</label>
+	<button name="crawl" id="crawl">Update</button>
+</div>
+<div id="resultat">
+<?php 
+	foreach ($this->MatchRecents as $key => $match) {
+		echo '<span class="resultat">Sport : '.$match[6].'</span>';
+		echo '<span class="resultat">Championnat : '.$match[5].'</span>';
+		echo '<span class="resultat">Date : '.$match[3].'</span>';
+		echo '<span class="resultat">Equipe recevante :  <button class="ReslutatTeamOne" matchid="'.$match[0].'">'.$match[1].'</button></span>';
+		echo '<span class="resultat">Match Nul :  <button class="ReslutatDraw" matchid="'.$match[0].'">Draw</button></span>';
+		echo '<span class="resultat">Equipe visiteur :  <button class="ReslutatTeamTwo" matchid="'.$match[0].'">'.$match[2].'</button></span><br/>';
+		echo '<br/>';
+
+	}
+?>
+</div>
+<div id="content"></div>
+
+<script type="text/javascript">
+
+$('.licommandes').removeClass('active');
+$('.licadeaux').removeClass('active');
+$('.liresultat').addClass('active');
+
+
+</script>

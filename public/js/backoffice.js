@@ -1,4 +1,10 @@
+$('.closemodal').live("click", function(){ 
+    $('.modal').addClass('fade');
+});
+
 $('#crawl').live("click", function(){ 
+    $('.modal .modal-body').html('L\'outil est en train de vérifier si de nouveaux matchs existent. Veuillez attendre que l\'opération soit finis, la popup se fermera d\'elle même');
+    $('.modal').removeClass('fade');
     $.ajax({
         url: "../api/",
         type: "POST",
@@ -7,11 +13,13 @@ $('#crawl').live("click", function(){
         },
         success: function(data)
         {
+            $('.modal').addClass('fade');
            $('#content').html(data);
         },
         error: function(data)
-        {
-            Popup.show( 'Une erreur est survenue lors du chargement, merci de réessayer'+data );
+        { 
+            $('.modal .modal-body').html( 'Une erreur est survenue lors du chargement, merci de réessayer'+data );
+           $('.modal').removeClass('fade');
         }
     });
 });
@@ -29,11 +37,13 @@ $('.ReslutatTeamOne').live("click", function(){
         },
         success: function(data)
         {
-           $('#content').html(data);
+           $('.modal .modal-body').html('Vous venez de rentrer comme équipe vainqueur :'+data);
+           $('.modal').removeClass('fade');
         },
         error: function(data)
         {
-            Popup.show( 'Une erreur est survenue lors du chargement, merci de réessayer'+data );
+            $('.modal .modal-body').html( 'Une erreur est survenue lors du chargement, merci de réessayer'+data );
+           $('.modal').removeClass('fade');
         }
     });
 });
@@ -51,11 +61,13 @@ $('.ReslutatTeamTwo').live("click", function(){
         },
         success: function(data)
         {
-           $('#content').html(data);
+           $('.modal .modal-body').html('Vous venez de rentrer comme équipe vainqueur :'+data);
+           $('.modal').removeClass('fade');
         },
         error: function(data)
         {
-            Popup.show( 'Une erreur est survenue lors du chargement, merci de réessayer'+data );
+            $('.modal .modal-body').html( 'Une erreur est survenue lors du chargement, merci de réessayer'+data );
+           $('.modal').removeClass('fade');
         }
     });
 });
@@ -73,7 +85,8 @@ $('.ReslutatDraw').live("click", function(){
         },
         success: function(data)
         {
-           $('#content').html(data);
+        $('.modal .modal-body').html('Vous venez de rentrer un match nul.');
+           $('.modal').removeClass('fade');
         },
         error: function(data)
         {

@@ -1,0 +1,21 @@
+
+<div id="resultat">
+<?php 
+	foreach ($this->Commandes as $key => $Commande) {
+		echo '<span class="resultat">Commande n° : '.$Commande[0].'</span>';
+		echo '<span class="resultat">Utilisateur : '.$Commande[1].'</span>';
+		echo '<span class="resultat">Cadeau : '.$Commande[2].'</span>';
+		echo '<span class="resultat">Date : '.$Commande[3]->date.'</span>';
+		echo '<br/>';
+
+	}
+?>
+</div>
+<script type="text/javascript">
+
+$('.liresultat').removeClass('active');
+$('.licadeaux').removeClass('active');
+$('.licommandes').addClass('active');
+
+
+</script>

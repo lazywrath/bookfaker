@@ -608,6 +608,13 @@ class Backend_ApiController extends Bookfaker_Controller_Backend_Action
 
     }
     
+    public function saveBetsAction(){
+        $body = $this->getRequest()->getRawBody();
+        $data = Zend_Json::decode($body);
+        
+        var_dump($data); exit;
+    }
+    
     public function matchesAction(){
         
         $repoOdds = $this->_entityManager->getRepository('Application\Model\Entities\Odds');

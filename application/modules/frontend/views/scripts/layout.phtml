@@ -22,6 +22,7 @@
         
         $this->headLink()->appendStylesheet($this->baseUrl("css/basic-style.css"))
             ->appendStylesheet($this->baseUrl("css/home.css"))
+            ->appendStylesheet($this->baseUrl("css/styles.css"))
             ->appendStylesheet($this->baseUrl("css/main.css"));
         
         echo $this->headLink(); ?>
@@ -158,7 +159,26 @@
 			</li>
 		</ul>
 	</nav><!-- end main nav section -->
-
+        <!-- coupon -->
+        <div ng-controller="menuCtrl">
+            <input ng-model="bets.type" type="radio" name="type" value="0" checked> Simple<br>
+            <input ng-model="bets.type" type="radio" name="type" value="1" > Combiné
+            Mise :<input ng-model="bets.stacke" type="text"/> EUR
+            Gains possibles : {{calculGains()}}
+            <div ng-repeat="bet in bets">
+                <p>{{bet.match.nameTeamOne}} vs {{bet.match.nameTeamTwo}}</p><button ng-click="removeBet($index)">X</button>
+                <p>Match</p>
+                <p ng-switch="bet.team">Pronostic: 
+                    <span ng-switch-when="1">{{bet.match.nameTeamOne}} {{bet.match.oddsTeamOne}}</span>
+                    <span ng-switch-when="0">Nul {{bet.match.oddsDraw}}</span>
+                    <span ng-switch-when="2">{{bet.match.nameTeamTwo}} {{bet.match.oddsTeamTwo}}</span>
+                </p>
+                <hr>
+                
+            </div>
+            <button ng-click="saveBets()">Enregistrer</button>
+        </div> 
+ 
 	<div id="contentContainer" class="container">
 		<?php echo $this->layout()->content ?>
 	</div><!-- end of content container -->
@@ -244,6 +264,7 @@
                     ->appendFile($this->baseUrl("js/jquery.tweet.js"))
                     ->appendFile($this->baseUrl("js/main_func.js"))
                     ->appendFile($this->baseUrl("js/home_func.js"))
+                    ->appendFile($this->baseUrl("js/bookfaker.js"))
                     ->appendFile($this->baseUrl("js/angular.min.js"))
                     ->appendFile($this->baseUrl("js/controllers/index.js"))
                     ->appendFile($this->baseUrl("js/script.js"))

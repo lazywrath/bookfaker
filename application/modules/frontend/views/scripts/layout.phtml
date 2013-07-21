@@ -257,7 +257,8 @@
 	<!-- JS
 	================================================== -->
         <?php
-        $this->headScript()->appendFile($this->baseUrl("js/jquery.waitforimages.js"))
+        $this->headScript()->appendFile("https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js")
+                    ->appendFile($this->baseUrl("js/jquery.waitforimages.js"))
                     ->appendFile($this->baseUrl("js/jquery.cycle2.min.js"))
                     ->appendFile($this->baseUrl("js/jquery.cycle2.tile.min.js"))
                     ->appendFile($this->baseUrl("js/jcarousellite_1.0.1.min.js"))
@@ -267,8 +268,7 @@
                     ->appendFile($this->baseUrl("js/bookfaker.js"))
                     ->appendFile($this->baseUrl("js/angular.min.js"))
                     ->appendFile($this->baseUrl("js/controllers/index.js"))
-                    ->appendFile($this->baseUrl("js/script.js"))
-                    ->appendFile("https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js");
+                    ->appendFile($this->baseUrl("js/script.js"));
         
         echo $this->headScript();
         ?>

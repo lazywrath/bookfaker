@@ -42,3 +42,13 @@ CREATE  TABLE IF NOT EXISTS `bf_combination` (
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8
 COLLATE = utf8_general_ci;
+
+CREATE  TABLE IF NOT EXISTS `bf_gift` (
+  `id` SMALLINT(6) NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(45) NOT NULL ,
+  `bookies` SMALLINT(6) NOT NULL ,
+  `image` VARCHAR(45) NOT NULL ,
+  PRIMARY KEY (`id`) )
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8
+COLLATE = utf8_general_ci;

@@ -1,0 +1,11 @@
+<?php 
+	foreach ($this->MatchRecents as $key => $match) {
+		echo 'Sport : '.$match[5].' Championnat : '.$match[4].' Date : '.$match[3].'<br/>';
+		echo '<button class="ReslutatTeamOne" matchid="'.$match[0].'">'.$match[1].'</button>  //////////////  <button class="ReslutatDraw" matchid="'.$match[0].'">Draw</button>  ////////////// <button class="ReslutatTeamTwo" matchid="'.$match[0].'">'.$match[2].'</button><br/>';
+		echo '<br/>';
+
+	}
+?>
+<div id="content"></div>
+<button id="crawl" >Crawl</button>
+<div id='content'></div>

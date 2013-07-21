@@ -13,6 +13,33 @@ class Backend_ApiController extends Bookfaker_Controller_Backend_Action
         $this->_helper->viewRenderer->setNoRender(true);
     }
 
+
+    public function giftAction()
+    {
+        $this->_helper->layout()->disableLayout();
+        $this->_helper->viewRenderer->setNoRender(true);
+
+        if($this->getRequest()->getPost('nameGift') && $this->getRequest()->getPost('imageGift')&&$this->getRequest()->getPost('bookiesGift')){
+
+            $gift = new Entities\Gift();
+            $gift->setName($this->getRequest()->getPost('nameGift') );
+            $gift->setBookies($this->getRequest()->getPost('bookiesGift') );
+            $gift->setImage($this->getRequest()->getPost('imageGift') );
+            $this->_entityManager->persist($gift);
+            $this->_entityManager->flush();
+
+        }else{
+            $Gifts = $this->_entityManager->getRepository('Application\Model\Entities\Gift')->findAll();
+
+            $GiftsArray = array();
+            foreach ($Gifts as $key => $Gift) {
+                array_push($GiftsArray, array($Gift->getId(),$Gift->getName(),$Gift->getImage()) );
+            }
+
+            print_r(json_encode($GiftsArray));
+        }
+    }
+
     public function checkbetAction()
     {
         $this->_helper->layout()->disableLayout();

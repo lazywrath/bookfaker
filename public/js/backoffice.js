@@ -20,7 +20,7 @@ $('.ReslutatTeamOne').live("click", function(){
     idMatch = $(this).attr('matchid');
     
     $.ajax({
-        url: "../api/match/",
+        url: "../../api/match/",
         type: "POST",
         data:
         {
@@ -42,7 +42,7 @@ $('.ReslutatTeamTwo').live("click", function(){
     idMatch = $(this).attr('matchid');
     
     $.ajax({
-        url: "../api/match/",
+        url: "../../api/match/",
         type: "POST",
         data:
         {
@@ -64,7 +64,7 @@ $('.ReslutatDraw').live("click", function(){
     idMatch = $(this).attr('matchid');
     
     $.ajax({
-        url: "../api/match/",
+        url: "../../api/match/",
         type: "POST",
         data:
         {

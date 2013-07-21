@@ -4,34 +4,61 @@ var bookfaker = angular.module('bookfaker', []);
 var BASE_URL = "/bookfaker/public";
 
 bookfaker.factory('coupon', function($http){
-    var bets = [];
+    var coupon = {bets:[]};
+    console.log(coupon.bets);
     var _this = {
         addBet : function(match, team){
-            match.team = team;
-            bets.push({
+            console.log(coupon);
+            coupon.bets.push({
                 match :match,
                 team : team
             });
+            
+            _this.setSessionBets();
         },
         getBets : function(){
-            return bets;
+            return coupon;
+        },
+        loadSessionBets : function(){
+            
+            var url = BASE_URL+'/frontend/bet/get-session';
+            
+            return $http.get(url).success(function(data){
+                
+                if(null != data.bets)
+                    coupon = angular.fromJson(data.bets);
+                
+                console.log(coupon);
+            });
+        },
+        setSessionBets : function(){
+            
+            var url = BASE_URL+'/frontend/bet/set-session';
+            $http.post(url, coupon);
+        },
+        clearSessionBets : function(){
+            
+            var url = BASE_URL+'/frontend/bet/clear-session';
+            
+            $http.get(url);
+            coupon.bets = [];
         },
         calculGains : function(){
             var gains = 0;
-            if(undefined === bets || bets.length == 0 || undefined === bets.stacke || 0 == bets.stacke)
+            if(undefined === coupon.bets || null === coupon.bets|| coupon.bets.length == 0 || undefined === coupon.stacke || 0 == coupon.stacke)
                 return 0;
             
             var stacke = parseInt(bets.stacke);
             var odds;
             
-            if(0 == bets.type){ // Paris simples
-                angular.forEach(bets, function(bet, key){
+            if(0 == coupon.type){ // Paris simples
+                angular.forEach(coupon.bets, function(bet, key){
                     odds = _this.getOdds(bet);
                     gains += stacke*odds;
                 });
-            }else if(1 == bets.type){ // Paris combinés
+            }else if(1 == coupon.type){ // Paris combinés
                 
-                angular.forEach(bets, function(bet, key){
+                angular.forEach(coupon.bets, function(bet, key){
                     if(undefined === odds || 0 == odds)
                         odds = _this.getOdds(bet);
                     else
@@ -57,12 +84,17 @@ bookfaker.factory('coupon', function($http){
             return odds;
         },
         removeBet : function(index){
-            bets.splice(index,1);
+            coupon.bets.splice(index,1);
+            
+            _this.setSessionBets();
         },
         saveBets : function(){
             var url = BASE_URL+'/backend/api/save-bets';
             
-            $http.post(url, bets);
+            $http.post(url, coupon.bets).success(function(data){
+                if(1 == data.state)
+                    _this.clearSessionBets();
+            });
         }
     };
     

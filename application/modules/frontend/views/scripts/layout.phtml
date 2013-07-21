@@ -161,11 +161,12 @@
 	</nav><!-- end main nav section -->
         <!-- coupon -->
         <div ng-controller="menuCtrl">
-            <input ng-model="bets.type" type="radio" name="type" value="0" checked> Simple<br>
-            <input ng-model="bets.type" type="radio" name="type" value="1" > Combiné
-            Mise :<input ng-model="bets.stacke" type="text"/> EUR
+            {{bets.type}}
+            <input ng-model="coupon.type" type="radio" name="type" value="0" checked> Simple<br>
+            <input ng-model="coupon.type" type="radio" name="type" value="1" > Combiné
+            Mise :<input ng-model="coupon.stacke" type="text"/> Bookies
             Gains possibles : {{calculGains()}}
-            <div ng-repeat="bet in bets">
+            <div ng-repeat="bet in coupon.bets">
                 <p>{{bet.match.nameTeamOne}} vs {{bet.match.nameTeamTwo}}</p><button ng-click="removeBet($index)">X</button>
                 <p>Match</p>
                 <p ng-switch="bet.team">Pronostic: 

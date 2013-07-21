@@ -3,7 +3,11 @@
         <img src="<?php echo $this->baseURL();?>/images/preloader.gif"/>
     </div>
     <div >
-        <p ng-repeat="o in odds">{{o.championship}} | <button ng-click="addBet(o, 1)">{{o.nameTeamOne}} {{o.oddsTeamOne}}</button><button ng-click="addBet(o, 0)">N {{o.oddsDraw}}</button><button ng-click="addBet(o, 2)">{{o.nameTeamTwo}} {{o.oddsTeamTwo}}</button></p>
+        <p ng-repeat="o in odds">{{o.championship}} | 
+            <button ng-click="addBet(o, 1)">{{o.nameTeamOne}} {{o.oddsTeamOne}}</button>
+            <button ng-click="addBet(o, 0)">N {{o.oddsDraw}}</button>
+            <button ng-click="addBet(o, 2)">{{o.nameTeamTwo}} {{o.oddsTeamTwo}}</button>
+        </p>
     </div>
 
 </div>

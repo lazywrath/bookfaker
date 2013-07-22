@@ -31,6 +31,45 @@ class UserController extends Bookfaker_Controller_Frontend_Action
         
         $this->view->form = $form;
     }
+    
+    public function editAction()
+    {
+        if(!Bookfaker_Control::isLogged())
+            $this->_redirect('/frontend');
+        
+        $form = new Bookfaker_Form_EditUser();
+        
+        if($this->getRequest()->isPost()){
+            $data = $this->getRequest()->getParams();
+            
+            if($form->isValid($data)){
+                $user = new Application\Model\Entities\User($data);
+                $user->setId($this->_user->getId());
+                
+                $this->_entityManager->merge($user);
+                $this->_entityManager->flush();
+                
+                Bookfaker_Control::setUserInfos($user);
+                
+                $this->view->isEditOk = true;
+            }
+            
+            $form->populate($data);
+        }else{
+            $form->populate(
+                array(
+                    'firstname' =>$this->_user->getFirstname(),
+                    'lastname' =>$this->_user->getLastname(),
+                    'city' =>$this->_user->getCity(),
+                    'zip' =>$this->_user->getZip(),
+                    'addresds' =>$this->_user->getAddress()
+                ));
+        }
+        
+        $this->view->form = $form;
+    }
+    
+    
     public function loginAction(){
        $db = Zend_Db_Table::getDefaultAdapter();
 

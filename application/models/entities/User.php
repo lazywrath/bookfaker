@@ -101,6 +101,15 @@ class User extends AEntity
     {
         return $this->id;
     }
+    
+    /**
+     * Set id
+     *
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
 
     /**
      * Set firstname

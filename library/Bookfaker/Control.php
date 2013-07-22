@@ -31,6 +31,17 @@ class Bookfaker_Control {
         
         return $session->user;
     }
+    
+    static function setUserInfos($user){
+        
+        $auth = Zend_Auth::getInstance();
+        $session = new Zend_Session_Namespace('auth');
+        
+        if(!$auth->hasIdentity())
+            return null;
+        
+        $session->user = $user;
+    }
 }
 
 ?>

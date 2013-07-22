@@ -686,22 +686,58 @@ class Backend_ApiController extends Bookfaker_Controller_Backend_Action
 
     }
     
-    public function saveBetsAction(){
-        $body = $this->getRequest()->getRawBody();
-        $data = Zend_Json::decode($body);
+    public function getOddsAction(){
         
-        var_dump($data); exit;
-    }
-    
-    public function matchesAction(){
+        $team1Request = $this->getRequest()->getParam('teamOne', null);
+        $team2Request = $this->getRequest()->getParam('teamTwo', null);
+        $idRequest = $this->getRequest()->getParam('id', null);
+        $dateDebutRequest = $this->getRequest()->getParam('dateDebut', null);
+        $dateFinRequest = $this->getRequest()->getParam('dateFin', null);
+        $resultatNull = $this->getRequest()->getParam('resultatNull', null);
+        $championship = $this->getRequest()->getParam('championship', null);
+        $sport = $this->getRequest()->getParam('sport', null);
         
-        $repoOdds = $this->_entityManager->getRepository('Application\Model\Entities\Odds');
+        $qb = $this->_entityManager->createQueryBuilder();
+        $qb->select('o')
+            ->from('Application\Model\Entities\Odds', 'o')
+            ->innerJoin('o.match', 'm')
+            ->innerJoin('m.teamOne', 'to')
+            ->orderBy('m.date', 'ASC');
         
-        $odds = $repoOdds->findAll();
+        if($sport){
+            $qb->innerJoin('to.sport', 's')
+               ->andWhere('s.id ='.(int)$sport);
+        }
+        // Par défaut on n'affiche pas les matchs deja passés
+        if(!$dateDebutRequest){
+            $qb->andWhere("m.date > '".date("Y-m-d")."'");
+        }
+        
+        if($dateDebutRequest){
+            $qb->andWhere("m.date > ".$dateDebutRequest."'");
+        }
+        
+        if($dateFinRequest){
+            $qb->andWhere("m.date < ".$dateFinRequest."'");
+        }
+        
+        if($team1Request){
+            $qb->andWhere('to.id ='.(int)$team1Request);
+        }
+        
+        if($team2Request){
+            $qb->innerJoin('m.teamTwo', 'tt')
+               ->andWhere('tt.id ='.(int)$team2Request);
+        }
+        
+        if($championship){
+            $qb->innerJoin('m.championship', 'c')
+               ->andWhere('c.id ='.(int)$championship);
+        }
+        
+        $odds =$qb->getQuery()->getResult();
         
         $collection = array();
-        
-        $i = 0;
         
         foreach($odds as $o){
             
@@ -719,10 +755,6 @@ class Backend_ApiController extends Bookfaker_Controller_Backend_Action
                 "date"          => $o->getMatch()->getDate()->format('Y-m-d H:i:s'),
                 "sport"         => $o->getMatch()->getTeamOne()->getSport()->getName()
             );
-            
-            $i++;
-            
-            if($i > 50)break;
             
             $collection[] = $data;
          }

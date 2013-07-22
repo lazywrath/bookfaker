@@ -3,8 +3,14 @@ function indexCtrl($scope, $http, coupon){
     $scope.isDataLoaded = false;
     $scope.bets = [];
     
-    $scope.init = function(){
-        var url = BASE_URL+'/backend/api/matches';
+    $scope.init = function(sport, championship){
+        var url = BASE_URL+'/backend/api/get-odds';
+        
+        if(championship){
+            url += '?championship='+championship;
+        }else if(sport){
+            url += '?sport='+sport;
+        }
         
         // On récupère la liste des matchs avec leur cotes
         $http.get(url).success(function(data){
@@ -19,8 +25,6 @@ function indexCtrl($scope, $http, coupon){
     $scope.addBet = function(match, team){
         coupon.addBet(match, team);
     }
-    
-    $scope.init();
 }
 
 function menuCtrl($scope, $http, coupon){

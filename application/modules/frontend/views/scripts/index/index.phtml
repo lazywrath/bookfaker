@@ -1,4 +1,4 @@
-<div ng-controller="indexCtrl">
+<div ng-controller="indexCtrl" ng-init="init(<?php echo $this->idSport . ',' . $this->idChampionship; ?>)">
     <div ng-show="!isDataLoaded">
         <img src="<?php echo $this->baseURL();?>/images/preloader.gif"/>
     </div>
@@ -7,6 +7,7 @@
             <button ng-click="addBet(o, 1)">{{o.nameTeamOne}} {{o.oddsTeamOne}}</button>
             <button ng-click="addBet(o, 0)">N {{o.oddsDraw}}</button>
             <button ng-click="addBet(o, 2)">{{o.nameTeamTwo}} {{o.oddsTeamTwo}}</button>
+             {{o.date}}
         </p>
     </div>
 

@@ -593,7 +593,7 @@ class Backend_ApiController extends Bookfaker_Controller_Backend_Action
                                         }
                                 }
 
-                                if($bet['code']=='Ten_Mr2'||$bet['code']=='Bkb_Mr2'){
+                                if($bet['code']=='Ten_Mr2'||$bet['code']=='Bkb_Mr2'||$bet['code']=='Hdb_Mr2'){
                                      $Sports = $this->_entityManager->getRepository('Application\Model\Entities\Sport')->findByName($namesport);
                                         if(empty($Sports)){
                                             echo 'add sport </br>';

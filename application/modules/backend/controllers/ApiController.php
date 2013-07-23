@@ -710,7 +710,7 @@ class Backend_ApiController extends Bookfaker_Controller_Backend_Action
         }
         // Par défaut on n'affiche pas les matchs deja passés
         if(!$dateDebutRequest){
-            $qb->andWhere("m.date > '".date("Y-m-d")."'");
+            $qb->andWhere("m.date > '".date("Y-m-d H:i:s")."'");
         }
         
         if($dateDebutRequest){

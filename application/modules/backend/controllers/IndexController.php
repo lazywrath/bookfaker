@@ -101,7 +101,9 @@ class Backend_IndexController extends Bookfaker_Controller_Backend_Action
 
     public function resultatAction(){
         $DateAujourdhui =  date('Y-m-d H:i:s',time());
-        $MatchRecents = file_get_contents("http://localhost/public/backend/api/match/?resultatNull=1&dateFin=".$DateAujourdhui);
+
+        $feed = 'http://' . $_SERVER['HTTP_HOST'] . '/public/backend/api/match/?resultatNull=1&dateFin='.$DateAujourdhui;
+        $MatchRecents = file_get_contents($feed);
         $this->view->MatchRecents = json_decode($MatchRecents);
     }
 
@@ -110,7 +112,8 @@ class Backend_IndexController extends Bookfaker_Controller_Backend_Action
             $this->_redirect('/backend/index/login/');
         }
         $DateAujourdhui =  date('Y-m-d H:i:s',time());
-        $Commandes = file_get_contents("http://localhost/public/backend/api/commande");
+        $feed = 'http://' . $_SERVER['HTTP_HOST'] . '/public/backend/api/commande';
+        $Commandes = file_get_contents($feed);
         $this->view->Commandes = json_decode($Commandes);
     }
 

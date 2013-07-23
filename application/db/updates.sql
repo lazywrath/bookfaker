@@ -9,12 +9,12 @@ CREATE  TABLE IF NOT EXISTS `bf_sport_championship` (
   INDEX `fkteam0_idx` (`id_sport` ASC) ,
   CONSTRAINT `fkteam0`
     FOREIGN KEY (`id_sport` )
-    REFERENCES `bf`.`bf_sport` (`id` )
+    REFERENCES `bf_sport` (`id` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fkchampionship0`
     FOREIGN KEY (`id_championship` )
-    REFERENCES `bf`.`bf_championship` (`id` )
+    REFERENCES `bf_championship` (`id` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
@@ -37,7 +37,7 @@ CREATE  TABLE IF NOT EXISTS `bf_combination` (
   PRIMARY KEY (`id`) ,
   CONSTRAINT `fkcombination`
     FOREIGN KEY (`bet` )
-    REFERENCES `bf`.`bf_bet` (`id` )
+    REFERENCES `bf_bet` (`id` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
@@ -45,7 +45,7 @@ DEFAULT CHARACTER SET = utf8
 COLLATE = utf8_general_ci;
 
 -- 21/07/2013 --
-ALTER TABLE `bf`.`bf_combination` CHANGE COLUMN `id` `id` SMALLINT(6) NOT NULL AUTO_INCREMENT  ;
+ALTER TABLE `bf_combination` CHANGE COLUMN `id` `id` SMALLINT(6) NOT NULL AUTO_INCREMENT  ;
 
 CREATE  TABLE IF NOT EXISTS `bf_gift` (
   `id` SMALLINT(6) NOT NULL AUTO_INCREMENT,
@@ -70,7 +70,7 @@ CREATE  TABLE IF NOT EXISTS `bf_commande` (
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_commande_gift`
     FOREIGN KEY (`gift`)
-    REFERENCES `bf`.`bf_gift` (`id` )
+    REFERENCES `bf_gift` (`id` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB

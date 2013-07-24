@@ -13,6 +13,31 @@ class Backend_ApiController extends Bookfaker_Controller_Backend_Action
         $this->_helper->viewRenderer->setNoRender(true);
     }
 
+    //Récupérer les paris
+    //par user
+    public function betAction()
+    {
+        $this->_helper->layout()->disableLayout();
+        $this->_helper->viewRenderer->setNoRender(true);
+        $idUser = $this->getRequest()->getParam('id-user', null);
+        $arrayBet= array();
+
+        if(!$idUser){
+            $Bets = $this->_entityManager->getRepository('Application\Model\Entities\Bet')->findAll();
+            foreach ($Bets as $key => $Bet) {
+                array_push($arrayBet, array('id'=>$Bet->getId(),'odds'=>$Bet->getOdds(),'stake'=>$Bet->getStake(),'status'=>$Bet->getStatus(),'teamOne'=>$Bet->getMatch()->getTeamOne()->getName(),'teamTwo'=>$Bet->getMatch()->getTeamTwo()->getName(),'matchId'=>$Bet->getMatch()->getId(),'user'=>$Bet->getUser()->getUsername(),'resultat'=>$Bet->getResultat()));
+            }
+        }else{ 
+            $Bets = $this->_entityManager->getRepository('Application\Model\Entities\Bet')->findBy(array('user'=>$idUser));
+            foreach ($Bets as $key => $Bet) {
+                array_push($arrayBet, array('id'=>$Bet->getId(),'odds'=>$Bet->getOdds(),'stake'=>$Bet->getStake(),'status'=>$Bet->getStatus(),'teamOne'=>$Bet->getMatch()->getTeamOne()->getName(),'teamTwo'=>$Bet->getMatch()->getTeamTwo()->getName(),'matchId'=>$Bet->getMatch()->getId(),'user'=>$Bet->getUser()->getUsername(),'resultat'=>$Bet->getResultat()));
+            }
+        }
+
+        print_r(json_encode($arrayBet));
+
+    }
+
     public function commandeAction()
     {
         $this->_helper->layout()->disableLayout();
@@ -123,7 +148,7 @@ class Backend_ApiController extends Bookfaker_Controller_Backend_Action
                         $TotalOdd += $odds;
                         $TotalStake *= $stake;
                     }
-                    $TotalGain = $TotalOdd * $TotalStake
+                    $TotalGain = $TotalOdd * $TotalStake;
                     $User = $Bet->getUser();
                     $GainPrev = $User->getMoneybank();
                     if($GainPrev!=null)

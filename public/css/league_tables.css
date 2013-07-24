@@ -1,0 +1,320 @@
+#timeSettings {
+    margin-top:20px;
+    text-align:center
+}
+#timeSettings p {
+    width:100%;
+    display:block;
+    text-align:center;
+    font:normal 18px/18px'BebasNeueRegular', Arial, sans-serif;
+    color:#f2594b;
+    text-shadow:none;
+    -webkit-text-shadow:none;
+    -moz-text-shadow:none;
+    -o-text-shadow:none
+}
+#timeSettings a.timeButton, #timeSettings a.timeButton:link, #timeSettings a.timeButton:visited {
+    width:100px;
+    height:30px;
+    display:block;
+    font:0/0 a;
+    color:transparent;
+    text-shadow:none;
+    background:url("../images/sprite1.png") 0 -540px no-repeat;
+    margin:10px auto 0 auto
+}
+#timeSettings a.timeButton:hover, #timeSettings a.timeButton:active {
+    background-position:0 -570px
+}
+#sideNav ul {
+    margin:30px auto 30px auto;
+    padding:0;
+    list-style:none;
+    width:90%;
+    display:block
+}
+#sideNav ul li {
+    width:100%;
+    float:left;
+    display:block;
+    margin-bottom:10px
+}
+#sideNav ul li a, #sideNav ul li a:link, #sideNav ul li a:visited {
+    font:normal 11px/27px'Open Sans', Arial, sans-serif;
+    color:#999;
+    text-align:left;
+    display:block;
+    border-radius:20px;
+    text-shadow:none;
+    -webkit-text-shadow:none;
+    -moz-text-shadow:none;
+    -o-text-shadow:none;
+    border-radius:20px;
+    -moz-border-radius:20px;
+    -webkit-border-radius:20px;
+    -o-border-radius:20px;
+    background:rgba(44, 44, 44, 0.3);
+    box-shadow:0 1px 0 #1b1b1b inset;
+    -moz-box-shadow:0 1px 0 #1b1b1b inset;
+    -webkit-box-shadow:0 1px 0 #1b1b1b inset;
+    -o-box-shadow:0 1px 0 #1b1b1b inset;
+    border-bottom:solid 1px #777
+}
+#sideNav ul li a:hover, #sideNav ul li a:active {
+    color:#55ccd9
+}
+#sideNav ul li a span {
+    width:30px;
+    height:30px;
+    margin:-1px 10px 0 0;
+    padding:0 0 0 2px;
+    background:#55ccd9 url("../images/plus.png") center center no-repeat;
+    display:block;
+    float:left;
+    border-radius:30px;
+    -moz-border-radius:30px;
+    -webkit-border-radius:30px;
+    -o-border-radius:30px
+}
+#sideNav ul li a.active {
+    box-shadow:0 1px 0 #1b1b1b;
+    -moz-box-shadow:0 1px 0 #1b1b1b;
+    -webkit-box-shadow:0 1px 0 #1b1b1b;
+    -o-box-shadow:0 1px 0 #1b1b1b;
+    border-bottom:0;
+    border-top:solid 1px #777;
+    background:rgba(44, 44, 44, 0.5)
+}
+#sideNav ul li a.active, #sideNav ul li a.activelink, #sideNav ul li a.activevisited {
+    color:#fff
+}
+#sideNav ul li a.active span {
+    background:#f2594b url("../images/minus.png") center center no-repeat
+}
+#sideNav ul li ul {
+    width:85%;
+    margin:10px auto 0 auto;
+    padding:0;
+    list-style:none;
+    display:none
+}
+#sideNav ul li ul li {
+    width:100%;
+    margin:0;
+    padding:10px 0 10px 15px;
+    border-bottom:solid 1px #65686b;
+    background:url("../images/list_arrow.png") left center no-repeat
+}
+#sideNav ul li ul li:last-child {
+    border:0
+}
+#sideNav ul li ul li a, #sideNav ul li ul li a:link, #sideNav ul li ul li a:visited {
+    border:0;
+    box-shadow:none;
+    -moz-box-shadow:none;
+    -webkit-box-shadow:none;
+    -o-box-shadow:none;
+    text-align:left;
+    color:#999;
+    background:0;
+    border-radius:0;
+    -moz-border-radius:0;
+    -webkit-border-radius:0;
+    -o-border-radius:0;
+    font:normal 11px/11px'Open Sans', Arial, sans-serif
+}
+#sideNav ul li ul li a:hover, #sideNav ul li ul li a:active {
+    color:#fff
+}
+#sideNav ul li ul li a.active {
+    color:#f2594b;
+    font-weight:bold
+}
+#sideNav ul li ul.show {
+    display:block
+}
+#poll {
+    margin-top:60px;
+    padding-left:10px
+}
+#poll form h3 {
+    font:normal 12px/12px'Droid Serif', Georgia, Serif;
+    color:#55ccd9;
+    margin-bottom:20px;
+    text-shadow:none;
+    -webkit-text-shadow:none;
+    -moz-text-shadow:none;
+    -o-text-shadow:none
+}
+#poll form label {
+    font:normal 11px/22px'Open Sans', Arial, sans-serif;
+    color:#999;
+    padding:0 0 0 20px;
+    margin-bottom:10px;
+    cursor:pointer;
+    display:block;
+    text-shadow:none;
+    -webkit-text-shadow:none;
+    -moz-text-shadow:none;
+    -o-text-shadow:none
+}
+#poll form label:hover {
+    color:#fff
+}
+div:not(#poll) form input[type=radio] {
+    display:none
+}
+#poll form input[type=radio]+label {
+    background:url("../images/radio_off.png") left center no-repeat
+}
+#poll form input[type=radio]:checked+label {
+    background:url("../images/radio_on.png") left center no-repeat
+}
+#poll #voteNow {
+    width:100px;
+    height:30px;
+    display:block;
+    border:0;
+    margin-top:10px;
+    font:0/0 a;
+    color:transparent;
+    text-shadow:none;
+    background:url("../images/sprite1.png") 0 -480px no-repeat;
+    cursor:pointer
+}
+#poll #voteNow:hover {
+    background-position:0 -510px
+}
+#poll p {
+    font:italic 11px/11px'Droid Serif', Georgia, Serif;
+    color:#f2594b;
+    margin-top:10px;
+    text-shadow:none;
+    -webkit-text-shadow:none;
+    -moz-text-shadow:none;
+    -o-text-shadow:none
+}
+#photos {
+    margin-top:60px;
+    padding-left:10px
+}
+#photos ul {
+    margin:0;
+    padding:0;
+    list-style:none
+}
+#photos li {
+    display:block;
+    float:left;
+    padding:0;
+    margin:0 10px 10px 0
+}
+#photos li:nth-child(3), #photos li:nth-child(6) {
+    margin-right:0
+}
+#photos li img {
+    background:url("../images/dotted_white.png") left top repeat;
+    padding:5px;
+    border:0
+}
+#videos {
+    margin-top:60px;
+    padding-left:10px
+}
+#videos .navigation {
+    padding-right:10px
+}
+#videos ul {
+    margin:0;
+    padding:0;
+    list-style:none
+}
+#videos ul li {
+    display:block;
+    float:left
+}
+#videos ul li iframe {
+    padding:5px;
+    background:url("../images/dotted_white.png") left top repeat;
+    display:block
+}
+#tables table {
+    margin:0;
+    padding:0;
+    width:100%;
+    border-spacing:0 5px
+}
+#tables thead {
+    background:#383838
+}
+#tables thead th {
+    height:40px;
+    margin:0;
+    padding:0;
+    font:normal 12px/12px'Droid Serif', Georgia, Serif;
+    color:#f2f2f2;
+    border-right:solid 1px #807f7f
+}
+#tables tbody {
+    clear:both
+}
+#tables tbody tr {
+    padding:5px 0;
+    background:#f2f2f2;
+    border:solid 1px #fff
+}
+#tables tbody tr td {
+    font:normal 11px/44px'Open Sans', Arial, sans-serif;
+    text-align:center;
+    border-right:solid 1px #ddd;
+    padding:0 5px
+}
+#tables tbody tr.details td {
+    font:italic 10px/22px'Droid Serif', Georgia, Serif;
+    text-align:left
+}
+#tables tbody tr td a, #tables tbody tr td a:link, #tables tbody tr td a:visited {
+    font:normal 11px/22px'Open Sans', Arial, sans-serif;
+    color:#65686b
+}
+#tables tbody tr td a:hover, #tables tbody tr td a:active {
+    color:#f2594b
+}
+#tables tbody tr td.pos, #tables tbody tr td.points {
+    color:#fff;
+    background:#55ccd9
+}
+#tables tbody tr td.up {
+    background:#55ccd9 url("../images/up_arrow.png") 5px center no-repeat;
+    padding-left:13px
+}
+#tables tbody tr td.down {
+    background:#55ccd9 url("../images/down_arrow.png") 5px center no-repeat;
+    padding-left:13px
+}
+#tables tbody tr td.same {
+    background:#55ccd9 url("../images/same.jpg") 5px center no-repeat;
+    padding-left:13px
+}
+#tables tbody tr td ul {
+    margin:0 0 0 5px;
+    padding:0;
+    list-style:none
+}
+#tables tbody tr td ul li {
+    width:6px;
+    height:12px;
+    display:block;
+    float:left;
+    margin-right:6px;
+    background:red
+}
+#tables tbody tr td ul li.won {
+    background:#f46326
+}
+#tables tbody tr td ul li.lost {
+    background:#999
+}
+#tables tbody tr td ul li.drawn {
+    background:#0d0
+}

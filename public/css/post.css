@@ -1,0 +1,737 @@
+#categories ul {
+    margin:0;
+    padding:0;
+    list-style:none;
+    display:block
+}
+#categories ul li {
+    display:block;
+    float:left;
+    width:100%;
+    margin:10px 0 0 0;
+    padding:0
+}
+#categories ul li:nth-child(1) {
+    margin-top:0
+}
+#categories ul li a:link, #categories ul li a:visited {
+    font:normal 12px/30px'Droid Serif', Georgia, serif;
+    text-transform:uppercase;
+    color:#65686b;
+    float:left
+}
+#categories ul li a:hover, #categories ul li a:active, #categories ul li a.active {
+    color:#000
+}
+#categories ul li a span {
+    width:30px;
+    height:30px;
+    display:block;
+    float:left;
+    background:url("../images/sprite1.png") left center no-repeat;
+    margin-right:15px
+}
+#categories ul li a.allCategories span {
+    background-position:-100px -100px
+}
+#categories ul li a.olympics span {
+    background-position:-100px -130px
+}
+#categories ul li a.formula1 span {
+    background-position:-100px -160px
+}
+#categories ul li a.racing span {
+    background-position:-100px -190px
+}
+#categories ul li a.video span {
+    background-position:-100px -220px
+}
+#categories ul li a.article span {
+    background-position:-100px -250px
+}
+#tags {
+    margin-top:60px
+}
+#tags ul {
+    margin:0;
+    padding:0;
+    list-style:none
+}
+#tags ul li {
+    display:inline-block;
+    background:url("../images/tag_bg_1.jpg") left center repeat-x;
+    position:relative;
+    margin:0 30px 10px 0
+}
+#tags ul li:after {
+    content:'';
+    width:19px;
+    height:30px;
+    display:block;
+    position:absolute;
+    left:100%;
+    top:0;
+    background:url("../images/tag_bg_2.png") left center no-repeat
+}
+#tags ul li a:link, #tags ul li a:visited {
+    font:normal 11px/30px'Open Sans', Arial, sans-serif;
+    color:#65686b;
+    text-align:left;
+    padding:0 10px 0 10px
+}
+#tags ul li a:hover, #tags ul li a:active {
+    color:#f2594b
+}
+#blogArchive {
+    margin-top:60px
+}
+#blogArchive button.nextArchive, #blogPosts button.nextArchive {
+    background-position:-64px -928px
+}
+#blogArchive button.nextArchive:hover, #blogArchive button.nextArchive:active #blogPosts button.nextArchive:hover, #blogPosts button.nextArchive:active {
+    background-position:-64px -942px
+}
+#blogArchive button.prevArchive, #blogPosts button.prevArchive {
+    background-position:-64px -900px
+}
+#blogArchive button.prevArchive:hover, #blogArchive button.prevArchive:active #blogPosts button.prevArchive:hover, #blogPosts button.prevArchive:active {
+    background-position:-64px -914px
+}
+#blogArchive div.cycle-slideshow div {
+    margin:0;
+    padding:0;
+    display:block;
+    width:100%
+}
+#blogArchive h3, #blogPosts h3 {
+    font:normal 24px/40px'BebasNeueRegular', Arial, sans-serif;
+    color:#fff;
+    background:#55ccd9;
+    margin-bottom:3px;
+    text-align:center;
+    text-shadow:none
+}
+#blogArchive ul {
+    margin:0;
+    padding:10px;
+    list-style:none;
+    border:solid 1px #fff
+}
+#blogArchive ul li {
+    padding-left:15px;
+    background:url("../images/list_arrow.png") left 8px no-repeat;
+    margin-bottom:20px
+}
+#blogArchive ul li:last-child {
+    margin-bottom:0
+}
+#blogArchive ul li a:link, #blogArchive ul li a:visited {
+    font:normal 11px/22px'Open Sans', Arial, sans-serif;
+    color:#65686b
+}
+#blogArchive ul li a:hover, #blogArchive ul li a:active {
+    color:#f2594b
+}
+#textWidget {
+    margin-top:60px
+}
+#textWidget p {
+    font:normal 11px/22px'Open Sans', Arial, sans-serif;
+    color:#65686b
+}
+#textWidget p a:link, #textWidget p a:visited {
+    color:#f2594b
+}
+#textWidget p a:hover, #textWidget p a:active {
+    text-decoration:underline
+}
+#blogPosts div.post div.date {
+    width:60px;
+    text-align:center;
+    padding:0;
+    float:left
+}
+#blogPosts div.post div.date p {
+    font:normal 12px/12px'Droid Serif', Georgia, serif;
+    color:#f2594b;
+    text-align:center;
+    width:100%;
+    background:#f2f2f2;
+    display:block;
+    padding:10px 0;
+    margin:0;
+    text-shadow:none;
+    -webkit-text-shadow:none;
+    -moz-text-shadow:none;
+    -o-text-shadow:none
+}
+#blogPosts div.post div.date span {
+    font:normal 18px/18px'Droid Serif', Georgia, serif;
+    color:#f2f2f2;
+    background:#f2594b;
+    width:100%;
+    display:block;
+    padding:5px 0;
+    text-shadow:none;
+    -webkit-text-shadow:none;
+    -moz-text-shadow:none;
+    -o-text-shadow:none
+}
+#blogPosts div.post h3 a, #blogPosts div.post h3 a:link, #blogPosts div.post h3 a:visited {
+    float:left;
+    font:normal 12px/12px'Droid Serif', Georgia, Serif;
+    color:#000;
+    margin:0 0 20px 10px
+}
+#blogPosts div.post h3 a:hover, #blogPosts div.post h3 a:active {
+    color:#f2594b
+}
+#blogPosts div.post div.metaData {
+    width:570px;
+    background:#f2f2f2;
+    border-bottom:solid 2px #f2594b;
+    margin:0 0 0 10px;
+    padding:5px 5px;
+    float:left
+}
+#blogPosts div.post div.metaData p {
+    font:normal 11px/11px'Open Sans', Arial, sans-serif;
+    color:#65686b;
+    padding:3px 0;
+    float:left;
+    margin-bottom:0
+}
+#blogPosts div.post div.metaData p a, #blogPosts div.post div.metaData p a:link, #blogPosts div.post div.metaData p a:visited {
+    color:#65686b
+}
+#blogPosts div.post div.metaData p a:hover, #blogPosts div.post div.metaData p a:active {
+    color:#f2594b
+}
+#blogPosts div.post div.metaData p.author {
+    background:url("../images/user.png") left center no-repeat;
+    padding-left:25px
+}
+#blogPosts div.post div.metaData p.tags {
+    background:url("../images/tag.png") left center no-repeat;
+    padding-left:25px;
+    margin-left:20px
+}
+#blogPosts div.post div.metaData p.tweetsCount {
+    background:url("../images/twitter.png") left center no-repeat;
+    padding-left:25px;
+    margin-left:120px
+}
+#blogPosts div.post div.metaData p.commentsCount {
+    background:url("../images/comment.png") left center no-repeat;
+    padding-left:25px;
+    margin-left:10px
+}
+#blogPosts div.post div.metaData p.likesCount {
+    background:url("../images/like.png") left center no-repeat;
+    padding-left:25px;
+    margin-left:10px
+}
+#blogPosts div.post div.metaData p.lovesCount {
+    background:url("../images/love.png") left center no-repeat;
+    padding-left:25px;
+    margin-left:10px
+}
+.postImg {
+    margin-top:10px;
+    position:relative;
+    clear:both;
+    float:left
+}
+.postImg .topLeft {
+    width:60px;
+    height:60px;
+    display:block;
+    background:url("../images/sprite1.png") -78px -900px no-repeat;
+    position:absolute;
+    top:5px;
+    left:5px;
+    z-index:2
+}
+.postImg .topRight {
+    width:60px;
+    height:60px;
+    display:block;
+    background:url("../images/sprite1.png") -78px -960px no-repeat;
+    position:absolute;
+    top:5px;
+    right:5px;
+    z-index:2
+}
+.postImg .bottomRight {
+    width:60px;
+    height:60px;
+    display:block;
+    background:url("../images/sprite1.png") -78px -1020px no-repeat;
+    position:absolute;
+    bottom:5px;
+    right:5px;
+    z-index:2
+}
+.postImg .bottomLeft {
+    width:60px;
+    height:60px;
+    display:block;
+    background:url("../images/sprite1.png") -78px -1080px no-repeat;
+    position:absolute;
+    bottom:5px;
+    left:5px;
+    z-index:2
+}
+.postImg img {
+    display:block;
+    margin:0 auto;
+    background:url("../images/dotted_black.png") left top repeat;
+    padding:5px
+}
+#blogPosts div.post .postBody p {
+    font:normal 11px/22px'Open Sans', Arial, sans-serif;
+    color:#65686b;
+    margin:10px 0 10px 0;
+    float:left;
+    clear:both;
+    display:block
+}
+#blogPosts div.post .postBody p a, #blogPosts div.post .postBody p a:link, #blogPosts div.post .postBody p a:visited {
+    color:#f2594b
+}
+#blogPosts div.post .postBody p a:hover, #blogPosts div.post .postBody p a:active {
+    text-decoration:underline
+}
+#blogPosts div.post .postBody blockquote {
+    padding:20px;
+    background:#f2f2f2;
+    border-bottom:solid 2px #f2594b;
+    font:normal 11px/22px'Open Sans', Arial, sans-serif;
+    color:#65686b;
+    margin-top:10px;
+    width:100%;
+    float:left
+}
+#blogPosts div.post .postBody ul {
+    margin:10px 0 0 0;
+    padding:0;
+    list-style:none;
+    float:left;
+    display:block
+}
+#blogPosts div.post .postBody ul li {
+    float:left;
+    display:block;
+    background:url("../images/list_arrow.png") left center no-repeat;
+    padding:0 0 0 15px;
+    width:100%
+}
+#blogPosts div.post .postBody ul li a:link, #blogPosts div.post .postBody ul li a:visited {
+    font:normal 11px/22px'Open Sans', Arial, sans-serif;
+    color:#65686b
+}
+#blogPosts div.post .postBody ul li a:hover, #blogPosts div.post .postBody ul li a:active {
+    color:#f2594b
+}
+#blogPosts div.post .sharePost {
+    margin-top:20px;
+    float:left;
+    background:#f2f2f2;
+    border:solid 2px #55ccd9;
+    border-radius:20px;
+    padding:10px;
+    width:100%
+}
+#blogPosts div.post .sharePost h3 {
+    font:normal 12px/22px'Droid Serif', Georgia, serif;
+    color:#f2594b;
+    text-transform:uppercase;
+    float:left;
+    margin-right:20px
+}
+#blogPosts div.post .sharePost a.twitter-share-button {
+    float:left
+}
+#blogPosts .facebookShare:link, #blogPosts .facebookShare:visited {
+    font:0/0 a;
+    color:transparent;
+    text-shadow:none;
+    width:180px;
+    height:24px;
+    display:block;
+    background:url("../images/shareFacebook.png") left top no-repeat;
+    margin:0 0 0 10px;
+    float:left
+}
+#postAuthor {
+    margin-top:60px
+}
+#postAuthor img {
+    padding:5px;
+    background:url("../images/dotted_black.png") left top repeat;
+    display:block;
+    float:left;
+    margin-right:10px
+}
+#postAuthor div.authorInfo {
+    float:right;
+    width:88%
+}
+#postAuthor div.authorInfo h4 {
+    width:100%;
+    float:left
+}
+#postAuthor div.authorInfo h4 a:link, #postAuthor div.authorInfo h4 a:visited {
+    font:normal 12px/12px'Droid Serif', Georgia, serif;
+    color:#65686b
+}
+#postAuthor div.authorInfo h4 a:hover, #postAuthor div.authorInfo h4 a:active {
+    color:#f2594b
+}
+#postAuthor div.authorInfo h4 span {
+    font:italic 10px/10px'Droid Serif', Georgia, serif;
+    color:#f2594b
+}
+#postAuthor div.authorInfo ul {
+    margin:10px 0 0 0;
+    padding:0;
+    list-style:none;
+    float:left;
+    display:block
+}
+#postAuthor div.authorInfo ul li {
+    display:block;
+    float:left;
+    margin-right:3px;
+    font:normal 12px/30px'Droid Serif', Georgia, serif;
+    color:#65686b
+}
+#postAuthor div.authorInfo ul li:nth-child(1) {
+    margin-right:10px
+}
+#postAuthor div.authorInfo ul li a {
+    width:32px;
+    height:32px;
+    display:block;
+    background:url("../images/sprite1.png") no-repeat;
+    font:0/0 a;
+    color:transparent;
+    text-shadow:none
+}
+#postAuthor div.authorInfo li:nth-child(2) a {
+    background-position:0 -900px
+}
+#postAuthor div.authorInfo li:nth-child(2) a:hover {
+    background-position:-32px -900px
+}
+#postAuthor div.authorInfo li:nth-child(3) a {
+    background-position:0 -932px
+}
+#postAuthor div.authorInfo li:nth-child(3) a:hover {
+    background-position:-32px -932px
+}
+#postAuthor div.authorInfo li:nth-child(4) a {
+    background-position:0 -964px
+}
+#postAuthor div.authorInfo li:nth-child(4) a:hover {
+    background-position:-32px -964px
+}
+#postAuthor div.authorInfo li:nth-child(5) a {
+    background-position:0 -996px
+}
+#postAuthor div.authorInfo li:nth-child(5) a:hover {
+    background-position:-32px -996px
+}
+#postAuthor div.authorInfo p {
+    margin-top:20px;
+    font:normal 11px/22px'Open Sans', Arial, sans-serif;
+    color:#65686b;
+    float:left
+}
+#postAuthor div.authorInfo a.profile {
+    float:left;
+    margin:10px 0 0 0;
+    width:100px;
+    height:30px;
+    font:0/0 a;
+    color:transparent;
+    text-shadow:none;
+    display:block;
+    background:url("../images/sprite1.png") 0 -300px no-repeat
+}
+#postAuthor div.authorInfo a.profile:hover, #postAuthor div.authorInfo a.profile:active {
+    background-position:0 -330px
+}
+#postComments {
+    margin-top:60px
+}
+#postComments ul {
+    margin:0;
+    padding:0;
+    list-style:none;
+    float:left
+}
+#postComments ul li {
+    float:left;
+    margin-top:25px
+}
+#postComments>ul>li:nth-child(1) {
+    margin-top:0
+}
+#postComments ul li img {
+    padding:5px;
+    background:url("../images/dotted_black.png") left top repeat;
+    display:block;
+    float:left
+}
+#postComments ul li div.comment {
+    float:right;
+    width:88%
+}
+#postComments ul li ul li div.comment {
+    width:86%
+}
+#postComments ul li div.comment h4 {
+    width:100%;
+    float:left
+}
+#postComments ul li div.comment h4 a:link, #postComments ul li div.comment h4 a:visited {
+    font:normal 12px/12px'Droid Serif', Georgia, serif;
+    color:#65686b
+}
+#postComments ul li div.comment h4 a:hover, #postComments ul li div.comment h4 a:active {
+    color:#f2594b
+}
+#postComments ul li div.comment h4 span {
+    font:italic 10px/10px'Droid Serif', Georgia, serif;
+    color:#f2594b
+}
+#postComments ul li div.comment em {
+    font:normal 12px/12px'Droid Serif', Georgia, serif;
+    color:#65686b;
+    padding:2px 0 2px 20px;
+    margin-top:10px;
+    float:left;
+    background:url("../images/date.png") left center no-repeat
+}
+#postComments ul li div.comment p {
+    margin-top:20px;
+    font:normal 11px/22px'Open Sans', Arial, sans-serif;
+    color:#65686b;
+    float:left
+}
+#postComments ul li div.comment a.reply {
+    float:left;
+    margin:10px 0 0 0;
+    width:100px;
+    height:30px;
+    font:0/0 a;
+    color:transparent;
+    text-shadow:none;
+    display:block;
+    background:url("../images/sprite1.png") 0 -360px no-repeat
+}
+#postComments ul li div.comment a.reply:hover, #postComments ul li div.comment a.reply:active {
+    background-position:0 -390px
+}
+#postComments ul.nestedComments li ul li {
+    margin-left:60px;
+    background:#f2f2f2;
+    padding:10px
+}
+#postComments ul.nestedComments li ul {
+    border-left:solid 2px #fff;
+    position:relative
+}
+#postComments ul.nestedComments li ul:before {
+    content:'';
+    border-bottom:solid 2px #fff;
+    position:absolute;
+    width:40px;
+    top:25px;
+    left:0
+}
+div#pagination {
+    margin-top:60px;
+    width:100%;
+    float:left;
+    clear:both
+}
+#pagination ul {
+    margin:0;
+    padding:0;
+    list-style:none;
+    float:left
+}
+#pagination ul li {
+    display:block;
+    float:left;
+    margin:0 3px 0 0
+}
+#pagination ul li a:link, #pagination ul li a:visited {
+    display:block;
+    font:normal 12px/25px'Open Sans', Arial, sans-serif;
+    color:#55ccd9;
+    text-align:center;
+    padding:0 10px;
+    border-top:solid 1px #f2f2f2;
+    border-right:solid 1px #dedede;
+    border-left:solid 1px #dedede;
+    box-shadow:0 1px 0 #b7b7b7;
+    -moz-box-shadow:0 1px 0 #b7b7b7;
+    -webkit-box-shadow:0 1px 0 #b7b7b7;
+    -o-box-shadow:0 1px 0 #b7b7b7;
+    background:#ededed;
+    background:-moz-linear-gradient(top, #ededed 0, #e0e0e0 100%);
+    background:-webkit-gradient(linear, left top, left bottom, color-stop(0%, #ededed), color-stop(100%, #e0e0e0));
+    background:-webkit-linear-gradient(top, #ededed 0, #e0e0e0 100%);
+    background:-o-linear-gradient(top, #ededed 0, #e0e0e0 100%);
+    background:-ms-linear-gradient(top, #ededed 0, #e0e0e0 100%);
+    background:linear-gradient(to bottom, #ededed 0, #e0e0e0 100%);
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ededed', endColorstr='#e0e0e0', GradientType=0)
+}
+#pagination ul li a:hover, #pagination ul li a:active, #pagination ul li a.current {
+    color:#f2594b;
+    -moz-box-shadow:0 1px 0 #000;
+    -webkit-box-shadow:0 1px 0 #000;
+    -o-box-shadow:0 1px 0 #000
+}
+#pagination a.nextPage {
+    width:33px;
+    height:25px;
+    display:block;
+    font:0/0 a;
+    color:transparent;
+    text-shadow:none;
+    background:url("../images/sprite1.png") -100px 0 no-repeat;
+    float:right;
+    margin-left:10px
+}
+#pagination a.nextPage:hover {
+    background-position:-100px -25px
+}
+#pagination a.prevPage {
+    width:33px;
+    height:25px;
+    display:block;
+    font:0/0 a;
+    color:transparent;
+    text-shadow:none;
+    background:url("../images/sprite1.png") -100px -50px no-repeat;
+    float:right
+}
+#pagination a.prevPage:hover {
+    background-position:-100px -75px
+}
+#commentForm {
+    margin-top:60px
+}
+#commentForm form {
+    width:100%;
+    border:0;
+    float:left
+}
+#commentForm form fieldset.inputFields {
+    width:280px;
+    float:left
+}
+#commentForm form fieldset.inputFields input {
+    width:100%;
+    height:30px;
+    padding:5px 10px 5px 10px;
+    margin:10px 0 0 0;
+    background:#eee;
+    border:0;
+    border-radius:20px;
+    -moz-border-radius:20px;
+    -webkit-border-radius:20px;
+    -o-border-radius:20px;
+    box-shadow:0 0 3px #c6c6c6 inset;
+    -moz-box-shadow:0 0 3px #c6c6c6 inset;
+    -webkit-box-shadow:0 0 3px #c6c6c6 inset;
+    -o-box-shadow:0 0 3px #c6c6c6 inset;
+    font:normal 11px/22px'Open Sans', Arial, sans-serif;
+    color:#65686b;
+    float:left
+}
+#commentForm form fieldset.inputFields input:nth-child(1) {
+    margin:0
+}
+#commentForm form fieldset input:focus, #commentForm form fieldset.textArea textarea:focus {
+    box-shadow:0 0 3px #55ccd9 inset;
+    -moz-box-shadow:0 0 3px #55ccd9 inset;
+    -webkit-box-shadow:0 0 3px #55ccd9 inset;
+    -o-box-shadow:0 0 3px #55ccd9 inset
+}
+#commentForm form fieldset.textArea {
+    width:340px;
+    float:right
+}
+#commentForm form fieldset.textArea textarea {
+    width:100%;
+    height:150px;
+    padding:5px 10px 5px 10px;
+    background:#eee;
+    border:0;
+    border-radius:20px;
+    -moz-border-radius:20px;
+    -webkit-border-radius:20px;
+    -o-border-radius:20px;
+    box-shadow:0 0 3px #c6c6c6 inset;
+    -moz-box-shadow:0 0 3px #c6c6c6 inset;
+    -webkit-box-shadow:0 0 3px #c6c6c6 inset;
+    -o-box-shadow:0 0 3px #c6c6c6 inset;
+    font:normal 11px/22px'Open Sans', Arial, sans-serif;
+    color:#65686b
+}
+#commentForm form #addComment {
+    float:left;
+    margin-top:10px;
+    font:0/0 a;
+    color:transparent;
+    text-shadow:none;
+    width:100px;
+    height:30px;
+    display:block;
+    background:url("../images/sprite1.png") 0 -420px no-repeat;
+    border:0;
+    cursor:pointer;
+    clear:both;
+    -webkit-transition:none;
+    -moz-transition:none;
+    -o-transition:none;
+    -ms-transition:none;
+    transition:none
+}
+#commentForm form #addComment:hover, #commentForm form #addComment:active {
+    background-position:0 -450px
+}
+
+.button{
+    display:block;
+    font:normal 12px/25px'Open Sans', Arial, sans-serif;
+    color:#55ccd9;
+    text-align:center;
+    padding:0 10px;
+    border-top:solid 1px #f2f2f2;
+    border-right:solid 1px #dedede;
+    border-left:solid 1px #dedede;
+    box-shadow:0 1px 0 #b7b7b7;
+    -moz-box-shadow:0 1px 0 #b7b7b7;
+    -webkit-box-shadow:0 1px 0 #b7b7b7;
+    -o-box-shadow:0 1px 0 #b7b7b7;
+    background:#ededed;
+    background:-moz-linear-gradient(top, #ededed 0, #e0e0e0 100%);
+    background:-webkit-gradient(linear, left top, left bottom, color-stop(0%, #ededed), color-stop(100%, #e0e0e0));
+    background:-webkit-linear-gradient(top, #ededed 0, #e0e0e0 100%);
+    background:-o-linear-gradient(top, #ededed 0, #e0e0e0 100%);
+    background:-ms-linear-gradient(top, #ededed 0, #e0e0e0 100%);
+    background:linear-gradient(to bottom, #ededed 0, #e0e0e0 100%);
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ededed', endColorstr='#e0e0e0', GradientType=0)
+}
+.button:hover, .button:active {
+    color:#f2594b;
+    -moz-box-shadow:0 1px 0 #000;
+    -webkit-box-shadow:0 1px 0 #000;
+    -o-box-shadow:0 1px 0 #000
+}

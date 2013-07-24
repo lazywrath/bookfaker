@@ -898,7 +898,7 @@ class Backend_ApiController extends Bookfaker_Controller_Backend_Action
                     ->innerJoin('m.teamOne', 'to')
                     ->orderBy('m.date', 'ASC')
                     ->andWhere("m.date > '".date("Y-m-d H:i:s")."'")
-                    ->setMaxResults(30);
+                    ->setMaxResults(5);
 
                 $tmpChampionships[] = array(
                     "name"=>$champ->getName(),

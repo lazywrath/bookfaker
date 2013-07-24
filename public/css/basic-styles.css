@@ -325,6 +325,10 @@ a.more:hover, a.more:active {
     height:0
 }
 
+.clearfixe {
+	clear:both !important;
+}
+
 .winner {
 	color:#33FF33
 }

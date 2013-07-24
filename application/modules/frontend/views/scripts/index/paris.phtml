@@ -3,16 +3,18 @@
         <img src="<?php echo $this->baseURL("/images/preloader.gif");?>"/>
     </div>
     <div ng-repeat="obc in oddsByChampionship">
-        <h2>{{obc.name}}</h2>
+		<header>
+			<h2>{{obc.name}}</h2>
+		</header>
         <div  ng-repeat="o in obc.odds" class="post clearfix">
-            <div class="date" style="width:120px">
+            <div class="date" style="width:140px">
                     <p style="padding:0; line-height:27px">{{o.date}}</p>
             </div>
-            <div class="metaData clearfix" style="width:510px">
-                    <p class=""><a href="#">{{o.nameTeamOne|truncate:15}} - {{o.nameTeamTwo|truncate:15}}</a></p>
-                    <p class="" style="float:right; margin:0 15px"><a href="#">{{o.oddsTeamOne}}</a></p>
-                    <p class="" style="float:right; margin:0 15px"><a href="#">{{o.oddsDraw}}</a></p>
-                    <p class="" style="float:right; margin:0 15px"><a href="#">{{o.oddsTeamTwo}}</a></p>
+            <div class="metaData clearfix" style="width:490px">
+				<p class=""><a href="#">{{o.nameTeamOne|truncate:20}} vs {{o.nameTeamTwo|truncate:20}}</a></p>
+				<p class="" style="float:right; margin:0 15px;width:20px;"><a href="#">{{o.oddsTeamOne}}</a></p>
+				<p class="" style="float:right; margin:0 15px;width:20px;"><a href="#">{{o.oddsDraw}}</a></p>
+				<p class="" style="float:right; margin:0 15px;width:20px;"><a href="#">{{o.oddsTeamTwo}}</a></p>
             </div>
         </div>
     </div>

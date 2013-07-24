@@ -71,11 +71,14 @@ class UserController extends Bookfaker_Controller_Frontend_Action
     
     
     public function loginAction(){
-       $db = Zend_Db_Table::getDefaultAdapter();
+        
+//        $this->_helper->layout()->disableLayout();
 
         $loginForm = new Bookfaker_Form_LoginUser();
  
         if ($loginForm->isValid($_POST)) {
+            
+            $db = Zend_Db_Table::getDefaultAdapter();
             
             $adapter = new Zend_Auth_Adapter_DbTable(
                 $db,
@@ -90,7 +93,6 @@ class UserController extends Bookfaker_Controller_Frontend_Action
  
             $auth   = Zend_Auth::getInstance();
             $result = $auth->authenticate($adapter);
-            
  
             if ($result->isValid()) {
                 
@@ -102,6 +104,9 @@ class UserController extends Bookfaker_Controller_Frontend_Action
                 $authNamespace->user = $user;
                 $this->_redirect('/frontend');
                 return;
+            }else{
+                
+                $this->view->msg = "Les identifiants ne sont pas corrects";
             }
  
         }

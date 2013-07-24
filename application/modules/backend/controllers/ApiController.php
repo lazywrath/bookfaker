@@ -17,7 +17,16 @@ class Backend_ApiController extends Bookfaker_Controller_Backend_Action
     //par user
     public function classementAction()
     {
-        $Combinations = $this->_entityManager->getRepository('Application\Model\Entities\Combination')->findByCheckbet(1);
+        $Combinations = $this->_entityManager->getRepository('Application\Model\Entities\Combination')->findByCheckbet(1); 
+        $duree = $this->getRequest()->getParam('duree', null);
+        $dateLimit = time();
+        if($duree == 'week'){
+            $dateLimit = $dateLimit - (86400*7);
+        }else if($duree == 'day'){
+            $dateLimit = $dateLimit - (86400);
+        }else{
+            $dateLimit = $dateLimit - (86400*365);
+        }
 
         $CombinationToCheck = array();
         foreach ($Combinations as $key => $Check) {
@@ -38,10 +47,16 @@ class Backend_ApiController extends Bookfaker_Controller_Backend_Action
                     $TotalStake = 1;
                     foreach ($Combinations as $key => $Combination) {
                         $Bet = $Combination->getBet();
-                        $odds = $Bet->getOdds();
-                        $stake = $Bet->getStake();
-                        $TotalOdd += $odds;
-                        $TotalStake *= $stake;
+                        $match = $Bet->getMatch();
+                        $date = $match->getDate();
+                        $dateCourante= $date->format('Y-m-d H:i:s');
+                        $dateCourante = strtotime($dateCourante);
+                        if($dateCourante>=$dateLimit){
+                            $odds = $Bet->getOdds();
+                            $stake = $Bet->getStake();
+                            $TotalOdd += $odds;
+                            $TotalStake *= $stake;
+                        }
                     }
                     $TotalGain = $TotalOdd * $TotalStake;
                     $User = $Bet->getUser();

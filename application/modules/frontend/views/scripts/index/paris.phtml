@@ -3,7 +3,9 @@
         <img src="<?php echo $this->baseURL("/images/preloader.gif");?>"/>
     </div>
     <div ng-repeat="obc in oddsByChampionship">
-        <h2>{{obc.name}}</h2>
+        <header>
+            <h2><a href="">{{obc.name}}</a></h2>
+        </header>
         <div  ng-repeat="o in obc.odds" class="post clearfix">
             <div class="date" style="width:120px">
                     <p style="padding:0; line-height:27px">{{o.date}}</p>

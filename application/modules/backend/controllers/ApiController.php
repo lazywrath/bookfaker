@@ -115,12 +115,15 @@ class Backend_ApiController extends Bookfaker_Controller_Backend_Action
                 }
                 if($Gain){
                     $TotalGain = 0;
+                    $TotalStake = 0;
                     foreach ($Combinations as $key => $Combination) {
                         $Bet = $Combination->getBet();
                         $odds = $Bet->getOdds();
                         $stake = $Bet->getStake();
-                        $TotalGain += $odds*$stake;
+                        $TotalOdd += $odds;
+                        $TotalStake *= $stake;
                     }
+                    $TotalGain = $TotalOdd * $TotalStake
                     $User = $Bet->getUser();
                     $GainPrev = $User->getMoneybank();
                     if($GainPrev!=null)

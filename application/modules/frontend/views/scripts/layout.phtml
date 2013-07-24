@@ -19,7 +19,6 @@
 	<!-- CSS
   ================================================== -->
         
-	<link rel="stylesheet" href="<?php echo $this->baseUrl("css/basic-styles.css"); ?>">
 	<link rel="stylesheet" href="<?php echo $this->baseUrl("css/main.css"); ?>">
 	<link rel="stylesheet" href="<?php echo $this->baseUrl("css/home.css"); ?>">
 	<link rel="stylesheet" href="<?php echo $this->baseUrl("css/blog.css"); ?>">
@@ -27,6 +26,7 @@
 	<link rel="stylesheet" href="<?php echo $this->baseUrl("css/about.css"); ?>">
 	<link rel="stylesheet" href="<?php echo $this->baseUrl("css/post.css"); ?>">
 	<link rel="stylesheet" href="<?php echo $this->baseUrl("css/league_tables.css"); ?>">
+	<link rel="stylesheet" href="<?php echo $this->baseUrl("css/basic-styles.css"); ?>">
 
 	<!--[if lt IE 9]>
 		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -129,7 +129,7 @@
 		</ul>
 	</nav><!-- end main nav section -->
 
-	<!-- NE PAS AFFICHER SUR ACCUEIL -->
+	<!-- 
 	<div id="pageHeader" class="container">
 		<div class="stripe"></div>
 		<div id="info">
@@ -154,95 +154,65 @@
 			<section id="blogPosts">
 				<header>
 					<h2>Votre coupon</h2>
-					<div class="navigation">
-						<button type="button" class="nextArchive nextCoupon"></button>
-						<button type="button" class="prevArchive prevCoupon"></button>
-					</div>
 				</header>
-				<div class="cycle-slideshow" 
-			        data-cycle-fx="scrollHorz"
-			        data-cycle-timeout=0
-			        data-cycle-slides="> div"
-			        data-cycle-prev=".prevCoupon"
-			        data-cycle-next=".nextCoupon"
-					data-cycle-auto-height=1
-			        >
-					<div ng-controller="menuCtrl">
-                                            <input ng-change="saveSessionCoupon()" ng-model="coupon.type" type="radio" name="type" value="0" checked> Simple<br>
-                                            <input ng-change="saveSessionCoupon()" ng-model="coupon.type" type="radio" name="type" value="1" > Combiné
-						<h3>Simple</h3>
-						<div class="post clearfix">
-							<div ng-repeat="bet in coupon.bets" class="metaData clearfix" style="width:280px;margin:0;">
-								<p><a href="#">{{bet.match.nameTeamOne}} vs {{bet.match.nameTeamTwo}}</a></p>
-								<p style="float:right;"><a ng-click="removeBet($index)">X</a></p>
-								</br>
-								<p ng-switch="bet.team">
-                                                                    Pronostic : 
-                                                                   
-							</div>
+				<div ng-controller="menuCtrl">
+					<!--<input ng-change="saveSessionCoupon()" ng-model="coupon.type" type="radio" name="type" value="0" checked> Simple<br>
+					<input ng-change="saveSessionCoupon()" ng-model="coupon.type" type="radio" name="type" value="1" > Combiné-->
+					<h3 class="tabActive" style="width:49%;float:left;"><a ng-change="saveSessionCoupon()" ng-model="coupon.type">Simple</a></h3>
+					<h3 class="tabInactive" style="width:49%;float:right;"><a ng-change="saveSessionCoupon()" ng-model="coupon.type">Combine</a></h3>
+					<div class="post clearfix">
+						<div ng-repeat="bet in coupon.bets" class="metaData clearfix" style="width:280px;margin:0;">
+							<p><a href="#">{{bet.match.nameTeamOne}} vs {{bet.match.nameTeamTwo}}</a></p>
+							<p style="float:right;"><a ng-click="removeBet($index)">X</a></p>
+							</br>
+							<p ng-switch="bet.team">Pronostic : </p>
+							<p style="float:right;">3.50</p>								
 						</div>
-                                                <div class="post clearfix">
-							<div class="metaData clearfix" style="width:280px;margin:0;">
-								<p  ng-show="1==coupon.type" class="">Cote totale :</p>
-								<p ng-show="1==coupon.type" class="" style="float:right;">11.50</p>
-								</br>
-								<p class="">Mise :</p>
-								<p class="" style="float:right;"><input ng-change="saveSessionCoupon()" ng-model="coupon.stacke" type="text" name="mise" id="mise" style="width: 60px;height: 20px;padding: 0px 10px;margin: 0;"></p>
-								</br>
-								<p class="" style="margin: 5px 0">Gains Possible :</p>
-								<p class="" style="float:right;margin: 5px -60px">{{calculGains()}} B</p>
-								</br>
-								<p class="" style="float:right;margin-top:10px"><button class="button">Valider</button></p>
-							</div>
+					</div>
+					<div class="post clearfix">
+						<div class="metaData clearfix" style="width:280px;margin:0;">
+							<p ng-show="1==coupon.type" class="">Cote totale :</p>
+							<p ng-show="1==coupon.type" class="" style="float:right;">11.50</p>
+							</br>
+							<p class="">Mise :</p>
+							<p class="" style="float:right;"><input ng-change="saveSessionCoupon()" ng-model="coupon.stacke" type="text" name="mise" id="mise" style="width: 60px;height: 20px;padding: 0px 10px;margin: 0;"></p>
+							</br>
+							<p class="" style="margin: 5px 0">Gains Possible :</p>
+							<p class="" style="float:right;margin: 5px -60px">{{calculGains()}} B</p>
+							</br>
+							<p class="" style="float:right;margin-top:10px"><button class="button">Valider</button></p>
 						</div>
-                                                <div ng-show="!isLogged">Vous devez être connectés pour parier.
-                                                    <a href="<?php echo $this->url(array('module' => 'frontend', 'controller'=>'user', 'action'=>'register')); ?>">
-                                                        Inscrivez-vous ici</a> si vous n'avez pas de compte.
-                                                </div>
+					</div>
+					<div ng-show="!isLogged">Vous devez être connectés pour parier.
+						<a href="<?php echo $this->url(array('module' => 'frontend', 'controller'=>'user', 'action'=>'register')); ?>">Inscrivez-vous ici</a> si vous n'avez pas de compte.
 					</div>
 				</div>
 			</section>
 			</br>
 			<section id="blogPosts">
 				<header>
-					<h2>Top Parieur</h2>
-					<div class="navigation">
-						<button type="button" class="nextArchive nextTop"></button>
-						<button type="button" class="prevArchive prevTop"></button>
-					</div>
+					<h2>Top Parieurs</h2>
 				</header>
-				<div class="cycle-slideshow" 
-			        data-cycle-fx="scrollHorz"
-			        data-cycle-timeout=0
-			        data-cycle-slides="> div"
-			        data-cycle-prev=".prevTop"
-			        data-cycle-next=".nextTop"
-			        >
-					<div>
-						<h3>Semaine</h3>
-						<div class="post clearfix">
-							<div class="metaData clearfix" style="width:280px;margin:0;">
-								<p class=""><a href="#">Camille B.</a></p>
-								<p class="" style="float:right;">7200 B</p>
-							</div>
+				<div>
+					<h3 class="tabActive" style="width:32%;float:left;"><a>Semaine</a></h3>
+					<h3 class="tabInactive" style="width:32%;float:left;margin:0 2%"><a>Mois</a></h3>
+					<h3 class="tabInactive" style="width:32%;float:right;"><a>All Time</a></h3>
+					<div class="post clearfix">
+						<div class="metaData clearfix" style="width:280px;margin:0;">
+							<p class=""><a href="#">Camille B.</a></p>
+							<p class="" style="float:right;">7200 B</p>
 						</div>
 					</div>
-					<div>
-						<h3>Mois</h3>
-						<div class="post clearfix">
-							<div class="metaData clearfix" style="width:280px;margin:0;">
-								<p class=""><a href="#">Camille B.</a></p>
-								<p class="" style="float:right;">7200 B</p>
-							</div>
+					<div class="post clearfix">
+						<div class="metaData clearfix" style="width:280px;margin:0;">
+							<p class=""><a href="#">Camille B.</a></p>
+							<p class="" style="float:right;">7200 B</p>
 						</div>
 					</div>
-					<div>
-						<h3>All time</h3>
-						<div class="post clearfix">
-							<div class="metaData clearfix" style="width:280px;margin:0;">
-								<p class=""><a href="#">Camille B.</a></p>
-								<p class="" style="float:right;">7200 B</p>
-							</div>
+					<div class="post clearfix">
+						<div class="metaData clearfix" style="width:280px;margin:0;">
+							<p class=""><a href="#">Camille B.</a></p>
+							<p class="" style="float:right;">7200 B</p>
 						</div>
 					</div>
 				</div>

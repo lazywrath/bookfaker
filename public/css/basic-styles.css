@@ -332,3 +332,13 @@ a.more:hover, a.more:active {
 .looser {
 	color:#FF3333
 }
+
+.tabActive {
+	background:#55ccd9 !important;
+	color:#fff !important;
+}
+
+.tabInactive {
+	background:#fff !important;
+	color:#55ccd9 !important;
+}

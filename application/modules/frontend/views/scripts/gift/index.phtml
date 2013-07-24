@@ -1,0 +1,4 @@
+<?php foreach($this->gifts as $gift): ?>
+    <img src="<?php echo $this->baseUrl(); ?>/images/<?php echo $gift->getImage();?>" />
+    <a href="?idGift=<?php echo $gift->getId(); ?>"><?php echo $gift->getName(); ?></a>
+<?php endforeach; ?>

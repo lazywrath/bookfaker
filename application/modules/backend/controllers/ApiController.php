@@ -13,6 +13,65 @@ class Backend_ApiController extends Bookfaker_Controller_Backend_Action
         $this->_helper->viewRenderer->setNoRender(true);
     }
 
+    //Récupérer les classement
+    //par user
+    public function classementAction()
+    {
+        $Combinations = $this->_entityManager->getRepository('Application\Model\Entities\Combination')->findByCheckbet(1);
+
+        $CombinationToCheck = array();
+        foreach ($Combinations as $key => $Check) {
+            if(!in_array( $Check->getCombination(), $CombinationToCheck)){
+                array_push($CombinationToCheck, $Check->getCombination());
+            }
+        }
+
+        $arrayUser = array();
+        foreach ($CombinationToCheck as $key => $value) {
+            $Combinations = $this->_entityManager->getRepository('Application\Model\Entities\Combination')->findByCombination($value);
+        
+            $allMatchCheck = true;
+            $Gain = true;
+            foreach ($Combinations as $key => $Combination) {
+                    $TotalOdd =0;
+                    $TotalGain = 0;
+                    $TotalStake = 1;
+                    foreach ($Combinations as $key => $Combination) {
+                        $Bet = $Combination->getBet();
+                        $odds = $Bet->getOdds();
+                        $stake = $Bet->getStake();
+                        $TotalOdd += $odds;
+                        $TotalStake *= $stake;
+                    }
+                    $TotalGain = $TotalOdd * $TotalStake;
+                    $User = $Bet->getUser();
+
+                    if(!isset($arrayUser[$User->getId()])){
+                        $arrayUser[$User->getId()]['id'] = $User->getId();
+                        $arrayUser[$User->getId()]['username'] = $User->getUsername();
+                        $arrayUser[$User->getId()]['gains'] = $TotalGain;
+                    }else{
+                        $arrayUser[$User->getId()]['gains'] += $TotalGain;
+                    }
+            }
+        }
+        $classementUser = array();
+
+        // Obtient une liste de colonnes
+        $gains = array();
+        $username = array();
+        foreach ($arrayUser as $key => $row) {
+            $gains[$key]  = $row['gains'];
+            $username[$key]  = $row['username'];
+        }
+
+        // Trie les données par volume décroissant, edition croissant
+        // Ajoute $data en tant que dernier paramètre, pour trier par la clé commune
+        array_multisort($gains, SORT_DESC, $username, SORT_DESC, $arrayUser);
+
+        print_r(json_encode($arrayUser));
+    }
+
     //Récupérer les paris
     //par user
     public function betAction()

@@ -1,0 +1,19 @@
+<section id="blogPosts" ng-controller="sportCtrl" ng-init="init(<?php echo $this->idSport . ',' . $this->idChampionship; ?>)">
+    <div style="text-align: center" ng-show="!isDataLoaded">
+        <img src="<?php echo $this->baseURL("/images/preloader.gif");?>"/>
+    </div>
+    <div ng-repeat="obc in oddsByChampionship">
+        <h2>{{obc.name}}</h2>
+        <div  ng-repeat="o in obc.odds" class="post clearfix">
+            <div class="date" style="width:120px">
+                    <p style="padding:0; line-height:27px">{{o.date}}</p>
+            </div>
+            <div class="metaData clearfix" style="width:300px">
+                    <p class=""><a href="#">{{o.nameTeamOne|truncate:15}} - {{o.nameTeamTwo|truncate:15}}</a></p>
+                    <p class="" style="float:right; margin:0 15px"><a href="#">{{o.oddsTeamOne}}</a></p>
+                    <p class="" style="float:right; margin:0 15px"><a href="#">{{o.oddsDraw}}</a></p>
+                    <p class="" style="float:right; margin:0 15px"><a href="#">{{o.oddsTeamTwo}}</a></p>
+            </div>
+        </div>
+    </div>
+</section>

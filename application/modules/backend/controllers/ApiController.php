@@ -763,6 +763,92 @@ class Backend_ApiController extends Bookfaker_Controller_Backend_Action
         
     }
     
+    public function getSportOddsAction(){
+        
+        $team1Request = $this->getRequest()->getParam('teamOne', null);
+        $team2Request = $this->getRequest()->getParam('teamTwo', null);
+        $idRequest = $this->getRequest()->getParam('id', null);
+        $dateDebutRequest = $this->getRequest()->getParam('dateDebut', null);
+        $dateFinRequest = $this->getRequest()->getParam('dateFin', null);
+        $resultatNull = $this->getRequest()->getParam('resultatNull', null);
+        $championship = $this->getRequest()->getParam('championship', null);
+        $sport = $this->getRequest()->getParam('sport', null);
+        
+        // On recupere le sport demandé
+        $repoChampionship = $this->_entityManager->getRepository('Application\Model\Entities\Championship');
+        
+        $tmpChampionships = array();
+
+        if($championship){
+            $tmpChampionship = $repoChampionship->findOneById($championship);
+            
+            $qb = $this->_entityManager->createQueryBuilder();
+            $qb->select('o')
+                ->from('Application\Model\Entities\Odds', 'o')
+                ->innerJoin('o.match', 'm')
+                ->innerJoin('m.teamOne', 'to')
+                ->orderBy('m.date', 'ASC')
+                ->innerJoin('m.championship', 'c')
+               ->andWhere('c.id ='.(int)$championship)
+               ->andWhere("m.date > '".date("Y-m-d H:i:s")."'");
+            
+            $tmpChampionships[] = array(
+                "name"=>$tmpChampionship->getName(),
+                "id"=>$tmpChampionship->getId(),
+                "odds"  => $this->_formatOdds($qb->getQuery()->getResult())
+             );
+            
+        }else{
+            $repoSport = $this->_entityManager->getRepository('Application\Model\Entities\Sport');
+            $tmpSport = $repoSport->findOneById($sport);
+            $championships = $tmpSport->getChampionships();
+            
+            foreach($championships as $champ){
+               $qb = $this->_entityManager->createQueryBuilder();
+                $qb->select('o')
+                    ->from('Application\Model\Entities\Odds', 'o')
+                    ->innerJoin('o.match', 'm')
+                    ->innerJoin('m.teamOne', 'to')
+                    ->orderBy('m.date', 'ASC')
+                    ->andWhere("m.date > '".date("Y-m-d H:i:s")."'")
+                    ->setMaxResults(30);
+
+                $tmpChampionships[] = array(
+                    "name"=>$champ->getName(),
+                    "id"=>$champ->getId(),
+                    "odds"  => $this->_formatOdds($qb->getQuery()->getResult())
+                 ); 
+            }
+        }
+        
+        echo json_encode(array("state" => 1, "odds" => $tmpChampionships));
+        
+    }
+    
+    private function _formatOdds($odds){
+        foreach($odds as $o){
+            
+            $data = array(
+                "idOdds"        => $o->getId(),
+                "idMatch"       => $o->getMatch()->getId(),
+                "oddsTeamOne"   => $o->getOddsTeamOne(),
+                "oddsTeamTwo"   => $o->getOddsTeamTwo(),
+                "oddsDraw"      => $o->getOddsDraw(),
+                "idTeamOne"     => $o->getMatch()->getTeamOne()->getId(),
+                "nameTeamOne"   => $o->getMatch()->getTeamOne()->getName(),
+                "idTeamTwo"     => $o->getMatch()->getTeamTwo()->getId(),
+                "nameTeamTwo"   => $o->getMatch()->getTeamTwo()->getName(),
+                "championship"  => $o->getMatch()->getChampionship()->getName(),
+                "date"          => $o->getMatch()->getDate()->format('Y-m-d H:i:s'),
+                "sport"         => $o->getMatch()->getTeamOne()->getSport()->getName()
+            );
+            
+            $collection[] = $data;
+         }
+         
+         return $collection;
+    }
+    
     public function getSportsAction(){
         
         $sports = array();

@@ -27,6 +27,37 @@ function indexCtrl($scope, $http, coupon){
     }
 }
 
+function sportCtrl($scope, $http, coupon){
+    $scope.oddsByChampionship = [];
+    $scope.isDataLoaded = false;
+    $scope.bets = [];
+    $scope.isChampionship = false;
+    
+    $scope.init = function(sport, championship){
+        var url = BASE_URL+'/backend/api/get-sport-odds';
+        
+        if(championship){
+            url += '?championship='+championship;
+            $scope.isChampionship = true;
+        }else if(sport){
+            url += '?sport='+sport;
+        }
+        
+        // On récupère la liste des matchs avec leur cotes
+        $http.get(url).success(function(data){
+            
+            $scope.oddsByChampionship = data.odds;
+            
+        }).then(function(){
+            $scope.isDataLoaded = true;
+        });
+    }
+    
+    $scope.addBet = function(match, team){
+        coupon.addBet(match, team);
+    }
+}
+
 function menuCtrl($scope, $http, coupon){
 
     $scope.isLogged = true;

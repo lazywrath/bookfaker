@@ -104,10 +104,10 @@
 		<ul>
 			<li><a class="current" href="<?php echo $this->url(array('module' => 'frontend','controller'=>'index','action'=>'index')); ?>">Accueil</a></li>
 			<?php foreach($this->sports  as $sport): ?>
-                            <li><a href="football.html"><?php echo $sport->name;?></a>
+                            <li><a href="<?php echo $this->url(array('module' => 'frontend','controller'=>'index','action'=>'paris', "sport" => $sport->name)); ?>"><?php echo $sport->name;?></a>
                                     <ul>
-                                        <?php foreach($sport->championships as $championship): ?>
-                                            <a href="#"><?php echo $championship;?></a>
+                                        <?php foreach($sport->championships as $idChampionship => $championship): ?>
+                                            <a href="<?php echo $this->url(array('module' => 'frontend','controller'=>'index','action'=>'paris', "sport" => $sport->name, "championship" => $idChampionship)); ?>"><?php echo $championship;?></a>
                                         <?php endforeach;?>
                                     </ul>
                             </li>

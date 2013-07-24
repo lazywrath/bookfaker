@@ -1,9 +1,118 @@
-<section id="blogPosts" ng-controller="indexCtrl" ng-init="init(<?php echo $this->idSport . ',' . $this->idChampionship; ?>)">
+		<section id="homeSlider">
+			<span class="topLeft"></span>
+			<span class="topRight"></span>
+			<span class="bottomRight"></span>
+			<span class="bottomLeft"></span>
+
+			<div class="cycle-slideshow" 
+		        data-cycle-fx="tileBlind"
+		        data-cycle-timeout=0
+		        data-cycle-slides="> div"
+		        data-cycle-prev="div.prev"
+		        data-cycle-next="div.next"
+		        data-cycle-pager="#slidePager"
+		        >
+		        <div>
+		        	<img src="<?php echo $this->baseUrl("images/preview_images/home_slider_1.jpg");?>" alt="">
+		        	<div class="cycle-overlay">
+						<p>John Doe is set to move to Whatever F.C club this summer.</p>
+					</div>
+				</div>
+				<div>
+		        	<img src="<?php echo $this->baseUrl("images/preview_images/home_slider_2.jpg");?>" alt="">
+		        	<div class="cycle-overlay">
+						<p>John Doe is set to move to Whatever F.C club this summer.</p>
+					</div>
+				</div>
+				<div>
+		        	<img src="<?php echo $this->baseUrl("images/preview_images/home_slider_3.jpg");?>" alt="">
+		        	<div class="cycle-overlay">
+						<p>John Doe is set to move to Whatever F.C club this summer.</p>
+					</div>
+				</div>
+				<div>
+		        	<img src="<?php echo $this->baseUrl("images/preview_images/home_slider_4.jpg");?>" alt="">
+		        	<div class="cycle-overlay">
+						<p>John Doe is set to move to Whatever F.C club this summer.</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="prev"></div>
+    		<div class="next"></div>
+		</section><!-- home slider -->
+
+		<section id="blogPosts">
+			<header>
+				<h2>Meilleurs Paris Football</h2>
+			</header>
+			<div class="post clearfix">
+				<div class="date" style="width:120px">
+					<p style="padding:0; line-height:27px">25/01/2013 20h00</p>
+				</div>
+				<h3><a href="#" style="margin: 8px 0 0 10px;width:200px">Euro 2014</a></h3>
+				<div class="metaData clearfix" style="width:300px">
+					<p class=""><a href="#">Angleterre - France</a></p>
+					<p class="" style="float:right; margin:0 15px"><a href="#">3.55</a></p>
+					<p class="" style="float:right; margin:0 15px"><a href="#">2.60</a></p>
+					<p class="" style="float:right; margin:0 15px"><a href="#">1.55</a></p>
+				</div>
+			</div>
+			<div class="post clearfix">
+				<div class="date" style="width:120px">
+					<p style="padding:0; line-height:27px">25/01/2013 20h00</p>
+				</div>
+				<h3><a href="#" style="margin: 8px 0 0 10px;width:200px">Euro 2014</a></h3>
+				<div class="metaData clearfix" style="width:300px">
+					<p class=""><a href="#">Angleterre - France</a></p>
+					<p class="" style="float:right; margin:0 15px"><a href="#">3.55</a></p>
+					<p class="" style="float:right; margin:0 15px"><a href="#">2.60</a></p>
+					<p class="" style="float:right; margin:0 15px"><a href="#">1.55</a></p>
+				</div>
+			</div>
+			<div class="post clearfix">
+				<div class="date" style="width:120px">
+					<p style="padding:0; line-height:27px">25/01/2013 20h00</p>
+				</div>
+				<h3><a href="#" style="margin: 8px 0 0 10px;width:200px">Euro 2014</a></h3>
+				<div class="metaData clearfix" style="width:300px">
+					<p class=""><a href="#">Angleterre - France</a></p>
+					<p class="" style="float:right; margin:0 15px"><a href="#">3.55</a></p>
+					<p class="" style="float:right; margin:0 15px"><a href="#">2.60</a></p>
+					<p class="" style="float:right; margin:0 15px"><a href="#">1.55</a></p>
+				</div>
+			</div>
+			<div class="post clearfix">
+				<div class="date" style="width:120px">
+					<p style="padding:0; line-height:27px">25/01/2013 20h00</p>
+				</div>
+				<h3><a href="#" style="margin: 8px 0 0 10px;width:200px">Euro 2014</a></h3>
+				<div class="metaData clearfix" style="width:300px">
+					<p class=""><a href="#">Angleterre - France</a></p>
+					<p class="" style="float:right; margin:0 15px"><a href="#">3.55</a></p>
+					<p class="" style="float:right; margin:0 15px"><a href="#">2.60</a></p>
+					<p class="" style="float:right; margin:0 15px"><a href="#">1.55</a></p>
+				</div>
+			</div>
+			<div class="post clearfix">
+				<div class="date" style="width:120px">
+					<p style="padding:0; line-height:27px">25/01/2013 20h00</p>
+				</div>
+				<h3><a href="#" style="margin: 8px 0 0 10px;width:200px">Euro 2014</a></h3>
+				<div class="metaData clearfix" style="width:300px">
+					<p class=""><a href="#">Angleterre - France</a></p>
+					<p class="" style="float:right; margin:0 15px"><a href="#">3.55</a></p>
+					<p class="" style="float:right; margin:0 15px"><a href="#">2.60</a></p>
+					<p class="" style="float:right; margin:0 15px"><a href="#">1.55</a></p>
+				</div>
+			</div>
+		</section><!-- top stories -->	
+<!--<section id="blogPosts" ng-controller="indexCtrl" ng-init="init(<?php echo $this->idSport . ',' . $this->idChampionship; ?>)">
     <header>
             <h2>Tous les championnats</h2>
     </header>
     <div style="text-align: center" ng-show="!isDataLoaded">
-        <img src="<?php echo $this->baseURL("/images/preloader.gif");?>"/>
+        <img src="<?php // echo $this->baseURL("/images/preloader.gif");?>"/>
     </div>
     <div ng-repeat="o in odds" class="post clearfix">
             <div class="date" style="width:120px">
@@ -17,4 +126,4 @@
                     <p class="" style="float:right; margin:0 15px"><a href="#">{{o.oddsTeamTwo}}</a></p>
             </div>
     </div>
-</section>
+</section>-->

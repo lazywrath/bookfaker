@@ -18,7 +18,6 @@ class Bookfaker_Controller_Frontend_Action extends Bookfaker_Controller_Action{
 //        }
 //        exit;
         
-        $this->view->test = array("azer", "zezaezae", "zezaeza", "pomm");
         
     }   
 }

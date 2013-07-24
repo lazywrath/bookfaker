@@ -82,7 +82,7 @@
 			<div id="loginBox" class="loginBox eleven columns">
 				<form method="post" action="<?php echo $this->url(array('module' => 'frontend','controller'=>'user','action'=>'login')); ?>">
                                     <?php if(Bookfaker_Control::isLogged()): ?>
-                                        <span style="font:normal 13px/13px 'Open Sans',Arial,sans-serif"><img src="<?php echo $this->baseUrl("images/user.png"); ?>"> <?php echo Bookfaker_Control::userInfos()->getMoneybank()?> - <strong></strong> B</br></span>
+                                        <span style="font:normal 13px/13px 'Open Sans',Arial,sans-serif"><img src="<?php echo $this->baseUrl("images/user.png"); ?>"> <?php echo Bookfaker_Control::userInfos()->getUsername()?>  - <strong></strong><?php echo Bookfaker_Control::userInfos()->getMoneybank()?> B</br></span>
                                         <span style="font:normal 13px/13px 'Open Sans',Arial,sans-serif"><a class="link" href="<?php echo $this->url(
                                             array(
                                                 'module' => 'frontend',
@@ -104,7 +104,7 @@
 
 	<nav id="mainNav" class="container">
 		<ul>
-			<li><a class="current" href="<?php echo $this->url(array('module' => 'frontend','controller'=>'user','action'=>'register')); ?>">Accueil</a></li>
+			<li><a class="current" href="<?php echo $this->url(array('module' => 'frontend','controller'=>'index','action'=>'index')); ?>">Accueil</a></li>
 			<li><a href="football.html">Football</a>
 				<ul>
 					<a href="#">Ligue 1</a>

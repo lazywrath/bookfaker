@@ -5,6 +5,9 @@ class Bookfaker_Form_LoginUser extends Zend_Form{
     public function __construct($options = null){
         
         parent::__construct($options);
+        
+        $this->setAction($this->getView()->url(array('module' => 'frontend','controller' => 'user','action' => 'login')));
+        
         $this->setMethod('post');
  
         $this->addElement(

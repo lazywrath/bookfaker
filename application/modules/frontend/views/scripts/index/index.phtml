@@ -2,7 +2,7 @@
     <header>
             <h2>Tous les championnats</h2>
     </header>
-    <div ng-show="!isDataLoaded">
+    <div style="text-align: center" ng-show="!isDataLoaded">
         <img src="<?php echo $this->baseURL("/images/preloader.gif");?>"/>
     </div>
     <div ng-repeat="o in odds" class="post clearfix">

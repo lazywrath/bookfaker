@@ -20,6 +20,9 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 a, a:link, a:visited {
     text-decoration:none
 }
+a:hover {
+	text-decoration:underline;
+}
 body {
     background:url("../images/background_images/concrete_wall_3.png") left top repeat
 }

@@ -11,7 +11,7 @@
             </div>
             <h3><a href="#" style="margin: 8px 0 0 10px;width:200px">{{o.championship}}</a></h3>
             <div class="metaData clearfix" style="width:300px">
-                    <p class=""><a href="#">{{o.nameTeamOne}} - {{o.nameTeamTwo}}</a></p>
+                    <p class=""><a href="#">{{o.nameTeamOne|truncate:15}} - {{o.nameTeamTwo|truncate:15}}</a></p>
                     <p class="" style="float:right; margin:0 15px"><a href="#">{{o.oddsTeamOne}}</a></p>
                     <p class="" style="float:right; margin:0 15px"><a href="#">{{o.oddsDraw}}</a></p>
                     <p class="" style="float:right; margin:0 15px"><a href="#">{{o.oddsTeamTwo}}</a></p>

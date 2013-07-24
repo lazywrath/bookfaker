@@ -6,6 +6,8 @@ class Bookfaker_Form_EditUser extends Zend_Form{
         
         parent::__construct($options);
         
+        $this->setAction($this->getView()->url(array('module' => 'frontend','controller' => 'user','action' => 'edit')));
+        
        $firstname = new Zend_Form_Element_Text('firstname'); 
        $firstname->setLabel("Prénom");
        $firstname->setRequired(false);

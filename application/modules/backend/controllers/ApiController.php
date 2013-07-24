@@ -762,6 +762,31 @@ class Backend_ApiController extends Bookfaker_Controller_Backend_Action
         echo json_encode(array("state" => 1, "odds" => $collection));
         
     }
+    
+    public function getSportsAction(){
+        
+        $sports = array();
+        $repoSport = $this->_entityManager->getRepository('Application\Model\Entities\Sport');
+        
+        $tmpSports = $repoSport->findAll();
+        
+        foreach($tmpSports as $sport){
+            $championships = $sport->getChampionships();
+            
+            $tmpChampionships = array();
+            
+            foreach($championships as $championship){
+                $tmpChampionships[$championship->getId()] = $championship->getName();
+            }
+            
+            $sports[$sport->getId()] = array(
+                "name" => $sport->getName(),
+                "championships" => $tmpChampionships
+            );
+        }
+        
+        echo json_encode($sports);
+    }
 
 
 }

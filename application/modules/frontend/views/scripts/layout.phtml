@@ -100,28 +100,18 @@
 		</div>
 	</header>
 	<hr><!-- end header section -->
-
-
 	<nav id="mainNav" class="container">
 		<ul>
 			<li><a class="current" href="<?php echo $this->url(array('module' => 'frontend','controller'=>'index','action'=>'index')); ?>">Accueil</a></li>
-			<li><a href="football.html">Football</a>
-				<ul>
-					<a href="#">Ligue 1</a>
-				</ul>
-			</li>
-			<li><a href="tennis.html">Tennis</a></li>
-				<ul>
-				</ul>
-			</li>
-			<li><a href="basket.html">Basket</a></li>
-				<ul>
-				</ul>
-			</li>
-			<li><a href="handball.html">Handball</a></li>
-				<ul>
-				</ul>
-			</li>
+			<?php foreach($this->sports  as $sport): ?>
+                            <li><a href="football.html"><?php echo $sport->name;?></a>
+                                    <ul>
+                                        <?php foreach($sport->championships as $championship): ?>
+                                            <a href="#"><?php echo $championship;?></a>
+                                        <?php endforeach;?>
+                                    </ul>
+                            </li>
+                        <?php endforeach;?>
 
 			<li><a href="shop.html">Boutique</a></li>
 			<li><a href="profile.html">Mon compte</a></li>

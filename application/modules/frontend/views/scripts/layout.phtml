@@ -1,16 +1,16 @@
+<!--  ////////////////// -->
 <!DOCTYPE html>
-<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
-<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
-<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
-<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<!--[if lt IE 7 ]><html class="ie ie6" lang="fr"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="fr"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="fr"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="fr"> <!--<![endif]-->
 <head>
 
 	<!-- Basic Page Needs
   ================================================== -->
 	<meta charset="utf-8">
-	<title>Clean Sport</title>
-	<meta name="description" content="This is a sport website template">
-	<meta name="author" content="The author of this template is (sheko_elanteko)">
+	<title>Bookfaker</title>
+	<meta name="description" content="">
 
 	<!-- Mobile Specific Metas
   ================================================== -->
@@ -18,21 +18,19 @@
 
 	<!-- CSS
   ================================================== -->
-	<?php 
         
-        $this->headLink()
-//            ->appendStylesheet($this->baseUrl("css/basic-style.css"))
-            ->appendStylesheet($this->baseUrl("css/home.css"))
-            ->appendStylesheet($this->baseUrl("css/styles.css"))
-            ->appendStylesheet($this->baseUrl("css/main.css"));
-        
-        echo $this->headLink(); ?>
-       
-        
+	<link rel="stylesheet" href="<?php echo $this->baseUrl("css/basic-styles.css"); ?>">
+	<link rel="stylesheet" href="<?php echo $this->baseUrl("css/main.css"); ?>">
+	<link rel="stylesheet" href="<?php echo $this->baseUrl("css/home.css"); ?>">
+	<link rel="stylesheet" href="<?php echo $this->baseUrl("css/blog.css"); ?>">
+	<link rel="stylesheet" href="<?php echo $this->baseUrl("css/contact.css"); ?>">
+	<link rel="stylesheet" href="<?php echo $this->baseUrl("css/about.css"); ?>">
+	<link rel="stylesheet" href="<?php echo $this->baseUrl("css/post.css"); ?>">
+	<link rel="stylesheet" href="<?php echo $this->baseUrl("css/league_tables.css"); ?>">
 
 	<!--[if lt IE 9]>
 		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-		<link rel="stylesheet" href="stylesheets/ie_fix.css">
+		<link rel="stylesheet" href="<?php echo $this->baseUrl("css/ie_fix.css"); ?>">
 	<![endif]-->
 
 
@@ -60,10 +58,10 @@
 
 	<!-- Favicons
 	================================================== -->
-	<link rel="shortcut icon" href="images/favicon.ico">
-	<link rel="apple-touch-icon" href="<?php echo $this->baseUrl("img/apple-touch-icon.png"); ?>">
-	<link rel="apple-touch-icon" sizes="72x72" href="<?php echo $this->baseUrl("img/apple-touch-icon-72x72.png"); ?>">
-	<link rel="apple-touch-icon" sizes="114x114" href="<?php echo $this->baseUrl("img/apple-touch-icon-114x114.png"); ?>">
+	<link rel="shortcut icon" href="<?php echo $this->baseUrl("images/favicon.ico"); ?>">
+	<link rel="apple-touch-icon" href="<?php echo $this->baseUrl("images/apple-touch-icon.png"); ?>">
+	<link rel="apple-touch-icon" sizes="72x72" href="<?php echo $this->baseUrl("images/apple-touch-icon-72x72.png"); ?>">
+	<link rel="apple-touch-icon" sizes="114x114" href="<?php echo $this->baseUrl("images/apple-touch-icon-114x114.png"); ?>">
 
 </head>
 <body ng-app="bookfaker">
@@ -77,46 +75,26 @@
 
 	<!-- Header Styles -->
 	<header id="mainHeader" class="expand">
-		<div class="topHeader expand">
-			<div class="topNav container">
-				<ul>
-					<li><a href="index-2.html">Accueil</a></li>
-					<li><a href="about.html">Mon compte</a></li>
-					<li><a href="blog.html">Blog</a></li>
-					<li><a href="gallery_1.html">Boutique</a></li>
-					<li class="last"><a href="contact.html">Contact</a></li>
-					<li class="last">
-                        <?php if(Bookfaker_Control::isLogged()): ?>
-                        Vous êtes connectés
-                        <a href="<?php echo $this->url(
-                            array(
-                                'module' => 'frontend',
-                                'controller'=>'user',
-                                'action'=>'logout'
-                                )); ?>">
-                            Déconnexion</a>
-                        <?php else: ?>
-                        <a href="<?php echo $this->url(
-                            array(
-                                'module' => 'frontend',
-                                'controller'=>'user',
-                                'action'=>'login'
-                                )); ?>">
-                            Login</a>
-                        <?php endif; ?>
-                    </li>
-
-				</ul>
-			</div>
-		</div>
 		<div class="container">
-			<div id="logo" class="eight columns">
-				<h1><a href="index-2.html">BookFaker <em>Un nouveau site de paris en ligne fictif</em></a></h1>
+			<div id="logo" class="five columns">
+				<h1><a href="index.html">BookFaker <em>Un nouveau site de paris fictifs en ligne</em></a></h1>
 			</div>
-			<div class="searchBox eight columns">
-				<form method="post" action="#">
-					<input type="text" name="headerSearch" id="headerSearch" placeholder="search...">
-					<input type="submit" name="submitSearch" id="submitSearch" class="noTransition" value="Search">
+			<div id="loginBox" class="loginBox eleven columns">
+				<form method="post" action="<?php echo $this->url(array('module' => 'frontend','controller'=>'user','action'=>'login')); ?>">
+                                    <?php if(Bookfaker_Control::isLogged()): ?>
+                                        <span style="font:normal 13px/13px 'Open Sans',Arial,sans-serif"><img src="<?php echo $this->baseUrl("images/user.png"); ?>"> <?php echo Bookfaker_Control::userInfos()->getMoneybank()?> - <strong></strong> B</br></span>
+                                        <span style="font:normal 13px/13px 'Open Sans',Arial,sans-serif"><a class="link" href="<?php echo $this->url(
+                                            array(
+                                                'module' => 'frontend',
+                                                'controller'=>'user',
+                                                'action'=>'logout'
+                                                )); ?>">Logout</a></span>
+                                    <?php else: ?>
+                                        <input type="text" name="username" id="headerLogin" placeholder="Pseudo...">
+                                        <input type="password" name="password" id="headerPassword" placeholder="Mot de passe...">
+                                        <a src="<?php echo $this->url(array('module' => 'frontend','controller'=>'user','action'=>'register')); ?>" id="submitJoin" class="noTransition">Inscrivez-vous</a>
+                                        <input type="submit" name="submitLogin" id="submitLogin" class="noTransition" value="Connexion">
+                                    <?php endif; ?>
 				</form>
 			</div>
 		</div>
@@ -126,132 +104,191 @@
 
 	<nav id="mainNav" class="container">
 		<ul>
-			<li><a class="current" href="index-2.html">Home</a></li>
-			<li><a href="football.html">Football</a></li>
-			<li><a href="football.html">Basketball</a></li>
-			<li><a href="football.html">Tennis</a></li>
-			<li><a href="football.html">Golf</a></li>
-			<li><a href="football.html">Racing</a></li>
-			<li><a href="football.html">Olympics</a></li>
-			<li><a href="#">Pages&#8595;</a>
+			<li><a class="current" href="index.html">Accueil</a></li>
+			<li><a href="football.html">Football</a>
 				<ul>
-					<li><a href="about.html">About</a></li>
-					<li><a href="blog.html">Blog</a></li>
-					<li><a href="post.html">Post</a></li>
-					<li><a href="gallery_1.html">Gellery 1</a></li>
-					<li><a href="gallery_2.html">Gellery 2</a></li>
-					<li><a href="contact.html">Contact</a></li>
+					<a href="#">Ligue 1</a>
 				</ul>
 			</li>
-			<li><a href="#">Sport Pages&#8595;</a>
+			<li><a href="tennis.html">Tennis</a></li>
 				<ul>
-					<li><a href="football.html">Football</a></li>
-					<li><a href="league_news.html">League News</a></li>
-					<li><a href="league_teams.html">League Teams</a></li>
-					<li><a href="league_fixtures.html">League Fixtures</a></li>
-					<li><a href="league_tables.html">League Tables</a></li>
-					<li><a href="league_topScorers.html">League Top Scorers</a></li>
-					<li><a href="league_photos.html">League Photos</a></li>
-					<li><a href="league_photos_2.html">League Photos 2</a></li>
-					<li><a href="league_photos_3.html">League Photos 3</a></li>
-					<li><a href="player_profile.html">Player Profile</a></li>
-					<li><a href="team_info.html">Team Info</a></li>
 				</ul>
 			</li>
+			<li><a href="basket.html">Basket</a></li>
+				<ul>
+				</ul>
+			</li>
+			<li><a href="handball.html">Handball</a></li>
+				<ul>
+				</ul>
+			</li>
+
+			<li><a href="shop.html">Boutique</a></li>
+			<li><a href="profile.html">Mon compte</a></li>
+			<li><a href="contact.html">Contact</a></li>
 		</ul>
 	</nav><!-- end main nav section -->
-        <!-- coupon -->
-        <div ng-controller="menuCtrl">
-            <input ng-change="saveSessionCoupon()" ng-model="coupon.type" type="radio" name="type" value="0" checked> Simple<br>
-            <input ng-change="saveSessionCoupon()" ng-model="coupon.type" type="radio" name="type" value="1" > Combiné
-            Mise :<input ng-change="saveSessionCoupon()" ng-model="coupon.stacke" type="text"/> Bookies
-            Gains possibles : {{calculGains()}}
-            <div ng-repeat="bet in coupon.bets">
-                <p>{{bet.match.nameTeamOne}} vs {{bet.match.nameTeamTwo}}</p><button ng-click="removeBet($index)">X</button>
-                <p>Match</p>
-                <p ng-switch="bet.team">Pronostic: 
-                    <span ng-switch-when="1">{{bet.match.nameTeamOne}} {{bet.match.oddsTeamOne}}</span>
-                    <span ng-switch-when="0">Nul {{bet.match.oddsDraw}}</span>
-                    <span ng-switch-when="2">{{bet.match.nameTeamTwo}} {{bet.match.oddsTeamTwo}}</span>
-                </p>
-                <hr>
-                
-            </div>
-            <div ng-show="!isLogged">Vous devez être connectés pour parier.
-                <a href="<?php echo $this->url(array('module' => 'frontend', 'controller'=>'user', 'action'=>'register')); ?>">
-                    Inscrivez-vous ici</a> si vous n'avez pas de compte.
-            </div>
-            <button ng-click="saveBets()" ng-show="coupon.bets.length>0">Enregistrer</button>
-        </div> 
- 
-	<div id="contentContainer" class="container">
-		<?php echo $this->layout()->content ?>
+
+	<!-- NE PAS AFFICHER SUR ACCUEIL -->
+	<div id="pageHeader" class="container">
+		<div class="stripe"></div>
+		<div id="info">
+			<span class="topLeft"></span>
+			<span class="topRight"></span>
+			<span class="bottomRight"></span>
+			<span class="bottomLeft"></span>
+			<h1>Titre</h1>
+			<em>Phrase.</em>
+			<div id="breadCrumbs">
+				<p><a href="index.html">Accueil</a> / <a href="inscription.html" class="active">Page Active</a></p>
+			</div>
+		</div>
+	</div><!-- end of page header -->
+
+	<div id="contetnContainer" class="container">
+		<div class="leftColumn eleven columns">
+                    <?php echo $this->layout()->content ?>
+		</div><!-- left columns -->
+
+		<div class="rightColumn five columns">
+			<section id="blogPosts">
+				<header>
+					<h2>Votre coupon</h2>
+					<div class="navigation">
+						<button type="button" class="nextArchive nextCoupon"></button>
+						<button type="button" class="prevArchive prevCoupon"></button>
+					</div>
+				</header>
+				<div class="cycle-slideshow" 
+			        data-cycle-fx="scrollHorz"
+			        data-cycle-timeout=0
+			        data-cycle-slides="> div"
+			        data-cycle-prev=".prevCoupon"
+			        data-cycle-next=".nextCoupon"
+					data-cycle-auto-height=1
+			        >
+					<div ng-controller="menuCtrl">
+                                            <input ng-change="saveSessionCoupon()" ng-model="coupon.type" type="radio" name="type" value="0" checked> Simple<br>
+                                            <input ng-change="saveSessionCoupon()" ng-model="coupon.type" type="radio" name="type" value="1" > Combiné
+						<h3>Simple</h3>
+						<div class="post clearfix">
+							<div ng-repeat="bet in coupon.bets" class="metaData clearfix" style="width:280px;margin:0;">
+								<p><a href="#">{{bet.match.nameTeamOne}} vs {{bet.match.nameTeamTwo}}</a></p>
+								<p style="float:right;"><a ng-click="removeBet($index)">X</a></p>
+								</br>
+								<p ng-switch="bet.team">
+                                                                    Pronostic : 
+                                                                   
+							</div>
+						</div>
+                                                <div class="post clearfix">
+							<div class="metaData clearfix" style="width:280px;margin:0;">
+								<p  ng-show="1==coupon.type" class="">Cote totale :</p>
+								<p ng-show="1==coupon.type" class="" style="float:right;">11.50</p>
+								</br>
+								<p class="">Mise :</p>
+								<p class="" style="float:right;"><input ng-change="saveSessionCoupon()" ng-model="coupon.stacke" type="text" name="mise" id="mise" style="width: 60px;height: 20px;padding: 0px 10px;margin: 0;"></p>
+								</br>
+								<p class="" style="margin: 5px 0">Gains Possible :</p>
+								<p class="" style="float:right;margin: 5px -60px">{{calculGains()}} B</p>
+								</br>
+								<p class="" style="float:right;margin-top:10px"><button class="button">Valider</button></p>
+							</div>
+						</div>
+                                                <div ng-show="!isLogged">Vous devez être connectés pour parier.
+                                                    <a href="<?php echo $this->url(array('module' => 'frontend', 'controller'=>'user', 'action'=>'register')); ?>">
+                                                        Inscrivez-vous ici</a> si vous n'avez pas de compte.
+                                                </div>
+					</div>
+				</div>
+			</section>
+			</br>
+			<section id="blogPosts">
+				<header>
+					<h2>Top Parieur</h2>
+					<div class="navigation">
+						<button type="button" class="nextArchive nextTop"></button>
+						<button type="button" class="prevArchive prevTop"></button>
+					</div>
+				</header>
+				<div class="cycle-slideshow" 
+			        data-cycle-fx="scrollHorz"
+			        data-cycle-timeout=0
+			        data-cycle-slides="> div"
+			        data-cycle-prev=".prevTop"
+			        data-cycle-next=".nextTop"
+			        >
+					<div>
+						<h3>Semaine</h3>
+						<div class="post clearfix">
+							<div class="metaData clearfix" style="width:280px;margin:0;">
+								<p class=""><a href="#">Camille B.</a></p>
+								<p class="" style="float:right;">7200 B</p>
+							</div>
+						</div>
+					</div>
+					<div>
+						<h3>Mois</h3>
+						<div class="post clearfix">
+							<div class="metaData clearfix" style="width:280px;margin:0;">
+								<p class=""><a href="#">Camille B.</a></p>
+								<p class="" style="float:right;">7200 B</p>
+							</div>
+						</div>
+					</div>
+					<div>
+						<h3>All time</h3>
+						<div class="post clearfix">
+							<div class="metaData clearfix" style="width:280px;margin:0;">
+								<p class=""><a href="#">Camille B.</a></p>
+								<p class="" style="float:right;">7200 B</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</div><!-- right column -->
 	</div><!-- end of content container -->
 
 	<section id="footer" class="expand">
 		<div class="footerUpper container">
 			<section class="footerAbout five columns">
-				<h1><a href="index-2.html">BookFaker <em>Un nouveau site de paris en ligne fictif</em></a></h1>
-				<p>Nam et commodo est. Nulla tortor leo, fringilla ac pulvinar ut, tincidunt eget nisl. Vivamus augue tellus, posuere id consequat vel, hendrerit nec turpis. Fusce ut justo non sem elementum dapibus. Class aptent taciti sociosqu ad litora torquent per conubia nostra.</p>
+				<h1><a href="index.html">BookFaker <em>Un nouveau site de paris en ligne fictif</em></a></h1>
+				<p>Site de paris fictifs regroupant le sport, les actualités people, politiques. Testez gratuitement vos talents de parieurs et gagnez de nombreux cadeaux. Le projet démarre le site est donc en cours de construction. </p>
 				<a href="#" class="login">Login</a>
 				<a href="#" class="join">Join</a>
 			</section><!-- footer about -->
-			<section class="footerNav two columns">
+			<section class="footerNav five columns">
 				<header class="reverse">
-					<h2>Nav</h2>
+					<h2>Menu</h2>
 				</header>
 				<ul>
-					<li><a href="index-2.html">Accueil</a></li>
-					<li><a href="about.html">Mon compte</a></li>
-					<li><a href="blog.html">Blog</a></li>
-					<li><a href="gallery_1.html">Boutique</a></li>
+					<li><a href="index.html">Accueil</a></li>
+					<li><a href="profile.html">Mon compte</a></li>
+					<li><a href="shop.html">Boutique</a></li>
 					<li class="last"><a href="contact.html">Contact</a></li>
 				</ul>
 			</section><!-- footer nav -->
-			<section class="flickrFeed four columns">
+			<section class="footerNav six columns">
 				<header class="reverse">
-					<h2>Flickr Feed</h2>
+					<h2>Sports</h2>
 				</header>
 				<ul>
-<!--					<li><a href="#"><img src="images/flickr_image.jpg" alt=""></a></li>
-					<li><a href="#"><img src="images/flickr_image.jpg" alt=""></a></li>
-					<li><a href="#"><img src="images/flickr_image.jpg" alt=""></a></li>
-					<li><a href="#"><img src="images/flickr_image.jpg" alt=""></a></li>
-					<li><a href="#"><img src="images/flickr_image.jpg" alt=""></a></li>
-					<li><a href="#"><img src="images/flickr_image.jpg" alt=""></a></li>
-					<li><a href="#"><img src="images/flickr_image.jpg" alt=""></a></li>
-					<li><a href="#"><img src="images/flickr_image.jpg" alt=""></a></li>
-					<li><a href="#"><img src="images/flickr_image.jpg" alt=""></a></li>-->
+					<li><a href="football.html">Football</a></li>
+					<li><a href="tennis.html">Tennis</a></li>
+					<li><a href="basket.html">Basket</a></li>
 				</ul>
-			</section><!-- flickr feed -->
-			<section class="usefulLinks five columns">
-				<header class="reverse">
-					<h2>Useful Links</h2>
-				</header>
-				<ul>
-					<li><a href="#">Nam felis nibh, sollicitudin quis pulvinar.</a></li>
-					<li><a href="#">Nam felis nibh, sollicitudin quis pulvinar.</a></li>
-					<li><a href="#">Nam felis nibh, sollicitudin quis pulvinar.</a></li>
-					<li><a href="#">Nam felis nibh, sollicitudin quis pulvinar.</a></li>
-					<li><a href="#">Nam felis nibh, sollicitudin quis pulvinar.</a></li>
-					<li><a href="#">Nam felis nibh, sollicitudin quis pulvinar.</a></li>
-					<li><a href="#">Nam felis nibh, sollicitudin quis pulvinar.</a></li>
-				</ul>
-			</section><!-- useful links -->
+			</section><!-- footer nav -->
 		</div><!-- end of footerUpper div -->
 		<div class="footerBottom expand">
 			<div class="container">
 				<div class="footerSocial eight columns">
 					<ul>
 						<li><a href="#" class="facebook">Facebook</a></li>
-						<li><a href="#" class="twitter">Twitter</a></li>
-						<li><a href="#" class="google">Google +</a></li>
-						<li><a href="#" class="vimeo">Vimeo</a></li>
-						<li><a href="#" class="flickr">Flickr</a></li>
 					</ul>
 				</div><!-- footer social -->
 				<div class="copyRights eight columns">
-					<p>copyright© 2013, bookfaker.com</p>
+					<p>copyright&copy; 2013, bookfaker.com</p>
 				</div><!-- copyrights -->
 			</div>
 		</div><!-- footer bottom -->
@@ -261,22 +298,19 @@
 
 	<!-- JS
 	================================================== -->
-        <?php
-        $this->headScript()->appendFile("https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js")
-                    ->appendFile($this->baseUrl("js/jquery.waitforimages.js"))
-                    ->appendFile($this->baseUrl("js/jquery.cycle2.min.js"))
-                    ->appendFile($this->baseUrl("js/jquery.cycle2.tile.min.js"))
-                    ->appendFile($this->baseUrl("js/jcarousellite_1.0.1.min.js"))
-                    ->appendFile($this->baseUrl("js/jquery.tweet.js"))
-                    ->appendFile($this->baseUrl("js/main_func.js"))
-                    ->appendFile($this->baseUrl("js/home_func.js"))
-//                    ->appendFile($this->baseUrl("js/bookfaker.js"))
-                    ->appendFile($this->baseUrl("js/angular.min.js"))
-                    ->appendFile($this->baseUrl("js/controllers/index.js"))
-                    ->appendFile($this->baseUrl("js/script.js"));
-        
-        echo $this->headScript();
-        ?>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+	<script src="<?php echo $this->baseUrl("js/jquery.waitforimages.js"); ?>"></script>
+	<script src="<?php echo $this->baseUrl("js/jquery.cycle2.min.js"); ?>"></script>
+	<script src="<?php echo $this->baseUrl("js/jquery.cycle2.tile.min.js"); ?>"></script>
+	<script src="<?php echo $this->baseUrl("js/jcarousellite_1.0.1.min.js"); ?>"></script>
+	<script src="<?php echo $this->baseUrl("js/jquery.tweet.js"); ?>"></script>
+	<script src="<?php echo $this->baseUrl("js/main_func.js"); ?>"></script>
+	<script src="<?php echo $this->baseUrl("js/home_func.js"); ?>"></script>
+	<script src="<?php echo $this->baseUrl("js/post_func.js"); ?>"></script>
+	<script src="<?php echo $this->baseUrl("js/league_tables_func.js"); ?>"></script>
+	<script src="<?php echo $this->baseUrl("js/angular.min.js"); ?>"></script>
+	<script src="<?php echo $this->baseUrl("js/script.js"); ?>"></script>
+	<script src="<?php echo $this->baseUrl("js/controllers/index.js"); ?>"></script>
 
 <!-- End Document
 ================================================== -->

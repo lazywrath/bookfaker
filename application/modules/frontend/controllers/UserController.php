@@ -76,7 +76,7 @@ class UserController extends Bookfaker_Controller_Frontend_Action
         $loginForm = new Bookfaker_Form_LoginUser();
  
         if ($loginForm->isValid($_POST)) {
- 
+            
             $adapter = new Zend_Auth_Adapter_DbTable(
                 $db,
                 'bf_user',
@@ -90,6 +90,7 @@ class UserController extends Bookfaker_Controller_Frontend_Action
  
             $auth   = Zend_Auth::getInstance();
             $result = $auth->authenticate($adapter);
+            
  
             if ($result->isValid()) {
                 

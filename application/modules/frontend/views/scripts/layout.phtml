@@ -92,7 +92,7 @@
                                     <?php else: ?>
                                         <input type="text" name="username" id="headerLogin" placeholder="Pseudo...">
                                         <input type="password" name="password" id="headerPassword" placeholder="Mot de passe...">
-                                        <a src="<?php echo $this->url(array('module' => 'frontend','controller'=>'user','action'=>'register')); ?>" id="submitJoin" class="noTransition">Inscrivez-vous</a>
+                                        <a href="<?php echo $this->url(array('module' => 'frontend','controller'=>'user','action'=>'register')); ?>" id="submitJoin" class="noTransition">Inscrivez-vous</a>
                                         <input type="submit" name="submitLogin" id="submitLogin" class="noTransition" value="Connexion">
                                     <?php endif; ?>
 				</form>
@@ -104,7 +104,7 @@
 
 	<nav id="mainNav" class="container">
 		<ul>
-			<li><a class="current" href="index.html">Accueil</a></li>
+			<li><a class="current" href="<?php echo $this->url(array('module' => 'frontend','controller'=>'user','action'=>'register')); ?>">Accueil</a></li>
 			<li><a href="football.html">Football</a>
 				<ul>
 					<a href="#">Ligue 1</a>

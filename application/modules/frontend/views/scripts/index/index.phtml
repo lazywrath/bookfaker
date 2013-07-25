@@ -15,25 +15,25 @@
 		        <div>
 		        	<img src="<?php echo $this->baseUrl("images/preview_images/home_slider_1.jpg");?>" alt="">
 		        	<div class="cycle-overlay">
-						<p>John Doe is set to move to Whatever F.C club this summer.</p>
+						<p>John Abraham en visite chez les Cardinals.</p>
 					</div>
 				</div>
 				<div>
 		        	<img src="<?php echo $this->baseUrl("images/preview_images/home_slider_2.jpg");?>" alt="">
 		        	<div class="cycle-overlay">
-						<p>John Doe is set to move to Whatever F.C club this summer.</p>
+						<p>Areola : «Je suis prêt».</p>
 					</div>
 				</div>
 				<div>
 		        	<img src="<?php echo $this->baseUrl("images/preview_images/home_slider_3.jpg");?>" alt="">
 		        	<div class="cycle-overlay">
-						<p>John Doe is set to move to Whatever F.C club this summer.</p>
+						<p>N. Robinson rejoint Denver.</p>
 					</div>
 				</div>
 				<div>
 		        	<img src="<?php echo $this->baseUrl("images/preview_images/home_slider_4.jpg");?>" alt="">
 		        	<div class="cycle-overlay">
-						<p>John Doe is set to move to Whatever F.C club this summer.</p>
+						<p>Chamonix sacre Desgranges.</p>
 					</div>
 				</div>
 			</div>
@@ -64,7 +64,7 @@
                     </div>
                 </section>
 
-		<section id="blogPosts">
+		<!--<section id="blogPosts">
 			<header>
 				<h2>Meilleurs Paris Football</h2>
 			</header>
@@ -128,24 +128,26 @@
 					<p class="" style="float:right; margin:0 15px"><a href="#">1.55</a></p>
 				</div>
 			</div>
-		</section><!-- top stories -->	
-<!--<section id="blogPosts" ng-controller="indexCtrl" ng-init="init(<?php echo $this->idSport . ',' . $this->idChampionship; ?>)">
+		</section> -->	
+
+<section id="blogPosts" ng-controller="indexCtrl" ng-init="init(<?php echo 'Football ,1'; ?>)">
     <header>
             <h2>Tous les championnats</h2>
     </header>
     <div style="text-align: center" ng-show="!isDataLoaded">
-        <img src="<?php // echo $this->baseURL("/images/preloader.gif");?>"/>
+        <img src="<?php  echo $this->baseURL("/images/preloader.gif");?>"/>
     </div>
     <div ng-repeat="o in odds" class="post clearfix">
-            <div class="date" style="width:120px">
-                    <p style="padding:0; line-height:27px">{{o.date}}</p>
-            </div>
-            <h3><a href="#" style="margin: 8px 0 0 10px;width:200px">{{o.championship}}</a></h3>
-            <div class="metaData clearfix" style="width:300px">
-                    <p class=""><a href="#">{{o.nameTeamOne|truncate:15}} - {{o.nameTeamTwo|truncate:15}}</a></p>
-                    <p class="" style="float:right; margin:0 15px"><a href="#">{{o.oddsTeamOne}}</a></p>
-                    <p class="" style="float:right; margin:0 15px"><a href="#">{{o.oddsDraw}}</a></p>
-                    <p class="" style="float:right; margin:0 15px"><a href="#">{{o.oddsTeamTwo}}</a></p>
-            </div>
-    </div>
-</section>-->
+		<div class="date" style="width:120px">
+			<p style="padding:0; line-height:27px">{{o.date|truncate:13}}</p>
+		</div>
+		<h3><a href="#" style="margin: 8px 0 0 10px;width:180px">{{o.championship}}</a></h3>
+		<div class="metaData clearfix" style="width:320px">
+			<p class=""><a href="#">{{o.nameTeamOne|truncate:10}} - {{o.nameTeamTwo|truncate:10}}</a></p>
+			<p ng-click="addBet(o, 1)" class="" style="float:right;  margin:0 15px;width:20px;"><a href="#">{{o.oddsTeamOne}}</a></p>
+			<p ng-click="addBet(o, 0)" class="" style="float:right;  margin:0 15px;width:20px;"><a href="#">{{o.oddsDraw}}</a></p>
+			<p ng-click="addBet(o, 2)" class="" style="float:right;  margin:0 15px;width:20px;"><a href="#">{{o.oddsTeamTwo}}</a></p>
+		</div>
+	</div>
+</section>
+

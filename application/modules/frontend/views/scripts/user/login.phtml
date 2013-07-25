@@ -1,2 +1,15 @@
 <?php echo $this->msg ? $this->msg : ""; ?>
-<?php echo $this->form; ?>
+<section id="contactForm" class="clearfix">
+        <header>
+                <h2>Inscription</h2>
+        </header>
+        <form action="<?php echo $this->url(array('module' => 'frontend','controller' => 'user','action' => 'login'), null, true); ?>" method="post">
+                <fieldset class="inputFields">
+                    <?php echo $this->form->username; ?>
+                    <?php echo $this->form->password; ?>
+                </fieldset>
+                <input type="submit" class="button" style="clear:both;" value="Enregistrer" />
+
+                <div></div>
+        </form>
+</section><!-- contact form -->

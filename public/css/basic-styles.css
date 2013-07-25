@@ -342,10 +342,16 @@ a.more:hover, a.more:active {
 
 .tabActive {
 	background:#55ccd9;
+}
+
+.tabActive a {
 	color:#fff;
 }
 
 .tabInactive {
 	background:#fff;
+}
+
+.tabInactive a {
 	color:#55ccd9;
 }

@@ -346,12 +346,21 @@ a.more:hover, a.more:active {
 
 .tabActive a {
 	color:#fff;
+	text-decoration:none;
 }
 
 .tabInactive {
-	background:#fff;
+	background:#fff !important;
 }
 
 .tabInactive a {
 	color:#55ccd9;
+	text-decoration:none;
+}
+
+.errors li {
+	list-style: none;
+	margin: 0 -28px;
+	color: #F00;
+	font: normal 11px/11px'Open Sans', Arial, sans-serif;
 }

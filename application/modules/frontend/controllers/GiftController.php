@@ -21,8 +21,10 @@ class GiftController extends Bookfaker_Controller_Frontend_Action
             $gift = $repoGift->findOneById($idGift);
             
             if(null != $gift){
-                // On check si le user a assez de bookies
-                if($gift->getBookies() <= $this->_user->getMoneybank()){
+                
+                if(!Bookfaker_Control::isLogged()){
+                    $this->view->message = "Vous n'avez pas assez de Bookies !";
+                }else if($gift->getBookies() <= $this->_user->getMoneybank()){ // On check si le user a assez de bookies
                     
                     $repoUser = $this->_entityManager->getRepository('Application\Model\Entities\User');
                     $user = $repoUser->findOneById($this->_user->getId());

@@ -124,9 +124,11 @@
                                     </ul>
                             </li>
                         <?php endforeach;?>
-
-			<li><a href="<?php echo $this->url(array('module' => 'frontend','controller'=>'gift','action'=>'index'),null, true); ?>">Boutique</a></li>
-			<li><a href="<?php echo $this->url(array('module' => 'frontend','controller'=>'user','action'=>'profile'),null, true); ?>">Mon compte</a></li>
+                           
+                           <?php if(Bookfaker_Control::isLogged()): ?>
+                                <li><a href="<?php echo $this->url(array('module' => 'frontend','controller'=>'user','action'=>'profile'),null, true); ?>">Mon compte</a></li>
+                            <?php endif; ?>
+                            <li><a href="<?php echo $this->url(array('module' => 'frontend','controller'=>'gift','action'=>'index'),null, true); ?>">Boutique</a></li>
 		</ul>
 	</nav><!-- end main nav section -->
 

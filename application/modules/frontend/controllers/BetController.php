@@ -30,7 +30,12 @@ class BetController extends Bookfaker_Controller_Frontend_Action
         
         if(empty($bets) || empty($stake)|| !isset($betType)){
             echo  json_encode(array("state" => -1, "msg" => "Une erreur est survenue."));
-            exit;
+            return;
+        }
+        // On vérifie si le user a assez de bookies
+        if($stake >= $this->_user->getMoneybank()){
+            echo  json_encode(array("state" => -2, "msg" => "Vous n'avez pas assez de bookies."));
+            return;
         }
         
         $repoMatch = $this->_entityManager->getRepository('Application\Model\Entities\Match');
@@ -84,6 +89,14 @@ class BetController extends Bookfaker_Controller_Frontend_Action
             $this->_entityManager->persist($combination);
             $this->_entityManager->flush();
         }
+       
+        // On met à jour le user
+        $newMoneybank = $user->getMoneybank()-$stake;
+        $user->setMoneybank($newMoneybank);
+        $this->_entityManager->persist($user);
+        $this->_entityManager->flush();
+        
+        Bookfaker_Control::setUserInfos($user);
         
         echo json_encode(array('state' => 1));
             

@@ -18,6 +18,7 @@ class UserController extends Bookfaker_Controller_Frontend_Action
             
             if($form->isValid($data)){
                 $user = new Application\Model\Entities\User($data);
+                $user->setMoneybank(100);
                 
                 $this->_entityManager->persist($user);
                 $this->_entityManager->flush();

@@ -77,6 +77,8 @@ function menuCtrl($scope, $http, coupon){
             else if(1==data.state){
                 $scope.isLogged = true;
                 $scope.isSaved = true;
+            }else if(-2 == data.state){ // Pas assez de bookies
+                $scope.notEnoughBookies = "Vous n'avez pas assez de bookies... :(";
             }
         });
     }

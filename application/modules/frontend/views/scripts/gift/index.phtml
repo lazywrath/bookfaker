@@ -1,9 +1,6 @@
-<?php /*foreach($this->gifts as $gift): ?>
-    <img src="<?php echo $this->baseUrl(); ?>/images/<?php echo $gift->getImage();?>" />
-    <a href="?idGift=<?php echo $gift->getId(); ?>"><?php echo $gift->getName(); ?></a>
-<?php endforeach; */?>
 
-			<section id="galleryNav" class="eleven columns clearfix">
+
+<!--			<section id="galleryNav" class="eleven columns clearfix">
 				<header>
 					<h2>Boutique</h2>
 				</header>
@@ -20,28 +17,39 @@
 							<li><a href="#" class="jeuxvideos">Jeux vid&eacute;os</a> / </li>
 							<li><a href="#" class="billeterie">Billeterie</a></li>
 						</ul>
-					</div><!-- filter div -->
+					</div> filter div 
 				</div>
-			</section><!-- gallery nav section -->
+			</section> gallery nav section -->
+                        <p><?php echo $this->message ? $this->message : ''; ?></p>
 
 			<section id="gallery_1" class="eleven columns clearfix">
 				<ul class="designs">
-					<li class="item clearfix" data-id="id-1" data-type="maillots">
+                                    
+                                        <?php foreach($this->gifts as $gift): ?>
+                                            <li class="item clearfix" data-id="id-1" data-type="maillots">
+                                                        <img src="<?php echo $this->baseUrl(); ?>/images/<?php echo $gift->getImage();?>" />
+                                                        <div class="titleAndMeta clearfix">
+                                                            <h3><a href="?idGift=<?php echo $gift->getId(); ?>"><?php echo $gift->getName() ; ?></a> -<?php echo  $gift->getBookies(); ?> Bookies</h3>
+                                                        </div>
+                                                </li>
+                                            
+                                        <?php endforeach; ?>
+<!--					<li class="item clearfix" data-id="id-1" data-type="maillots">
 						<div class="image-hover clearfix">
-							<a href="images/maillots/psg_2014.jpg" rel="prettyPhoto[gallery1]" class="zoom">Zoom</a>
+							<a href="<?php echo $this->baseUrl("images/maillots/psg_2014.jpg");?>" rel="prettyPhoto[gallery1]" class="zoom">Zoom</a>
 						</div>
-						<img src="images/maillots/psg_2014.jpg" alt="">
+						<img src="<?php $this->baseUrl("images/maillots/psg_2014.jpg"); ?>" alt="">
 						<div class="titleAndMeta clearfix">
 							<h3><a href="#">Maillot PSG 2014</a></h3>
 						</div>
 						<p>Magnifique maillot de football de l'&eacute;quipe du PSG pour la saison 2013/14.</p>
-					</li>
+					</li>-->
 
-					<li class="item" data-id="id-2" data-type="goodies">
+<!--					<li class="item" data-id="id-2" data-type="goodies">
 						<div class="image-hover clearfix">
-							<a href="images/goodies/stylo_ballon.jpg" rel="prettyPhoto[gallery1]" class="zoom">Zoom</a>
+							<a href="<?php echo $this->baseUrl("images/fax.jpg"); ?>" rel="prettyPhoto[gallery1]" class="zoom">Zoom</a>
 						</div>
-						<img src="images/goodies/stylo_ballon.jpg" alt="">
+						<img src="<?php echo $this->baseUrl("images/fax.jpg"); ?>" alt="">
 						<div class="titleAndMeta clearfix">
 							<h3><a href="#">Stylo ballon</a></h3>
 						</div>
@@ -50,79 +58,14 @@
 
 					<li class="item noRight" data-id="id-3" data-type="jeuxvideos">
 						<div class="image-hover clearfix">
-							<a href="images/jeuxvideos/fifa_14.jpg" rel="prettyPhoto[gallery1]" class="zoom">Zoom</a>
+							<a href="<?php echo $this->baseUrl("images/fax.jpg"); ?>" rel="prettyPhoto[gallery1]" class="zoom">Zoom</a>
 						</div>
-						<img src="images/jeuxvideos/fifa_14.jpg" alt="">
+						<img src="<?php echo $this->baseUrl("images/fax.jpg"); ?>" alt="">
 						<div class="titleAndMeta clearfix">
 							<h3><a href="#">Fifa 14</a></h3>
 						</div>
 						<p>Jeu de foot sur console.</p>
-					</li>
-					
-					<li class="item clearfixe" data-id="id-4" data-type="hightech">
-						<div class="image-hover clearfix">
-							<a href="images/hightech/ps3.png" rel="prettyPhoto[gallery1]" class="zoom">Zoom</a>
-						</div>
-						<img src="images/hightech/ps3.png" alt="">
-						<div class="titleAndMeta clearfix">
-							<h3><a href="#">Console Playstation 3</a></h3>
-						</div>
-						<p>La console par excellence de Sony.</p>
-					</li>
-
-					<li class="item" data-id="id-5" data-type="hightech">
-						<div class="image-hover clearfix">
-							<a href="images/hightech/samsung_tv.jpg" rel="prettyPhoto[gallery1]" class="zoom">Zoom</a>
-						</div>
-						<img src="images/hightech/samsung_tv.jpg" alt="">
-						<div class="titleAndMeta clearfix">
-							<h3><a href="#">TV Samsung LED</a></h3>
-						</div>
-						<p>Un magnifique &eacute;cran pour regarder toutes vos rencontres sportives avec la plus belle qualit&eacute;.</p>
-					</li>
-
-					<li class="item noRight" data-id="id-6" data-type="equipements">
-						<div class="image-hover clearfix">
-							<a href="images/equipements/ballon.jpg" rel="prettyPhoto[gallery1]" class="zoom">Zoom</a>
-						</div>
-						<img src="images/equipements/ballon.jpg" alt="">
-						<div class="titleAndMeta clearfix">
-							<h3><a href="#">Ballon Addidas officiel </a></h3>
-						</div>
-						<p>Un magnifique ballon de football.</p>
-					</li>
-					<li class="item clearfixe" data-id="id-7" data-type="hightech">
-						<div class="image-hover clearfix">
-							<a href="images/hightech/ps3.png" rel="prettyPhoto[gallery1]" class="zoom">Zoom</a>
-						</div>
-						<img src="images/hightech/ps3.png" alt="">
-						<div class="titleAndMeta clearfix">
-							<h3><a href="#">Console Playstation 3</a></h3>
-						</div>
-						<p>La console par excellence de Sony.</p>
-					</li>
-
-					<li class="item" data-id="id-8" data-type="hightech">
-						<div class="image-hover clearfix">
-							<a href="images/hightech/samsung_tv.jpg" rel="prettyPhoto[gallery1]" class="zoom">Zoom</a>
-						</div>
-						<img src="images/hightech/samsung_tv.jpg" alt="">
-						<div class="titleAndMeta clearfix">
-							<h3><a href="#">TV Samsung LED</a></h3>
-						</div>
-						<p>Un magnifique &eacute;cran pour regarder toutes vos rencontres sportives avec la plus belle qualit&eacute;.</p>
-					</li>
-
-					<li class="item noRight" data-id="id-9" data-type="equipements">
-						<div class="image-hover clearfix">
-							<a href="images/equipements/ballon.jpg" rel="prettyPhoto[gallery1]" class="zoom">Zoom</a>
-						</div>
-						<img src="images/equipements/ballon.jpg" alt="">
-						<div class="titleAndMeta clearfix">
-							<h3><a href="#">Ballon Addidas officiel </a></h3>
-						</div>
-						<p>Un magnifique ballon de football.</p>
-					</li>
+					</li>-->
 				</ul>
 			</section><!-- gallery 4 columns -->
 

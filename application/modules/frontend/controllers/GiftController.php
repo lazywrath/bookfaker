@@ -18,13 +18,16 @@ class GiftController extends Bookfaker_Controller_Frontend_Action
         
         // Le user essaye de prendre un cadeau
         if(null != $idGift){
-            $gift = $repoGift->findBy($idGift);
+            $gift = $repoGift->findOneById($idGift);
             
             if(null != $gift){
                 // On check si le user a assez de bookies
                 if($gift->getBookies() <= $this->_user->getMoneybank()){
                     
-                    $commande = new Application\Model\Entities\Commande(array("user" =>$this->_user, "gift"=> $gift, "date" => date("Y-m-d")));
+                    $repoUser = $this->_entityManager->getRepository('Application\Model\Entities\User');
+                    $user = $repoUser->findOneById($this->_user->getId());
+                    
+                    $commande = new Application\Model\Entities\Commande(array("user" =>$user, "gift"=> $gift, "date" => new DateTime('NOW')));
                     
                     $this->_entityManager->persist($commande);
                     $this->_entityManager->flush();

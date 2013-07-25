@@ -166,7 +166,7 @@
 					<div class="post clearfix">
 						<div ng-repeat="bet in coupon.bets" class="metaData clearfix" style="width:280px;margin:0;">
 							<p><a href="#">{{bet.match.nameTeamOne}} vs {{bet.match.nameTeamTwo}}</a></p>
-							<p style="float:right;"><a ng-click="removeBet($index)">X</a></p>
+							<p style="float:right;"><a href="" ng-click="removeBet($index)">X</a></p>
 							</br>
 							<p>Pronostic : </p>
 							<p style="float:right;">{{getOdds(bet)}}</p>								
@@ -200,27 +200,15 @@
 					<h2>Top Parieurs</h2>
 				</header>
 				<div>
-					<h3 class="tabActive" style="width:32%;float:left;"><a ng-click="loadBestUsers()" href="">Semaine</a></h3>
-					<h3 class="tabInactive" style="width:32%;float:left;margin:0 2%"><a href="">Mois</a></h3>
-					<h3 class="tabInactive" style="width:32%;float:right;"><a href="">All Time</a></h3>
-					<div class="post clearfix">
-						<div class="metaData clearfix" style="width:280px;margin:0;">
-							<p class=""><a href="#">Camille B.</a></p>
-							<p class="" style="float:right;">7200 B</p>
-						</div>
-					</div>
-					<div class="post clearfix">
-						<div class="metaData clearfix" style="width:280px;margin:0;">
-							<p class=""><a href="#">Camille B.</a></p>
-							<p class="" style="float:right;">7200 B</p>
-						</div>
-					</div>
-					<div class="post clearfix">
-						<div class="metaData clearfix" style="width:280px;margin:0;">
-							<p class=""><a href="#">Camille B.</a></p>
-							<p class="" style="float:right;">7200 B</p>
-						</div>
-					</div>
+                                    <h3 class="tabActive" style="width:32%;float:left;"><a ng-click="loadBestUsers(week)" href="">Semaine</a></h3>
+                                    <h3 class="tabInactive" style="width:32%;float:left;margin:0 2%"><a ng-click="loadBestUsers(month)"href="">Mois</a></h3>
+                                    <h3 class="tabInactive" style="width:32%;float:right;"><a ng-click="loadBestUsers()" href="">All Time</a></h3>
+                                    <div ng-repeat="user in bestUsers" class="post clearfix">
+                                            <div class="metaData clearfix" style="width:280px;margin:0;">
+                                                    <p class=""><a href="#">Camille B.</a></p>
+                                                    <p class="" style="float:right;">7200 B</p>
+                                            </div>
+                                    </div>
 				</div>
 			</section>
 		</div><!-- right column -->

@@ -74,9 +74,42 @@ function menuCtrl($scope, $http, coupon){
         return coupon.saveBets().success(function(data){
             if(0==data.state)
                 $scope.isLogged = false;
-            else if(1==data.state)
+            else if(1==data.state){
                 $scope.isLogged = true;
+                $scope.isSaved = true;
+            }
         });
+    }
+    
+    $scope.getOdds =  function(bet){
+        
+        return coupon.getOdds(bet);
+    }
+    
+    $scope.loadBestUsers = function(duree){
+         var url = BASE_URL+'/backend/api/classement?duree'+duree;
+        
+        // On récupère la liste des matchs avec leur cotes
+        $http.get(url).success(function(data){
+            
+            $scope.bestUsers = data;
+            
+        });
+    }
+    
+    $scope.calculCote = function(){
+        
+        if(undefined == $scope.coupon)
+            return;
+        
+        var cote = 1;
+        
+        angular.forEach($scope.coupon.bets, function(bet, key){
+            cote *= coupon.getOdds(bet);
+        })
+        
+        return Math.floor(cote);
+        
     }
     
      // On récupère les paris en session s'ils existent
@@ -84,7 +117,8 @@ function menuCtrl($scope, $http, coupon){
         $scope.coupon = coupon.getBets();
     });
     
-    $scope.saveSessionCoupon = function(){
+    $scope.saveSessionCoupon = function(couponType){
         coupon.setSessionBets();
+        $scope.coupon.type = couponType;
     }
 }

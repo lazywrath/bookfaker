@@ -25,6 +25,11 @@ bookfaker.factory('coupon', function($http){
                 
                 if(null != data.bets)
                     coupon = angular.fromJson(data.bets);
+                
+                if(undefined == coupon.type){
+                    coupon.type = 0;
+                }
+                    
             });
         },
         setSessionBets : function(){
@@ -63,8 +68,9 @@ bookfaker.factory('coupon', function($http){
                 
                 gains = odds*stacke;
             }
-        
-            return gains
+            
+
+            return Math.floor(gains);
         },
         getOdds: function(bet){
             
@@ -100,7 +106,6 @@ bookfaker.factory('coupon', function($http){
 bookfaker.filter('truncate', function () {
         return function (text, length, end) {
             
-            console.log("test");
             if (isNaN(length))
                 length = 10;
  

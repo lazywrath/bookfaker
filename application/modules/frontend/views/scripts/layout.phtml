@@ -82,7 +82,7 @@
 				<h1><a href="index.html">BookFaker <em>Un nouveau site de paris fictifs en ligne</em></a></h1>
 			</div>
 			<div id="loginBox" class="loginBox eleven columns">
-				<form method="post" action="<?php echo $this->url(array('module' => 'frontend','controller'=>'user','action'=>'login')); ?>">
+				<form method="post" action="<?php echo $this->url(array('module' => 'frontend','controller'=>'user','action'=>'login'), null, true); ?>">
                                     <?php if(Bookfaker_Control::isLogged()): ?>
                                         <span style="font:normal 13px/13px 'Open Sans',Arial,sans-serif"><img src="<?php echo $this->baseUrl("images/user.png"); ?>"> <?php echo Bookfaker_Control::userInfos()->getUsername()?>  - <strong></strong><?php echo Bookfaker_Control::userInfos()->getMoneybank()?> B</br></span>
                                         <span style="font:normal 13px/13px 'Open Sans',Arial,sans-serif"><a class="link" href="<?php echo $this->url(
@@ -90,11 +90,11 @@
                                                 'module' => 'frontend',
                                                 'controller'=>'user',
                                                 'action'=>'logout'
-                                                )); ?>">Logout</a></span>
+                                                ), null, true); ?>">Logout</a></span>
                                     <?php else: ?>
                                         <input type="text" name="username" id="headerLogin" placeholder="Pseudo...">
                                         <input type="password" name="password" id="headerPassword" placeholder="Mot de passe...">
-                                        <a href="<?php echo $this->url(array('module' => 'frontend','controller'=>'user','action'=>'register')); ?>" id="submitJoin" class="noTransition">Inscrivez-vous</a>
+                                        <a href="<?php echo $this->url(array('module' => 'frontend','controller'=>'user','action'=>'register'), null, true); ?>" id="submitJoin" class="noTransition">Inscrivez-vous</a>
                                         <input type="submit" name="submitLogin" id="submitLogin" class="noTransition" value="Connexion">
                                     <?php endif; ?>
 				</form>
@@ -104,20 +104,19 @@
 	<hr><!-- end header section -->
 	<nav id="mainNav" class="container">
 		<ul>
-			<li><a class="current" href="<?php echo $this->url(array('module' => 'frontend','controller'=>'index','action'=>'index')); ?>">Accueil</a></li>
+			<li><a class="current" href="<?php echo $this->url(array('module' => 'frontend','controller'=>'index','action'=>'index'),null, true); ?>">Accueil</a></li>
 			<?php foreach($this->sports  as $sport): ?>
-                            <li><a href="<?php echo $this->url(array('module' => 'frontend','controller'=>'index','action'=>'paris', "sport" => $sport->name)); ?>"><?php echo $sport->name;?></a>
+                            <li><a href="<?php echo $this->url(array('module' => 'frontend','controller'=>'index','action'=>'paris', "sport" => $sport->name),null, true); ?>"><?php echo $sport->name;?></a>
                                     <ul>
                                         <?php foreach($sport->championships as $idChampionship => $championship): ?>
-                                            <a href="<?php echo $this->url(array('module' => 'frontend','controller'=>'index','action'=>'paris', "sport" => $sport->name, "championship" => $idChampionship)); ?>"><?php echo $championship;?></a>
+                                            <a href="<?php echo $this->url(array('module' => 'frontend','controller'=>'index','action'=>'paris', "sport" => $sport->name, "championship" => $idChampionship),null, true); ?>"><?php echo $championship;?></a>
                                         <?php endforeach;?>
                                     </ul>
                             </li>
                         <?php endforeach;?>
 
-			<li><a href="shop.html">Boutique</a></li>
-			<li><a href="profile.html">Mon compte</a></li>
-			<li><a href="contact.html">Contact</a></li>
+			<li><a href="<?php echo $this->url(array('module' => 'frontend','controller'=>'gift','action'=>'index'),null, true); ?>">Boutique</a></li>
+			<li><a href="<?php echo $this->url(array('module' => 'frontend','controller'=>'user','action'=>'profile'),null, true); ?>">Mon compte</a></li>
 		</ul>
 	</nav><!-- end main nav section -->
 
@@ -152,21 +151,21 @@
 				<div ng-controller="menuCtrl">
 					<!--<input ng-change="saveSessionCoupon()" ng-model="coupon.type" type="radio" name="type" value="0" checked> Simple<br>
 					<input ng-change="saveSessionCoupon()" ng-model="coupon.type" type="radio" name="type" value="1" > Combiné-->
-					<h3 class="tabActive" style="width:49%;float:left;"><a ng-change="saveSessionCoupon()" ng-model="coupon.type">Simple</a></h3>
-					<h3 class="tabInactive" style="width:49%;float:right;"><a ng-change="saveSessionCoupon()" ng-model="coupon.type">Combine</a></h3>
+                                        <h3 class="tabActive" style="width:49%;float:left;"><a href="" ng-click="saveSessionCoupon(0)" >SIMPLE</a></h3>
+					<h3 class="tabInactive" style="width:49%;float:right;"><a href="" ng-click="saveSessionCoupon(1)">COMBINE</a></h3>
 					<div class="post clearfix">
 						<div ng-repeat="bet in coupon.bets" class="metaData clearfix" style="width:280px;margin:0;">
 							<p><a href="#">{{bet.match.nameTeamOne}} vs {{bet.match.nameTeamTwo}}</a></p>
 							<p style="float:right;"><a ng-click="removeBet($index)">X</a></p>
 							</br>
-							<p ng-switch="bet.team">Pronostic : </p>
-							<p style="float:right;">3.50</p>								
+							<p>Pronostic : </p>
+							<p style="float:right;">{{getOdds(bet)}}</p>								
 						</div>
 					</div>
 					<div class="post clearfix">
 						<div class="metaData clearfix" style="width:280px;margin:0;">
 							<p ng-show="1==coupon.type" class="">Cote totale :</p>
-							<p ng-show="1==coupon.type" class="" style="float:right;">11.50</p>
+							<p ng-show="1==coupon.type" class="" style="float:right;">{{calculCote()}}</p>
 							</br>
 							<p class="">Mise :</p>
 							<p class="" style="float:right;"><input ng-change="saveSessionCoupon()" ng-model="coupon.stacke" type="text" name="mise" id="mise" style="width: 60px;height: 20px;padding: 0px 10px;margin: 0;"></p>
@@ -174,7 +173,8 @@
 							<p class="" style="margin: 5px 0">Gains Possible :</p>
 							<p class="" style="float:right;margin: 5px -60px">{{calculGains()}} B</p>
 							</br>
-							<p class="" style="float:right;margin-top:10px"><button class="button">Valider</button></p>
+                                                        <p ng-show="isSaved" >Pari(s) sauvegardé(s) !</p>
+							<p class="" style="float:right;margin-top:10px"><button ng-click="saveBets()" class="button">Valider</button></p>
 						</div>
 					</div>
 					<div ng-show="!isLogged">Vous devez être connectés pour parier.
@@ -190,9 +190,9 @@
 					<h2>Top Parieurs</h2>
 				</header>
 				<div>
-					<h3 class="tabActive" style="width:32%;float:left;"><a>Semaine</a></h3>
-					<h3 class="tabInactive" style="width:32%;float:left;margin:0 2%"><a>Mois</a></h3>
-					<h3 class="tabInactive" style="width:32%;float:right;"><a>All Time</a></h3>
+					<h3 class="tabActive" style="width:32%;float:left;"><a ng-click="loadBestUsers()" href="">Semaine</a></h3>
+					<h3 class="tabInactive" style="width:32%;float:left;margin:0 2%"><a href="">Mois</a></h3>
+					<h3 class="tabInactive" style="width:32%;float:right;"><a href="">All Time</a></h3>
 					<div class="post clearfix">
 						<div class="metaData clearfix" style="width:280px;margin:0;">
 							<p class=""><a href="#">Camille B.</a></p>

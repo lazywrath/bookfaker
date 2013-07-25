@@ -12,11 +12,13 @@ class Bookfaker_Form_RegisterUser extends Zend_Form{
        $username->addValidator(new Zend_Validate_Db_NoRecordExists('bf_user', 'username'))
                 ->addFilter('StripTags')
                 ->addFilter('StringTrim')
+                ->setAttrib('placeholder', 'Pseudo (requis)')
                 ->addValidator('NotEmpty');
 
         
        $password = new Zend_Form_Element_Password('password'); 
-       $password->setLabel("Mot de passe");
+       $password->setLabel("Mot de passe")
+               ->setAttrib('placeholder', 'Mot de passe (requis)');
        $password->setRequired(true);
        
        $email = new Zend_Form_Element_Text('email'); 
@@ -26,27 +28,33 @@ class Bookfaker_Form_RegisterUser extends Zend_Form{
                 ->addFilter('StripTags')
                 ->addFilter('StringTrim')
                 ->addValidator('EmailAddress')
+                ->setAttrib('placeholder', 'Email  (requis)')
                 ->addValidator('NotEmpty');
 
         
        $firstname = new Zend_Form_Element_Text('firstname'); 
-       $firstname->setLabel("Prénom");
+       $firstname->setLabel("Prénom")
+               ->setAttrib('placeholder', 'Prénom');
        $firstname->setRequired(false);
        
        $lastname = new Zend_Form_Element_Text('lastname'); 
-       $lastname->setLabel("Nom");
+       $lastname->setLabel("Nom")
+               ->setAttrib('placeholder', 'Nom');
        $lastname->setRequired(false);
         
        $address = new Zend_Form_Element_Text('address'); 
-       $address->setLabel("Adresse");
+       $address->setLabel("Adresse")
+               ->setAttrib('placeholder', 'Adresse');
        $address->setRequired(false);
        
        $zip = new Zend_Form_Element_Text('zip'); 
-       $zip->setLabel("Code Postal");
+       $zip->setLabel("Code Postal")
+               ->setAttrib('placeholder', 'Code postal');
        $zip->setRequired(false);
        
        $city = new Zend_Form_Element_Text('city'); 
-       $city->setLabel("Ville");
+       $city->setLabel("Ville")
+            ->setAttrib('placeholder', 'Ville');
        $city->setRequired(false);
 
        $submit = new Zend_Form_Element_Submit('submit');
@@ -65,6 +73,11 @@ class Bookfaker_Form_RegisterUser extends Zend_Form{
                    $submit
                    )
                );
+       
+       foreach($this->getElements() as $element)
+        {
+            $element->removeDecorator('Label');
+        }
     }
     
 }

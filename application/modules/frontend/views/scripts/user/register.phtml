@@ -1,1 +1,21 @@
-<?php echo $this->form; ?>
+<section id="contactForm" class="clearfix">
+        <header>
+                <h2>Inscription</h2>
+        </header>
+        <form action="<?php echo $this->url(array('module' => 'frontend','controller' => 'user','action' => 'register'), null, true); ?>" method="post">
+                <fieldset class="inputFields">
+                    <?php echo $this->form->username; ?>
+                    <?php echo $this->form->password; ?>
+                    <?php echo $this->form->email; ?>
+                    <?php echo $this->form->firstname; ?>
+                    <?php echo $this->form->lastname; ?>
+                    <?php echo $this->form->address; ?>
+                    <?php echo $this->form->city; ?>
+                    <?php echo $this->form->zip; ?>
+                </fieldset>
+                <input type="submit" class="button" style="clear:both;" value="Enregistrer" />
+
+                <div></div>
+        </form>
+</section><!-- contact form -->
+                            
